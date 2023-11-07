@@ -1,0 +1,19 @@
+.SearchContainer {
+  width: 212px;
+}
+
+.SearchBar {
+  width: 100%;
+  height: 37px;
+  padding-left: 20px;
+  border: 1px solid #D0CFCE;
+  border-radius: 8px;
+  outline: none;
+ }
+
+.SearchIcon {
+  position: relative;
+  float: right;
+  top: -27px;
+  right: -15px;
+}

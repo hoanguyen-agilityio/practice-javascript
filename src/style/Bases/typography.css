@@ -1,0 +1,6 @@
+html {
+    font-family: var(--font-family);
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-s);
+    line-height: var(--line-height-s);
+}

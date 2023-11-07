@@ -6,10 +6,7 @@
     color: var(--secondary-color-50);
     background: var(--primary-color-100);
     border-radius: 4px;
-    font-family: var(--font-family);
-    font-size: var(--font-size-m);
     font-weight: var(--font-weight-m);
-    line-height: var(--line-height-s);
 }
 
 .Btn:active {
