@@ -1,0 +1,40 @@
+/* START NAVBAR */
+.ContainerNavbar {
+    width: 193px;
+}
+
+.NavIconContent {
+    padding-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.NavIcon {
+    display: inline-block;
+}
+
+.NavContent {
+    display: inline-block;
+    font-weight: var(--font-weight-m);
+    padding-left: 10px;
+}
+
+.NavIconContent:hover {
+    background-color: var(--primary-color-100)
+}
+
+.NavIconLogout {
+    padding-top: 60px;
+    text-align: center;
+}
+
+.Logout {
+    display: inline-block;
+    font-weight: var(--font-weight-m);
+}
+
+.IconLogout {
+    display: inline-block;
+    padding-left: 10px;
+}
+/* END NAVBAR */
