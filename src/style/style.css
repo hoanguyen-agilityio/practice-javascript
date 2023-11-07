@@ -1,3 +1,6 @@
 /* ABSTRACTS */
 @import url(./abstracts/font.css);
 @import url(./abstracts/color.css);
+
+/* COMPONENTS */
+@import url(./components/input.css);

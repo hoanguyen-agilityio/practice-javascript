@@ -1,0 +1,20 @@
+/* START INPUT */
+/* STYLE APPLIED TO THE MOBILE */
+.DataInput {
+    width: calc(100% - 62px);
+    border-radius: 4px;
+    height: 44px;
+    margin-top: 10px;
+    padding: 10px 30px;
+    font-family: var(--font-family);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-s);
+}
+
+/* STYLE APPLIED TO THE MOBILE */
+@media (min-width: 769px) {
+    .DataInput {
+        margin-top: 20px;
+    }
+}
+/* END INPUT */
