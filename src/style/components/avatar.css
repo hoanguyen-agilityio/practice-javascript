@@ -1,0 +1,28 @@
+/* START AVATAR */
+/* Avatar user */
+.Profile {
+   width: 130px;
+   text-align: center;
+}
+
+.AvtUser {
+    border-radius: 50%;
+}
+
+.NameUser {
+    font-weight: var(--font-weight-xl);
+    font-size: 17px;
+    line-height: 21px;
+}
+
+.UserRights {
+    font-weight: var(--font-weight-m);
+    color: var(--primary-color-100);
+}
+
+/* Avatar student */
+.AvtStudent {
+    width: 65px;
+    height: 55px;
+}
+/* END AVATAR */
