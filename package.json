@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-angular": "^18.1.0",
+    "husky": "^8.0.3",
+    "parcel": "^2.10.2"
+  },
+  "dependencies": {
+    "prettier": "^1.19.1",
+    "prettierrc": "^0.0.0-5"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
