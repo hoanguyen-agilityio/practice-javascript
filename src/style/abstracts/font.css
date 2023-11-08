@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {  
+  /* FONT SIZE */
+	--font-size-s: 12px;
+ 	--font-size-m: 14px;
+	--font-size-l: 22px;
+	--font-size-xl: 32px;
+
+	/* LINE HEIGHT */
+	--line-height-s: 17px;
+	--line-height-m: 27px;
+	--line-height-l: 39px;
+
+	/* FONT WEIGHT */
+	--font-weight-s: 400;
+	--font-weight-m: 500;
+	--font-weight-l: 600;
+	--font-weight-xl: 700;
+
+	/* FONT FAMILY */
+	--font-family: 'Montserrat', sans-serif;
+}
+ 
