@@ -3,6 +3,7 @@
 @import url(./abstracts/color.css);
 
 /* BASES */
+@import url(./Bases/reset.css);
 @import url(./Bases/typography.css);
 
 /* COMPONENTS */
