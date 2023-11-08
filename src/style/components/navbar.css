@@ -1,39 +1,39 @@
 /* START NAVBAR */
-.ContainerNavbar {
+.container-navbar {
     width: 193px;
 }
 
-.NavIconContent {
+.nav-icon-content {
     padding-top: 10px;
     width: 100%;
     text-align: center;
 }
 
-.NavIcon {
+.nav-icon {
     display: inline-block;
 }
 
-.NavContent {
+.nav-content {
     display: inline-block;
     font-weight: var(--font-weight-m);
     padding-left: 10px;
 }
 
-.NavIconContent:hover {
+.nav-icon-content:hover {
     background-color: var(--primary-color-100)
 }
 
-.NavIconLogout {
+.nav-icon-logout {
     padding-top: 60px;
     text-align: center;
 }
 
-.Logout {
+.logout {
     display: inline-block;
     font-weight: var(--font-weight-m);
 }
 
-.IconLogout {
+.icon-logout {
     display: inline-block;
     padding-left: 10px;
 }

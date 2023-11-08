@@ -1,27 +1,27 @@
 /* START AVATAR */
 /* Avatar user */
-.Profile {
+.profile {
    width: 130px;
    text-align: center;
 }
 
-.AvtUser {
+.avt-user {
     border-radius: 50%;
 }
 
-.NameUser {
+.name-user {
     font-weight: var(--font-weight-xl);
     font-size: 17px;
     line-height: 21px;
 }
 
-.UserRights {
+.user-rights {
     font-weight: var(--font-weight-m);
     color: var(--primary-color-100);
 }
 
 /* Avatar student */
-.AvtStudent {
+.avt-student {
     width: 65px;
     height: 55px;
 }

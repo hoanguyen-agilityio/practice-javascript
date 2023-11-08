@@ -1,9 +1,9 @@
 /* START SEARCH INPUT */
-.SearchContainer {
+.search-container {
   width: 212px;
 }
 
-.SearchBar {
+.search-bar {
   width: 100%;
   height: 37px;
   padding-left: 20px;
@@ -12,7 +12,7 @@
   outline: none;
  }
 
-.SearchIcon {
+.search-icon {
   position: relative;
   float: right;
   top: -27px;
