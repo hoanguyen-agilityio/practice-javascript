@@ -1,0 +1,21 @@
+/* START SEARCH INPUT */
+.search-container {
+  width: 212px;
+}
+
+.search-bar {
+  width: 100%;
+  height: 37px;
+  padding-left: 20px;
+  border: 1px solid #D0CFCE;
+  border-radius: 8px;
+  outline: none;
+ }
+
+.search-icon {
+  position: relative;
+  float: right;
+  top: -27px;
+  right: -15px;
+}
+/* END SEARCH INPUT */
