@@ -30,7 +30,7 @@
 }
 
 .sub-sidebar-item:hover {
-    border-radius: 4px;
+    border-radius: var(--border-radius-s);
     background-color: var(--primary-color-100)
 }
 

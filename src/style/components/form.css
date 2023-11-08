@@ -28,7 +28,7 @@
   }
     
   .form-control {
-    border-radius: 10px;
+    border-radius: var(--border-radius-s);
     display: block;
     width: calc(100% - 34px);
     padding: 15px;

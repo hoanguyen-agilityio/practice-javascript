@@ -1,6 +1,7 @@
 /* ABSTRACTS */
 @import url(./abstracts/font.css);
 @import url(./abstracts/color.css);
+@import url(./abstracts/border.css);
 
 /* BASES */
 @import url(./Bases/reset.css);

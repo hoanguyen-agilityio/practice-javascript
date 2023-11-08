@@ -1,7 +1,7 @@
 /* START INPUT */
 /* STYLE APPLIED TO THE MOBILE */
 .data-input {
-    border-radius: 4px;
+    border-radius: var(--border-radius-s);
     margin-top: 10px;
     padding: 10px 30px;
     font-family: var(--font-family);

@@ -6,7 +6,7 @@
 }
 
 .avt-user {
-    border-radius: 50%;
+    border-radius: var(--dorder-radius-xl);
 }
 
 .name-user {
