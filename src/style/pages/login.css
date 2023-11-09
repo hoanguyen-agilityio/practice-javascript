@@ -19,12 +19,11 @@
 .logo-page-login {
   font-size: var(--font-size-m);
   padding: 20px 25px 0;
-}
-
-.logo-page-login::before {
-  content: '| ';
-  color: var(--primary-color-50);
-  padding-right: 5px;
+  &:before {
+    content: '| ';
+    color: var(--primary-color-50);
+    padding-right: 5px;
+  }
 }
 
 .title-signin {
