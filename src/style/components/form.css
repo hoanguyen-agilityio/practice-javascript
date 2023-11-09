@@ -15,7 +15,7 @@
   overflow: auto;
   }
   
-.form-line {
+.form-input-group {
   display: flex;
   flex-direction: column;
   padding-top: 15px;
@@ -54,7 +54,7 @@
     font-size: var(--font-size-s);
   }
   
-  .form-line {
+  .form-input-group {
     padding-top: 20px;
   }
   
