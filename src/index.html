@@ -9,9 +9,9 @@
   <body>
     <!-- avatar -->
     <div class="profile">
-      <img src="./img/avt.png" alt="avatar user" class="avt-user" />
-      <p class="name-user ">Karthi Madesh</p>
-      <p class="user-rights">Admin</p>
+      <img src="./img/avatar.svg" alt="avatar user" class="avt-user" />
+      <h3 class="name-user ">Karthi Madesh</h3>
+      <span class="user-rights">Admin</span>
     </div>
 
     <!-- search input -->
@@ -22,8 +22,8 @@
         placeholder="Search..."
         class="search-bar"
       />
-      <a href="search input"
-        ><img class="search-icon" src="./img/search.png"
+      <a href="javascript:void(0);"
+        ><img class="search-icon" src="./img/search.svg"
       /></a>
     </form>
 
@@ -31,44 +31,44 @@
     <div class="sub-sidebar-content">
       <ul class="sub-sidebar-list">
         <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="">
-            <img class="item-icon" src="./img/home.png" alt="icon home" />
+          <a class="wrapper-item" href="javascript:void(0);">
+            <img class="item-icon" src="./img/home.svg" alt="icon home" />
             <span class="text-side-item">Home</span>
           </a>
         </li>
         <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="">
-            <img class="item-icon" src="./img/course.png" alt="icon Course" />
+          <a class="wrapper-item" href="javascript:void(0);">
+            <img class="item-icon" src="./img/course.svg" alt="icon Course" />
             <span class="text-side-item">Course</span>
           </a>
         </li>
         <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="">
+          <a class="wrapper-item" href="javascript:void(0);">
             <img
               class="item-icon"
-              src="./img/graduation.png"
+              src="./img/graduation.svg"
               alt="icon Students"
             />
             <span class="text-side-item">Students</span>
           </a>
         </li>
         <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="">
-            <img class="item-icon" src="./img/payment.png" alt="icon Payment" />
+          <a class="wrapper-item" href="javascript:void(0);">
+            <img class="item-icon" src="./img/payment.svg" alt="icon Payment" />
             <span class="text-side-item">Payment</span>
           </a>
         </li>
         <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="">
-            <img class="item-icon" src="./img/report.png" alt="icon Report" />
+          <a class="wrapper-item" href="javascript:void(0);">
+            <img class="item-icon" src="./img/report.svg" alt="icon Report" />
             <span class="text-side-item">Report</span>
           </a>
         </li>
         <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="">
+          <a class="wrapper-item" href="javascript:void(0);">
             <img
               class="item-icon"
-              src="./img/setting.png"
+              src="./img/setting.svg"
               alt="icon Settings"
             />
             <span class="text-side-item">Settings</span>
@@ -76,17 +76,19 @@
         </li>
       </ul>
 
-      <button class="btn-logout">
-        <p class="content-btn-logout">Logout</p>
-        <img class="icon-btn-logout" src="./img/logout.png" alt="btn logout" />
-      </button>
+      <div class="navigation">
+        <a class="button" href="">
+          <div class="ontent-btn-logout">Logout</div>
+          <img src="./img/logout.svg" class="icon-btn-logout" />
+        </a>
+      </div>
     </div>
 
     <!-- Form -->
     <div class="modal modal-form">
       <div class="modal-content">
         <div class="title">
-          <p>Student</p>
+          <h3>Student</h3>
         </div>
         <form class="form">
           <div class="form-line">
@@ -99,11 +101,11 @@
           </div>
           <div class="form-line">
             <label class="label-input">Phone</label>
-            <input type="text" class="data-input" id="phone" />
+            <input type="tel" class="data-input" id="phone" />
           </div>
           <div class="form-line">
             <label class="label-input">Phone Enroll Number</label>
-            <input type="text" class="data-input" id="phone enroll number" />
+            <input type="tel" class="data-input" id="phone enroll number" />
           </div>
           <div class="form-line">
             <label class="label-input">Date of admission</label>

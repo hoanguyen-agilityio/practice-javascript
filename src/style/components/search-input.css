@@ -1,6 +1,7 @@
 /* START SEARCH INPUT */
 .search-container {
   width: 212px;
+  padding-top: 10px;
 }
 
 .search-bar {

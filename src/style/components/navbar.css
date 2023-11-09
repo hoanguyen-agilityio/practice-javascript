@@ -21,28 +21,34 @@
 .text-side-item {
   font-weight: var(--font-weight-m);
   padding-left: 10px;
+  color: var(--default-color);
 }
 
 .sub-sidebar-item {
   height: 41px;
   padding-top: 20px;
-    
+  &:hover {
+    border-radius: var(--border-radius-s);
+    background-color: var(--primary-color-100)
+  }
 }
 
-.sub-sidebar-item:hover {
-  border-radius: var(--border-radius-s);
-  background-color: var(--primary-color-100)
+.navigation {
+  margin: 0 auto ;
 }
 
-.btn-logout {
+.button {
   display: flex;
-  justify-content: center;
+  text-decoration: none;
+  color: var(--default-color);
+}
+
+.ontent-btn-logout {
   font-weight: var(--font-weight-m);
-  border: none;
   background-color: var(--secondary-color-50);
 }
 
-.content-btn-logout {
-  padding-right: 20px;
+.icon-btn-logout {
+  padding-left: 15px;
 }
 /* END NAVBAR */
