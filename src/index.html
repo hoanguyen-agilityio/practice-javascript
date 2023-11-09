@@ -6,124 +6,40 @@
     <link rel="stylesheet" href="./style/style.css" />
     <title>Document</title>
   </head>
-  <body>
-    <!-- avatar -->
-    <header class="profile">
-      <img src="./img/avatar.svg" alt="avatar user" class="avt-user" />
-      <h3 class="name-user ">Karthi Madesh</h3>
-      <span class="user-rights">Admin</span>
-    </header>
-
-    <!-- search input -->
-    <form class="search-container">
-      <input
-        type="text"
-        id="search-bar"
-        placeholder="Search..."
-        class="search-bar"
-      />
-      <a href="javascript:void(0);"
-        ><img class="search-icon" src="./img/search.svg"
-      /></a>
+  <body class="section-body-login">
+    <!-- Form login -->
+    <form action="" class="form-login">
+      <h1 class="logo logo-page-login">CRUD OPERATIONS</h1>
+      <h2 class="title title-signin">SIGN IN</h2>
+      <p class="login-content">Enter your credentials to access your account</p>
+      <p class="error-message"></p>
+      <div class="form-field">
+        <label class="input-label">Email</label>
+        <input
+          class="data-input"
+          type="text"
+          placeholder="Enter your email"
+          name=""
+          id=""
+        />
+      </div>
+      <div class="form-field">
+        <label class="input-label">Password</label>
+        <input
+          class="data-input"
+          type="password"
+          placeholder="Enter your password"
+          name=""
+          id=""
+        />
+      </div>
+      <div class="container-btn">
+        <button type="button" class="btn btn-login">Sign In</button>
+      </div>
+      <div class="reset-password-login">
+        <label class="content-reset-password">Forgot your password?</label>
+        <a href="#" class="link-reset-password">Reset Password</a>
+      </div>
     </form>
-
-    <!-- navbar -->
-    <div class="sub-sidebar-content">
-      <ul class="sub-sidebar-list">
-        <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="javascript:void(0);">
-            <img class="item-icon" src="./img/home.svg" alt="icon home" />
-            <span class="text-side-item">Home</span>
-          </a>
-        </li>
-        <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="javascript:void(0);">
-            <img class="item-icon" src="./img/course.svg" alt="icon Course" />
-            <span class="text-side-item">Course</span>
-          </a>
-        </li>
-        <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="javascript:void(0);">
-            <img
-              class="item-icon"
-              src="./img/graduation.svg"
-              alt="icon Students"
-            />
-            <span class="text-side-item">Students</span>
-          </a>
-        </li>
-        <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="javascript:void(0);">
-            <img class="item-icon" src="./img/payment.svg" alt="icon Payment" />
-            <span class="text-side-item">Payment</span>
-          </a>
-        </li>
-        <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="javascript:void(0);">
-            <img class="item-icon" src="./img/report.svg" alt="icon Report" />
-            <span class="text-side-item">Report</span>
-          </a>
-        </li>
-        <li class="sub-sidebar-item">
-          <a class="wrapper-item" href="javascript:void(0);">
-            <img
-              class="item-icon"
-              src="./img/setting.svg"
-              alt="icon Settings"
-            />
-            <span class="text-side-item">Settings</span>
-          </a>
-        </li>
-      </ul>
-
-      <div class="navigation">
-        <a class="button" href="">
-          <div class="ontent-btn-logout">Logout</div>
-          <img src="./img/logout.svg" class="icon-btn-logout" />
-        </a>
-      </div>
-    </div>
-
-    <!-- Form -->
-    <div class="modal modal-form">
-      <div class="modal-content">
-        <div class="title">
-          <h3>Student</h3>
-        </div>
-        <form class="form">
-          <div class="form-line">
-            <label class="label-input">Name</label>
-            <input type="text" class="data-input" id="nameStudent" />
-          </div>
-          <div class="form-line">
-            <label class="label-input">Email</label>
-            <input type="email" class="data-input" id="email" />
-          </div>
-          <div class="form-line">
-            <label class="label-input">Phone</label>
-            <input type="tel" class="data-input" id="phone" />
-          </div>
-          <div class="form-line">
-            <label class="label-input">Phone Enroll Number</label>
-            <input type="tel" class="data-input" id="phone enroll number" />
-          </div>
-          <div class="form-line">
-            <label class="label-input">Date of admission</label>
-            <input type="date" class="data-input" id="date of admission" />
-          </div>
-        </form>
-        <div class="button-box">
-          <button type="button" class="btn">
-            Cancel
-          </button>
-          <button type="button" class="btn">
-            Create Student
-          </button>
-          <button type="button" class="btn">
-            Update Student
-          </button>
-        </div>
-      </div>
-    </div>
   </body>
 </html>

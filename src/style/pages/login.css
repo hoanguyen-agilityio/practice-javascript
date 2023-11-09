@@ -1,0 +1,129 @@
+/* START PAGE LOGIN */
+/* STYLE APPLIED TO THE MOBILE */
+.section-body-login {
+  background-image: linear-gradient(to right ,var(--primary-color-100), var(--primary-color-50));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0 20px;
+}
+
+.form-login {
+  width: 100%;
+  max-width: 475px;
+  background: var(--secondary-color-50);
+  border-radius: 20px;
+}
+
+.logo-page-login {
+  font-size: var(--font-size-m);
+  padding: 20px 25px 0;
+}
+
+.logo-page-login::before {
+  content: '| ';
+  color: var(--primary-color-50);
+  padding-right: 5px;
+}
+
+.title-signin {
+  font-size: var(--font-size-s);
+  padding-top: 25px;
+}
+
+.login-content {
+  padding-top: 10px;
+  color: var(--secondary-color-200);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px 0;
+}
+
+.input-label {
+  font-size: var(--font-size-xs);
+}
+
+.container-btn {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 15px 0;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 15px 0;
+  margin: 0;
+}
+
+.reset-password-login {
+  display: flex;
+  justify-content: center;
+  font-size: var(--font-size-s);
+  padding: 20px 15px;
+}
+
+.link-reset-password {
+  color: var(--primary-color-100);
+}
+
+/* STYLE APPLIED TO THE TABLET */
+@media (min-width: 769px) {
+  .logo-page-login {
+    font-size: var(--font-size-l);
+    padding: 30px 25px 0;
+  }
+
+  .title-signin {
+    font-size: var(--font-size-m);
+    padding-top: 30px;
+  }
+
+  .login-content {
+    padding-top: 15px;
+    font-size: var(--font-size-s);
+  }
+
+  .input-label {
+    font-size: var(--font-size-s);
+  }
+
+  .form-field {
+    padding: 30px 20px 0;
+  }
+
+  .container-btn {
+    padding: 30px 20px 0;
+  }
+
+  .reset-password-login {
+    padding: 30px 20px;
+  }
+}
+
+/* STYLE APPLIED TO THE DESKTOP */
+@media (min-width: 1024px) {
+  .logo-page-login {
+    padding: 40px 25px 0;
+    font-size: var(--font-size-xl);
+  }
+  
+  .title-signin {
+    font-size: var(--font-size-l);
+    padding-top: 35px;
+  }
+
+  .form-field {
+    padding: 35px 20px 0;
+  }
+
+  .container-btn {
+    padding: 35px 20px 0;
+  }
+}
+/* END PAGE LOGIN */
