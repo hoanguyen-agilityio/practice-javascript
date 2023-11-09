@@ -1,28 +1,29 @@
 /* START AVATAR */
 /* Avatar user */
 .profile {
-   width: 130px;
-   text-align: center;
+  width: 130px;
+  text-align: center;
 }
 
 .avt-user {
-    border-radius: 50%;
+  border-radius: var(--dorder-radius-xl);
 }
 
 .name-user {
-    font-weight: var(--font-weight-xl);
-    font-size: 17px;
-    line-height: 21px;
+  margin: 10px 0;
+  font-weight: var(--font-weight-xl);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
 }
 
 .user-rights {
-    font-weight: var(--font-weight-m);
-    color: var(--primary-color-100);
+  font-weight: var(--font-weight-m);
+  color: var(--primary-color-100);
 }
 
 /* Avatar student */
 .avt-student {
-    width: 65px;
-    height: 55px;
+  width: 65px;
+  height: 55px;
 }
 /* END AVATAR */

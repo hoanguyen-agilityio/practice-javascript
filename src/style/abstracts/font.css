@@ -2,15 +2,17 @@
 
 :root {  
   /* FONT SIZE */
-	--font-size-s: 12px;
- 	--font-size-m: 14px;
+	--font-size-xs: 12px;
+ 	--font-size-s: 14px;
+	--font-size-m: 17px;
 	--font-size-l: 22px;
 	--font-size-xl: 32px;
 
 	/* LINE HEIGHT */
 	--line-height-s: 17px;
-	--line-height-m: 27px;
-	--line-height-l: 39px;
+	--line-height-m: 21px;
+	--line-height-l: 27px;
+	--line-height-xl: 39px;
 
 	/* FONT WEIGHT */
 	--font-weight-s: 400;
