@@ -1,12 +1,12 @@
 /* START BORDER */
 :root {
-    /* Border radius */
-    --border-radius-s: 4px;
-    --border-radius-m: 8px;
-    --border-radius-l: 10px;
-    --dorder-radius-xl: 50%;
+  /* Border radius */
+  --border-radius-s: 4px;
+  --border-radius-m: 8px;
+  --border-radius-l: 10px;
+  --dorder-radius-xl: 50%;
 
-    /* Border */
-    --border-s: 1px;
+  /* Border */
+  --border-s: 1px;
 }
 /* END BORDER */

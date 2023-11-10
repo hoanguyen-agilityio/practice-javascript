@@ -1,8 +1,8 @@
 /* START FORM */
 /* STYLE APPLIED TO THE MOBILE */
 .modal-content {
-    max-width: 510px;
-    padding: 0 15px;
+  max-width: 510px;
+  padding: 0 15px;
 }
 
 .title {
@@ -13,7 +13,7 @@
 
 .form {
   overflow: auto;
-  }
+}
   
 .form-input-group {
   display: flex;
