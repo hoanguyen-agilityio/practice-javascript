@@ -4,15 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/style.css" />
-    <title>Document</title>
+    <title>Login Page</title>
   </head>
   <body class="section-body-login">
     <!-- Form login -->
     <form action="" class="form-login">
-      <h1 class="logo logo-page-login">CRUD OPERATIONS</h1>
-      <h2 class="title title-login">SIGN IN</h2>
-      <p class="login-content">Enter your credentials to access your account</p>
-      <p class="error-message"></p>
+      <h1 class="logo form-login-logo">CRUD OPERATIONS</h1>
+      <h2 class="title form-login-title">SIGN IN</h2>
+      <p class="form-login-content">
+        Enter your credentials to access your account
+      </p>
+      <p class="error-message">Email or password is incorrect</p>
       <div class="form-field">
         <label class="input-label">Email</label>
         <input
@@ -31,7 +33,7 @@
           id="password"
         />
       </div>
-      <div class="container-btn">
+      <div class="form-login-btn">
         <button type="button" class="btn btn-login">Sign In</button>
       </div>
       <div class="reset-password-login">

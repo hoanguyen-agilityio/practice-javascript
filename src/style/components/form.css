@@ -1,8 +1,8 @@
 /* START FORM */
 /* STYLE APPLIED TO THE MOBILE */
 .modal-content {
-    max-width: 510px;
-    padding: 0 15px;
+  max-width: 510px;
+  padding: 0 15px;
 }
 
 .title {
@@ -13,9 +13,9 @@
 
 .form {
   overflow: auto;
-  }
+}
   
-.form-line {
+.form-input-group {
   display: flex;
   flex-direction: column;
   padding-top: 15px;
@@ -38,7 +38,7 @@
   margin-top: 10px;
 }
 
-.button-box {
+.btn-group {
   display: flex;
   justify-content: flex-end;
   padding-top: 25px;
@@ -54,7 +54,7 @@
     font-size: var(--font-size-s);
   }
   
-  .form-line {
+  .form-input-group {
     padding-top: 20px;
   }
   

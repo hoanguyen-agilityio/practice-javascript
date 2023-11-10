@@ -16,7 +16,7 @@
   border-radius: 20px;
 }
 
-.logo-page-login {
+.form-login-logo {
   font-size: var(--font-size-m);
   padding: 20px 25px 0;
   &:before {
@@ -26,12 +26,12 @@
   }
 }
 
-.title-login {
+.form-login-title {
   font-size: var(--font-size-s);
   padding-top: 25px;
 }
 
-.login-content {
+.form-login-content {
   padding-top: 10px;
   color: var(--secondary-color-200);
   font-size: var(--font-size-xs);
@@ -48,7 +48,7 @@
   font-size: var(--font-size-xs);
 }
 
-.container-btn {
+.form-login-btn {
   display: flex;
   flex-direction: column;
   padding: 25px 15px 0;
@@ -72,17 +72,17 @@
 
 /* STYLE APPLIED TO THE TABLET */
 @media (min-width: 769px) {
-  .logo-page-login {
+  .form-login-logo {
     font-size: var(--font-size-l);
     padding: 30px 25px 0;
   }
 
-  .title-login {
+  .form-login-title {
     font-size: var(--font-size-m);
     padding-top: 30px;
   }
 
-  .login-content {
+  .form-login-content {
     padding-top: 15px;
     font-size: var(--font-size-s);
   }
@@ -95,7 +95,7 @@
     padding: 30px 20px 0;
   }
 
-  .container-btn {
+  .form-login-btn {
     padding: 30px 20px 0;
   }
 
@@ -106,12 +106,12 @@
 
 /* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 1024px) {
-  .logo-page-login {
+  .form-login-logo {
     padding: 40px 25px 0;
     font-size: var(--font-size-xl);
   }
   
-  .title-login {
+  .form-login-title {
     font-size: var(--font-size-l);
     padding-top: 35px;
   }
@@ -120,7 +120,7 @@
     padding: 35px 20px 0;
   }
 
-  .container-btn {
+  .form-login-btn {
     padding: 35px 20px 0;
   }
 }
