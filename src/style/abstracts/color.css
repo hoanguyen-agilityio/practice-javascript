@@ -1,11 +1,13 @@
 :root {
     /* COLOR */
     --primary-color-50: #F8D442;
-    --primary-color-100: #FEAF00; 
+    --primary-color-100: #FEAF00;
+    --primary-color-150: #F2EAE1;
     --secondary-color-50: #FFFFFF;
     --secondary-color-100: #D0CFCE;  
     --secondary-color-150: #E5E5E5;
     --secondary-color-200: #6C6C6C;
+    --secondary-color-250:#F8F8F8;
     --default-color:  #000000;
     --warning-color-50: #FF0000;
 }

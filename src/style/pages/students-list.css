@@ -1,0 +1,102 @@
+.body-page-students-list {
+  background-color: var(--secondary-color-250);
+}
+
+.header-input {
+  display: flex;
+  height: 80px;
+  background-color: var(--secondary-color-50);
+}
+
+.btn-hide-sidebar, 
+.notification-btn,
+.btn-sort {
+  border: none;
+  background-color: var(--secondary-color-50);
+}
+
+.notification-btn {
+  margin-right: 25px;
+} 
+
+.btn-hide-sidebar {
+  margin-left: 15px;
+}
+
+.main {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 270px;
+  background: var(--primary-color-150);
+}
+
+.header {
+  padding: 18px 25px 0;
+  text-align: center;
+}
+
+.avt-user {
+  margin-top: 54px;
+  border-radius: 50%;
+}
+
+/* Students list header */
+.students-list-header {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.title-students-list-header {
+  font-size: var(--font-size-m);
+  margin-left: 15px;
+}
+
+.btn-sort {
+  background-color: var(--secondary-color-250);
+  margin-left: 50px;
+}
+
+.btn-add-student {
+  margin-left: 15px;
+}
+
+
+@media (min-width: 766px) {
+  .main {
+    display: flex;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+  }
+
+  .btn-hide-sidebar {
+    margin-left: 300px;
+  }
+}
+
+/* Line */
+.line {
+  color: var(--secondary-color-150);
+  margin: 10px 25px 20px 15px
+}
+
+/* STYLE APPLIED TO THE DESKTOP */
+@media (min-width: 1024px) {
+  .main {
+    height: 100vh;
+    position: absolute;
+    top: 0;
+  }
+  
+  .header {
+    padding: 18px 25px 0;
+    text-align: center;
+  }
+  
+  .avt-user {
+    margin-top: 54px;
+    border-radius: 50%;
+  }
+}

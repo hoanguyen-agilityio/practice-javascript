@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>Lists Student</title>
+  </head>
+  <body class="body-page-students-list">
+    <header class="header-input">
+      <button class="btn-hide-sidebar">
+        <img src="./img/btn-hide-sidebar.svg" alt="btn hide sidebar" />
+      </button>
+      <form action="/" method="GET" class="form-search">
+        <input type="search" placeholder="Search..." class="search-field" />
+        <button type="submit" class="search-button">
+          <img src="./img/search.svg" />
+        </button>
+      </form>
+      <button class="notification-btn">
+        <img src="./img/notification-btn.svg" alt="notification btn" />
+      </button>
+    </header>
+    <main class="main">
+      <!-- logo and avatar -->
+      <header class="header">
+        <h1 class="logo">CRUD OPERATIONS</h1>
+        <img src="./img/avatar.svg" alt="avatar user" class="avt-user" />
+        <h3 class="name-user ">Karthi Madesh</h3>
+        <span class="user-rights">Admin</span>
+      </header>
+
+      <!-- navbar -->
+      <aside class="sub-sidebar-content">
+        <ul class="sub-sidebar-list">
+          <li>
+            <a href="javascript:void(0);">
+              <img src="./img/home.svg" alt="icon home" />
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <img src="./img/course.svg" alt="icon Course" />
+              <span>Course</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <img src="./img/graduation.svg" alt="icon Students" />
+              <span>Students</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <img src="./img/payment.svg" alt="icon Payment" />
+              <span>Payment</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <img src="./img/report.svg" alt="icon Report" />
+              <span>Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <img src="./img/setting.svg" alt="icon Settings" />
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+        <div class="navigation">
+          <button class="btn-logout" href="">
+            <div class="content-btn-logout">Logout</div>
+            <img src="./img/logout.svg" class="icon-btn-logout" />
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <section class="students-list-header">
+      <h2 class="title title-students-list-header">Students List</h2>
+      <button class="btn-sort">
+        <img src="./img/sort.svg" alt="btn sort" />
+      </button>
+      <button class="btn btn-add-student">ADD NEW STUDENT</button>
+    </section>
+    <hr class="line" />
+  </body>
+</html>

@@ -1,22 +1,24 @@
 /* START NAVBAR */
 .sub-sidebar-content {
+  padding: 0 38px 31px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 193px;
-  height: 486px;
 }
 
 .sub-sidebar-list {
   list-style: none;
-  text-align: center; 
 }
 
 .sub-sidebar-list li {
+  display: flex;
+  align-items: center;
+  padding: 0 38px;
+  margin-top: 29px;
   height: 41px;
-  padding-top: 20px;
   &:hover {
     border-radius: var(--border-radius-s);
     background-color: var(--primary-color-100)
@@ -29,7 +31,7 @@
 
 .sub-sidebar-list li a span {
   font-weight: var(--font-weight-m);
-  padding-left: 10px;
+  padding-left: 15px;
   color: var(--default-color);
 }
 
@@ -44,10 +46,11 @@
   cursor: pointer;
   color: var(--default-color);
   font-weight: var(--font-weight-m);
-  background-color: var(--secondary-color-50);
+  background-color: var(--primary-color-150);
+  margin-top: 148px;
 }
 
 .icon-btn-logout {
-  padding-left: 15px;
+  padding-left: 23px;
 }
 /* END NAVBAR */
