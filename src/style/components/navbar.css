@@ -27,7 +27,7 @@
   text-decoration: none;
 }
 
-.text-side-item {
+.sub-sidebar-list li a span {
   font-weight: var(--font-weight-m);
   padding-left: 10px;
   color: var(--default-color);
@@ -51,5 +51,4 @@
 .icon-btn-logout {
   padding-left: 15px;
 }
-
 /* END NAVBAR */
