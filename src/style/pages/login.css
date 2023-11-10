@@ -59,14 +59,13 @@
   padding: 15px 0;
 }
 
-.reset-password-login {
-  display: flex;
-  justify-content: center;
+.message-reset-password {
+  text-align: center;
   font-size: var(--font-size-s);
   padding: 20px 15px;
 }
 
-.link-reset-password {
+.message-reset-password a {
   color: var(--primary-color-100);
 }
 
@@ -99,7 +98,7 @@
     padding: 30px 20px 0;
   }
 
-  .reset-password-login {
+  .message-reset-password {
     padding: 30px 20px;
   }
 }
