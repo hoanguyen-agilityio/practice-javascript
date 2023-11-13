@@ -7,7 +7,7 @@
     <title>Lists Student</title>
   </head>
   <body class="body-page-students-list">
-    <header class="header-input">
+    <header class="header">
       <button class="btn-hide-sidebar">
         <img src="./img/btn-hide-sidebar.svg" alt="btn hide sidebar" />
       </button>
@@ -21,14 +21,15 @@
         <img src="./img/notification-btn.svg" alt="notification btn" />
       </button>
     </header>
+
     <main class="main">
       <!-- logo and avatar -->
-      <header class="header">
+      <div class="profile">
         <h1 class="logo">CRUD OPERATIONS</h1>
         <img src="./img/avatar.svg" alt="avatar user" class="avt-user" />
         <h3 class="name-user ">Karthi Madesh</h3>
         <span class="user-rights">Admin</span>
-      </header>
+      </div>
 
       <!-- navbar -->
       <aside class="sub-sidebar-content">
@@ -79,6 +80,7 @@
       </aside>
     </main>
 
+    <!-- Title students list and button Add and sort -->
     <section class="students-list-header">
       <h2 class="title title-students-list-header">Students List</h2>
       <button class="btn-sort">
@@ -87,5 +89,136 @@
       <button class="btn btn-add-student">ADD NEW STUDENT</button>
     </section>
     <hr class="line" />
+
+    <!-- Students list table -->
+    <div class="table">
+      <table class="students-list-table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" class="name-table">Name</th>
+            <th scope="col" class="email-table">Email</th>
+            <th scope="col" class="phone-table">Phone</th>
+            <th scope="col" class="enroll-number-table">Enroll Number</th>
+            <th scope="col" class="date-of-admission-table">
+              Date of admission
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="table-row">
+          <tr scope="row">
+            <td>
+              <img
+                src="./img/avatar.svg"
+                alt="avatar student"
+                class="avt-student"
+              />
+            </td>
+            <td class="name-table">Karthi</td>
+            <td class="email-table">karthi@gmmail.com</td>
+            <td class="phone-table">7305477760</td>
+            <td class="enroll-number-table">1234567305477760</td>
+            <td class="date-of-admission-table">08-Dec, 2021</td>
+            <td>
+              <button class="table-btn btn-edit">
+                <img src="./img/btn-edit.svg" alt="button edit" />
+              </button>
+            </td>
+            <td>
+              <button class="table-btn btn-delete">
+                <img src="./img/btn-delete.svg" alt="button delete" />
+              </button>
+            </td>
+          </tr>
+          <tr class="spacer">
+            <td></td>
+          </tr>
+          <tr scope="row">
+            <td>
+              <img
+                src="./img/avatar.svg"
+                alt="avatar student"
+                class="avt-student"
+              />
+            </td>
+            <td class="name">Karthi</td>
+            <td class="email">karthi@gmmail.com</td>
+            <td class="phone">7305477760</td>
+            <td class="enroll-number">1234567305477760</td>
+            <td class="date-of-admission">08-Dec, 2021</td>
+            <td>
+              <button class="table-btn btn-edit">
+                <img src="./img/btn-edit.svg" alt="button edit" />
+              </button>
+            </td>
+            <td>
+              <button class="table-btn btn-delete">
+                <img src="./img/btn-delete.svg" alt="button delete" />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Form -->
+    <div class="modal modal-form">
+      <div class="modal-content">
+        <h3 class="title title-form-add-update">Student</h3>
+        <form class="form">
+          <div class="form-input-group">
+            <label class="label-input">Name</label>
+            <input type="text" class="data-input" id="nameStudent" />
+          </div>
+          <div class="form-input-group">
+            <label class="label-input">Email</label>
+            <input type="email" class="data-input" id="email" />
+          </div>
+          <div class="form-input-group">
+            <label class="label-input">Phone</label>
+            <input type="tel" class="data-input" id="phone" />
+          </div>
+          <div class="form-input-group">
+            <label class="label-input">Phone Enroll Number</label>
+            <input type="tel" class="data-input" id="phone enroll number" />
+          </div>
+          <div class="form-input-group">
+            <label class="label-input">Date of admission</label>
+            <input type="date" class="data-input" id="date of admission" />
+          </div>
+        </form>
+        <div class="btn-group">
+          <button type="button" class="btn">
+            Cancel
+          </button>
+          <button type="button" class="btn">
+            Create Student
+          </button>
+          <button type="button" class="btn">
+            Update Student
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM CONFIRM DELETE -->
+    <div class="modal modal-confirm-delete">
+      <div class="modal-content modal-content-delete">
+        <div class="content">
+          <p class="title title-confirm-delete">CONFIRM DELETE!!!</p>
+          <p class="describe">Are you sure you want delete this student</p>
+        </div>
+        <div class="button-form-confirm-delete">
+          <button type="button" class="btn cancel-btn">
+            Cancel
+          </button>
+          <button type="button" class="btn delete-btn">
+            Delete Movie
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

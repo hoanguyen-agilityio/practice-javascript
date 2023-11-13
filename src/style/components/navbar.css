@@ -36,7 +36,11 @@
 }
 
 .navigation {
-  margin: 0 auto ;
+  margin: 148px auto 0;
+}
+
+.sub-sidebar-list li:nth-child(1) {
+  margin-top: 0;
 }
 
 .btn-logout {
@@ -47,10 +51,16 @@
   color: var(--default-color);
   font-weight: var(--font-weight-m);
   background-color: var(--primary-color-150);
-  margin-top: 148px;
+  /* margin-top: 148px; */
 }
 
 .icon-btn-logout {
   padding-left: 23px;
+}
+
+@media (min-width: 1024px) {
+  .sub-sidebar-content {
+    padding: 91px 38px 31px;
+  }
 }
 /* END NAVBAR */
