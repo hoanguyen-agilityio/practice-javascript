@@ -1,14 +1,13 @@
 /* START BUTTON */
 .btn {
-  padding: 10px 10px;
+  padding: 10px;
   border: none;
   cursor: pointer;
   color: var(--secondary-color-50);
   background: var(--primary-color-100);
   border-radius: var(--border-radius-s);
   font-weight: var(--font-weight-m);
-  margin-left: 20px;
-  :active {
+  &:active {
     transform: scale(0.98);
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
   }

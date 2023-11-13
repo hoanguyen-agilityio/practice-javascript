@@ -1,0 +1,271 @@
+.body-page-students-list {
+  background-color: var(--secondary-color-250);
+}
+
+.header {
+  display: flex;
+  height: 80px;
+  background-color: var(--secondary-color-50);
+}
+
+.btn-hide-sidebar, 
+.notification-btn,
+.btn-sort {
+  border: none;
+  background-color: var(--secondary-color-50);
+}
+
+.notification-btn {
+  margin-right: 25px;
+} 
+
+.btn-hide-sidebar {
+  margin-left: 15px;
+}
+
+.main {
+  display: none;
+  flex-direction: column;
+  width: 270px;
+  background: var(--primary-color-150);
+  height: 100%;
+}
+
+.profile {
+  padding: 18px 25px 0;
+  text-align: center;
+}
+
+.avt-user {
+  margin-top: 54px;
+  border-radius: 50%;
+}
+
+/* Students list header */
+.students-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.title-students-list-header {
+  font-size: var(--font-size-m);
+  margin-left: 15px;
+}
+
+.btn-sort {
+  background-color: var(--secondary-color-250);
+  margin-left: auto;
+}
+
+.btn-add-student {
+  padding: 14px 27px;
+  margin: 0 15px;
+}
+
+/* Line */
+.line {
+  color: var(--secondary-color-150);
+  margin: 30px 15px 0;
+}
+
+/* Students list table mobile */
+.table {
+  overflow-x:auto;
+  border-collapse: collapse;
+}
+
+.students-list-table {
+  min-width: 900px;
+  border-spacing: 0;
+  width: -webkit-fill-available;
+  margin: 0 15px;
+  text-indent: initial;
+  border-spacing: 2px;
+  box-sizing: border-box;
+}
+
+.students-list-table thead {
+  text-align: left;
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.students-list-table thead th {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.students-list-table thead tr {
+  font-weight: var(--font-weight-l);
+  font-size: var(--font-size-xs);
+  color: var(--secondary-color-300);
+}
+
+.avt-student {
+  border-radius: 25px;
+  padding: 20px 0 20px 15px;
+}
+
+.table-row tr td {
+  font-weight: var(--font-weight-s);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+}
+
+.table-row tr td:nth-child(n+2) {
+  vertical-align: middle;
+}
+
+.table-row tr:nth-child(2n) {
+  background-color: var(--secondary-color-250);
+  height: 10px;
+}
+
+.table-row tr {
+  background-color: var(--secondary-color-50);
+}
+
+.table-btn {
+  border: none;
+  background-color: var(--secondary-color-50);
+}
+
+.students-list-table thead tr {
+  font-weight: var(--font-weight-l);
+  font-size: var(--font-size-xs);
+  color: var(--secondary-color-300);
+}
+
+.table-row tr td {
+  font-weight: var(--font-weight-s);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+}
+
+/* Form */
+.title-form-add-update {
+  padding-top: 10px;
+}
+
+/* STYLE APPLIED TO THE TABLET */
+@media (min-width: 766px) {
+  .header {
+    height: 70px;
+  }
+
+  .main {
+    display: flex;
+    position: absolute;
+    top: 0;
+  }
+
+  .btn-hide-sidebar {
+    margin-left: 300px;
+  }
+
+  .title-students-list-header {
+    margin-left: 300px;
+  }
+
+  .students-list-table {
+    margin: 0 15px 0 300px;
+  }
+
+    /* Form */
+  .title-form-add-update {
+    padding-top: 20px;
+  }
+}
+
+/* STYLE APPLIED TO THE DESKTOP */
+@media (min-width: 1024px) {
+  .header {
+    height: 60px;
+  }
+
+  .main {
+    height: auto;
+    position: absolute;
+    top: 0;
+  }
+  
+  .profile {
+    padding: 18px 25px 0;
+    text-align: center;
+  }
+  
+  .avt-user {
+    margin-top: 54px;
+    border-radius: 50%;
+  }
+
+  .students-list-header {
+    margin-top: 12px;
+  }
+
+  .form-search {
+    margin: 12px 27px 12px auto;
+  }
+
+  .notification-btn {
+    margin-right: 51px;
+  }
+
+  .btn-sort {
+    margin: 23px 0 23px auto;
+  }
+
+  .btn-add-student {
+    margin: 0 30px;
+  }
+
+  .line {
+    margin: 12px 30px 0 300px;
+  }
+
+  .students-list-table {
+    margin-left: 300px;
+    margin-right: 30px;
+  }
+
+  .name-table {
+    padding-left: 31px;
+  }
+
+  .email-table {
+    padding-left: 135px;
+  }
+
+  .phone-table {
+    padding: 0 44px;
+  }
+
+  .date-of-admission-table {
+    padding-left: 70px;
+  }
+
+  .avt-student {
+    padding: 15px 0 15px 13px;
+  }
+
+  .students-list-table thead th {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .btn-edit {
+    padding-left: 84px;
+  }
+
+  .btn-delete {
+    padding: 0 20px 0 33px;
+  }
+
+  /* Form */
+  .title-form-add-update {
+    padding-top: 30px;
+  }
+}

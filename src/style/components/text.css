@@ -1,0 +1,32 @@
+/* START TEXT */
+.logo {
+  text-align: center;
+  font-weight: var(--font-weight-xl);
+  &:before {
+    content: '| ';
+    color: var(--primary-color-50);
+    padding-right: 5px;
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-xl);
+}
+
+.error-message {
+  text-align: center;
+  padding-top: 10px;
+  color: var(--warning-color-50);
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-l);
+}
+
+/* STYLE APPLIED TO THE TABLET */
+@media (min-width: 769px) {
+  .error-message {
+    padding-top: 20px;
+  }
+}
+/* END TEXT */

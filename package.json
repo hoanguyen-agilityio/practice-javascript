@@ -5,6 +5,9 @@
     "husky": "^8.0.3",
     "parcel": "^2.10.2"
   },
+  "scripts": {
+    "start": "parcel src/index.html src/lists-student.html"
+  },
   "dependencies": {
     "prettier": "^1.19.1",
     "prettierrc": "^0.0.0-5"

@@ -1,7 +1,7 @@
 /* START AVATAR */
 /* Avatar user */
 .profile {
-  width: 130px;
+  width: auto;
   text-align: center;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .name-user {
-  margin: 10px 0;
+  margin: 20px 0 10px;
   font-weight: var(--font-weight-xl);
   font-size: var(--font-size-m);
   line-height: var(--line-height-m);
