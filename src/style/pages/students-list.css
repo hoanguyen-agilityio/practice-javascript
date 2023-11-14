@@ -1,3 +1,4 @@
+/* START PAGE STUDENTS LIST */
 .body-page-students-list {
   background-color: var(--secondary-color-250);
 }
@@ -26,6 +27,7 @@
 .main {
   display: none;
   flex-direction: column;
+  justify-content: space-between;
   width: 270px;
   background: var(--primary-color-150);
   height: 100%;
@@ -74,6 +76,7 @@
 .table {
   overflow-x:auto;
   border-collapse: collapse;
+  text-align: left;
 }
 
 .students-list-table {
@@ -87,7 +90,6 @@
 }
 
 .students-list-table thead {
-  text-align: left;
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
@@ -159,7 +161,9 @@
   .main {
     display: flex;
     position: absolute;
+    height: 100%;
     top: 0;
+    left: 0;
   }
 
   .btn-hide-sidebar {
@@ -184,12 +188,6 @@
 @media (min-width: 1024px) {
   .header {
     height: 60px;
-  }
-
-  .main {
-    height: auto;
-    position: absolute;
-    top: 0;
   }
   
   .profile {
@@ -231,19 +229,23 @@
     margin-right: 30px;
   }
 
-  .name-table {
+  .students-list-table th:nth-child(2), 
+  .table-row td:nth-child(2) {
     padding-left: 31px;
-  }
+  } 
 
-  .email-table {
+  .students-list-table th:nth-child(3), 
+  .table-row td:nth-child(3) {
     padding-left: 135px;
   }
 
-  .phone-table {
+  .students-list-table th:nth-child(4), 
+  .table-row td:nth-child(4) {
     padding: 0 44px;
   }
 
-  .date-of-admission-table {
+  .students-list-table th:nth-child(6), 
+  .table-row td:nth-child(6) {
     padding-left: 70px;
   }
 
@@ -269,3 +271,4 @@
     padding-top: 30px;
   }
 }
+/* END PAGE STUDENTS LIST */
