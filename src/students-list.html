@@ -8,16 +8,21 @@
   </head>
   <body class="body-page-students-list">
     <header class="header">
-      <button class="btn-hide-sidebar">
+      <button class="btn-hide-sidebar" aria-label="hide/show sidebar">
         <img src="./img/btn-hide-sidebar.svg" alt="btn hide sidebar" />
       </button>
       <form action="/" method="GET" class="form-search">
-        <input type="search" placeholder="Search..." class="search-field" />
-        <button type="submit" class="btn-search">
+        <input
+          type="search"
+          placeholder="Search..."
+          class="search-field"
+          aria-label="Enter the content you want to search for"
+        />
+        <button type="submit" class="btn-search" aria-label="search">
           <img src="./img/search.svg" />
         </button>
       </form>
-      <button class="btn-notification">
+      <button class="btn-notification" aria-label="See announcement">
         <img src="./img/notification-btn.svg" alt="btn notification" />
       </button>
     </header>
@@ -35,44 +40,44 @@
       <aside class="sub-sidebar-content">
         <ul class="sub-sidebar-list">
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" aria-label="Go to home page">
               <img src="./img/home.svg" alt="icon home" />
               Home
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" aria-label="Go to course page">
               <img src="./img/course.svg" alt="icon Course" />
               Course
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" aria-label="Go to student page">
               <img src="./img/graduation.svg" alt="icon Students" />
               Students
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" aria-label="Go to payment page">
               <img src="./img/payment.svg" alt="icon Payment" />
               Payment
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" aria-label="Go to report page">
               <img src="./img/report.svg" alt="icon Report" />
               Report
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" aria-label="Go to setting page">
               <img src="./img/setting.svg" alt="icon Settings" />
               Settings
             </a>
           </li>
         </ul>
         <div class="navigation">
-          <button class="btn-logout">
+          <button class="btn-logout" aria-label="logout">
             Logout<img src="./img/logout.svg" class="btn-logout-icon" />
           </button>
         </div>
@@ -82,10 +87,12 @@
     <!-- Title students list and button Add and sort -->
     <section class="students-list-header">
       <h2 class="title title-students-list-header">Students List</h2>
-      <button class="btn-sort">
+      <button class="btn-sort" aria-label="Sort the list">
         <img src="./img/sort.svg" alt="btn sort" />
       </button>
-      <button class="btn btn-add-student">ADD NEW STUDENT</button>
+      <button class="btn btn-add-student" aria-label="Add new student">
+        ADD NEW STUDENT
+      </button>
     </section>
 
     <!-- Students list table -->
@@ -120,12 +127,12 @@
             <td>1234567305477760</td>
             <td>08-Dec, 2021</td>
             <td>
-              <button class="btn-table btn-edit">
+              <button class="btn-table btn-edit" aria-label="Edit student">
                 <img src="./img/btn-edit.svg" alt="button edit" />
               </button>
             </td>
             <td>
-              <button class="btn-table btn-delete">
+              <button class="btn-table btn-delete" aria-label="Delete student">
                 <img src="./img/btn-delete.svg" alt="button delete" />
               </button>
             </td>
@@ -147,12 +154,12 @@
             <td>1234567305477760</td>
             <td>08-Dec, 2021</td>
             <td>
-              <button class="btn-table btn-edit">
+              <button class="btn-table btn-edit" aria-label="Edit student">
                 <img src="./img/btn-edit.svg" alt="button edit" />
               </button>
             </td>
             <td>
-              <button class="btn-table btn-delete">
+              <button class="btn-table btn-delete" aria-label="Delete student">
                 <img src="./img/btn-delete.svg" alt="button delete" />
               </button>
             </td>
@@ -168,33 +175,58 @@
         <form class="form">
           <div class="form-input-group">
             <label class="label-input">Name</label>
-            <input type="text" class="data-input" id="nameStudent" />
+            <input
+              type="text"
+              class="data-input"
+              id="nameStudent"
+              aria-label="Enter name"
+            />
           </div>
           <div class="form-input-group">
             <label class="label-input">Email</label>
-            <input type="email" class="data-input" id="email" />
+            <input
+              type="email"
+              class="data-input"
+              id="email"
+              aria-label="Enter email"
+            />
           </div>
           <div class="form-input-group">
             <label class="label-input">Phone</label>
-            <input type="tel" class="data-input" id="phone" />
+            <input
+              type="tel"
+              class="data-input"
+              id="phone"
+              aria-label="Enter phone"
+            />
           </div>
           <div class="form-input-group">
             <label class="label-input">Phone Enroll Number</label>
-            <input type="tel" class="data-input" id="phone enroll number" />
+            <input
+              type="tel"
+              class="data-input"
+              id="phone enroll number"
+              aria-label="Enter phone enroll number"
+            />
           </div>
           <div class="form-input-group">
             <label class="label-input">Date of admission</label>
-            <input type="date" class="data-input" id="date of admission" />
+            <input
+              type="date"
+              class="data-input"
+              id="date of admission"
+              aria-label="Enter date of admission"
+            />
           </div>
         </form>
         <div class="btn-group">
-          <button type="button" class="btn">
+          <button type="button" class="btn" aria-label="Cancel">
             Cancel
           </button>
-          <button type="button" class="btn">
+          <button type="button" class="btn" aria-label="Create Student">
             Create Student
           </button>
-          <button type="button" class="btn">
+          <button type="button" class="btn" aria-label="Update Student">
             Update Student
           </button>
         </div>
@@ -209,11 +241,11 @@
           <p class="describe">Are you sure you want delete this student</p>
         </div>
         <div class="btn-form-confirm-delete">
-          <button type="button" class="btn cancel-btn">
+          <button type="button" class="btn cancel-btn" aria-label="Cancel">
             Cancel
           </button>
-          <button type="button" class="btn delete-btn">
-            Delete Movie
+          <button type="button" class="btn delete-btn" aria-label="Delete">
+            Delete
           </button>
         </div>
       </div>
