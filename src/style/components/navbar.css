@@ -28,11 +28,13 @@
 
 .sub-sidebar-list li a {
   text-decoration: none;
+  font-weight: var(--font-weight-m);
+  color: var(--default-color);
 }
 
-.sub-sidebar-list li a span {
+.sub-sidebar-list li a img {
   font-weight: var(--font-weight-m);
-  padding-left: 15px;
+  padding-right: 15px;
   color: var(--default-color);
 }
 
