@@ -10,13 +10,13 @@
 }
 
 .btn-hide-sidebar, 
-.notification-btn,
+.btn-notification,
 .btn-sort {
   border: none;
   background-color: var(--secondary-color-50);
 }
 
-.notification-btn {
+.btn-notification {
   margin-right: 25px;
 } 
 
@@ -130,7 +130,7 @@
   background-color: var(--secondary-color-50);
 }
 
-.table-btn {
+.btn-table {
   border: none;
   background-color: var(--secondary-color-50);
 }
@@ -208,7 +208,7 @@
     margin: 12px 27px 12px auto;
   }
 
-  .notification-btn {
+  .btn-notification {
     margin-right: 51px;
   }
 
