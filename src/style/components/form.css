@@ -114,12 +114,12 @@
     text-align: right;
   }
 
-  .delete-btn {
+  .btn-delete {
     padding: 15px 20px;
     margin-left: 15px;
   }
 
-  .cancel-btn {
+  .btn-cancel {
     padding: 15px 20px;
   }
 }
