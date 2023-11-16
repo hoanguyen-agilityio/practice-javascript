@@ -2,8 +2,6 @@
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-angular": "^18.1.0",
-    "buffer": "^6.0.3",
-    "events": "^3.3.0",
     "husky": "^8.0.3",
     "os-browserify": "^0.3.0",
     "parcel": "^2.10.2",
