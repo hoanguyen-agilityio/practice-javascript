@@ -7,7 +7,7 @@ import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 export class Login {
   formLogin = document.querySelector('#formLogin');
-  loginBtn = formLogin.querySelector('#loginBtn');
+  loginBtn = formLogin.querySelector('#btnLogin');
   emailInput = formLogin.querySelector('#email');
   passwordInput = formLogin.querySelector('#password');
   errorMessage = formLogin.querySelector('.error-message');
