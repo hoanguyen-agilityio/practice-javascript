@@ -24,8 +24,8 @@ export class Login {
       password: this.passwordInput.value,
     };
     const config = {
-      email: [ 'empty', 'formatEmail' ],
-      password: ['empty', 'passwordRule' ],
+      email: ['empty','formatEmail'],
+      password: ['empty','passwordRule'],
     };
     const validation = validate.validateForm(data, config);
 
