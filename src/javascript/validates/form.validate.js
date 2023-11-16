@@ -31,7 +31,7 @@ class Validate {
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
   validateForm(data, config) {
-    const formValidation = {
+    let formValidation = {
       isValid: true,
       errors: {},
     };
