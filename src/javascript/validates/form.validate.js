@@ -20,6 +20,11 @@ class Validate {
     return EMAIL_REGEX.test(value);
   }
 
+  /**
+   * Check password rules
+   * 
+   * @param {string} value - Comparative value
+   */
   isValidPassword(value) {
     return PASSWORD_RULE.test(value);
   }
@@ -43,6 +48,7 @@ class Validate {
       // There is a key in the config
       if (config[key]) {
         config[key].forEach((validationType) => {
+          
           // If there is an empty word, continue to consider the isEmpty condition
           if (validationType === 'empty' && !this.isEmpty(value)) {
             formValidation.isValid = false;
@@ -51,6 +57,7 @@ class Validate {
             return;
           }
 
+          // If there is an formatEmail word, continue to consider the isValidEmail condition
           if (!formValidation.errors[key] && validationType === 'formatEmail' && !this.isValidEmail(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.emailWrongFormat;
@@ -58,6 +65,7 @@ class Validate {
             return;
           }
 
+          // If there is an passwordRule word, continue to consider the isValidPassword condition
           if (!formValidation.errors[key] && validationType === 'passwordRule' && !this.isValidPassword(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.passwordWrongFormat;
@@ -65,6 +73,7 @@ class Validate {
             return;
           }
 
+          // If the above conditions are not met, the notification will not appear
           if (!formValidation.errors[key]) {
             formValidation.errors[key] = EMPTY_TEXT;
           }
