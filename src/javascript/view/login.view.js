@@ -6,12 +6,13 @@ import { DocumentHelper } from '../helpers/document.helper';
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 export class Login {
-  loginBtn = document.getElementById('loginBtn');
-  emailInput = document.getElementById('email');
-  passwordInput = document.getElementById('password');
-  errorMessage = document.querySelector('.error-message');
-  errorMessageEmailLogin = document.querySelector('.error-message-email-login');
-  errorMessagePassword = document.querySelector('.error-message-password');
+  formLogin = document.querySelector('#formLogin');
+  loginBtn = formLogin.querySelector('#loginBtn');
+  emailInput = formLogin.querySelector('#email');
+  passwordInput = formLogin.querySelector('#password');
+  errorMessage = formLogin.querySelector('.error-message');
+  errorMessageEmailLogin = formLogin.querySelector('.error-message-email-login');
+  errorMessagePassword = formLogin.querySelector('.error-message-password');
 
   constructor() {
     this.addLoginEvent();
@@ -24,7 +25,7 @@ export class Login {
     };
     const config = {
       email: [ 'empty', 'formatEmail' ],
-      password: ['empty'],
+      password: ['empty', 'passwordRule' ],
     };
     const validation = validate.validateForm(data, config);
 

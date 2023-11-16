@@ -1,4 +1,4 @@
-import { EMAIL_REGEX } from '../constants/regex.constant';
+import { EMAIL_REGEX, PASSWORD_RULE } from '../constants/regex.constant';
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 class Validate {
@@ -20,6 +20,10 @@ class Validate {
     return EMAIL_REGEX.test(value);
   }
 
+  isValidPassword(value) {
+    return PASSWORD_RULE.test(value);
+  }
+
   /**
    * Function to check for empty input
    *
@@ -31,7 +35,7 @@ class Validate {
       isValid: true,
       errors: {},
     };
-
+    
     // Point to the key in the data object
     Object.keys(data).forEach((key) => {
       const value = data[key];
@@ -50,6 +54,13 @@ class Validate {
           if (!formValidation.errors[key] && validationType === 'formatEmail' && !this.isValidEmail(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.emailWrongFormat;
+
+            return;
+          }
+
+          if (!formValidation.errors[key] && validationType === 'passwordRule' && !this.isValidPassword(value)) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.passwordWrongFormat;
 
             return;
           }
