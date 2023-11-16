@@ -45,6 +45,9 @@ export class Login {
       // Correct login account      
       if (user.email === data.email && user.password === data.password) {
         window.location.href = STUDENTS_LIST_PAGE;
+        DocumentHelper.showErrorMessage(this.errorMessage, EMPTY_TEXT);
+        DocumentHelper.showErrorMessage(this.errorMessageEmailLogin, EMPTY_TEXT);
+        DocumentHelper.showErrorMessage(this.errorMessagePassword, EMPTY_TEXT);
 
       // Login with the wrong account
       } else {
