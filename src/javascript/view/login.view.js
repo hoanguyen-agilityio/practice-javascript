@@ -6,13 +6,13 @@ import { DocumentHelper } from '../helpers/document.helper';
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 export class Login {
-  formLogin = document.querySelector('#formLogin');
-  loginBtn = formLogin.querySelector('#btnLogin');
-  emailInput = formLogin.querySelector('#email');
-  passwordInput = formLogin.querySelector('#password');
-  errorMessage = formLogin.querySelector('.error-message');
-  errorMessageEmailLogin = formLogin.querySelector('.error-message-email-login');
-  errorMessagePassword = formLogin.querySelector('.error-message-password');
+  formlogin = document.querySelector('#formlogin');
+  loginBtn = formlogin.querySelector('#btnlogin');
+  emailInput = formlogin.querySelector('#email');
+  passwordInput = formlogin.querySelector('#password');
+  errorMessage = formlogin.querySelector('.error-message');
+  errorMessageEmailLogin = formlogin.querySelector('.error-message-email-login');
+  errorMessagePassword = formlogin.querySelector('.error-message-password');
 
   constructor() {
     this.addLoginEvent();
