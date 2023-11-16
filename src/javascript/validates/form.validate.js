@@ -1,5 +1,5 @@
-import { EMAIL_REGEX } from "../constants/regex.constant";
-import { MESSAGES, EMPTY_TEXT } from "../constants/message.constant";
+import { EMAIL_REGEX } from '../constants/regex.constant';
+import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 class Validate {
   /**
@@ -50,7 +50,7 @@ class Validate {
           if (!formValidation.errors[key] && validationType === 'formatEmail' && !this.isValidEmail(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.emailWrongFormat;
-            
+
             return;
           }
 

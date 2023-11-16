@@ -64,6 +64,11 @@
   color: var(--primary-color-100);
 }
 
+.error-message-email-login,
+.error-message-password {
+  text-align: left;
+}
+
 /* STYLE APPLIED TO THE TABLET */
 @media (min-width: 769px) {
   .form-login-logo {

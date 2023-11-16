@@ -1,4 +1,4 @@
-import { EMPTY_TEXT } from "../constants/message.constant";
+import { EMPTY_TEXT } from '../constants/message.constant';
 
 export class DocumentHelper {
   

@@ -32,6 +32,7 @@ export class Login {
     if (!validation.isValid) {
       DocumentHelper.showErrorMessage(this.emailInput, validation.errors.email);
       DocumentHelper.showErrorMessage(this.passwordInput, validation.errors.password);
+      DocumentHelper.showErrorMessage(this.errorMessage, EMPTY_TEXT);
 
       return;
     }
