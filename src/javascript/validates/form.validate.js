@@ -3,6 +3,15 @@ import { MESSAGES, EMPTY_TEXT } from "../constants/message.constant";
 
 class Validate {
   /**
+   * Checks for an empty value
+   * 
+   * @param {*} value - Comparative value
+   */
+    isEmpty(value) {
+      return value;
+    }
+
+  /**
    * Email check function is not valid
    * 
    * @param {string} value - Comparative value
@@ -12,18 +21,9 @@ class Validate {
   }
 
   /**
-   * Checks for an empty value
-   * 
-   * @param {*} value - Comparative value
-   */
-  isEmpty(value) {
-    return !value;
-  }
-
-  /**
    * Function to check for empty input
    *
-   * @param {object} data - The data object contains all the input elements
+   * @param {object} data - The data object contains all the input elements 
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
   validateForm(data, config) {
@@ -40,16 +40,25 @@ class Validate {
       if (config[key]) {
         config[key].forEach((validationType) => {
           // If there is an empty word, continue to consider the isEmpty condition
-          if (validationType === 'empty' && this.isEmpty(value)) {
+          if (validationType === 'empty' && !this.isEmpty(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.empty;
 
             return;
-          } else {
+          }
+
+          if (!formValidation.errors[key] && validationType === 'formatEmail' && !this.isValidEmail(value)) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.emailWrongFormat;
+            
+            return;
+          }
+
+          if (!formValidation.errors[key]) {
             formValidation.errors[key] = EMPTY_TEXT;
-          }         
+          }
         });
-      } 
+      }
     });
 
     return formValidation;

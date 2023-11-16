@@ -23,7 +23,7 @@ export class Login {
       password: this.passwordInput.value,
     };
     const config = {
-      email: [ 'empty'],
+      email: [ 'empty', 'formatEmail' ],
       password: ['empty'],
     };
     const validation = validate.validateForm(data, config);
@@ -32,13 +32,6 @@ export class Login {
     if (!validation.isValid) {
       DocumentHelper.showErrorMessage(this.emailInput, validation.errors.email);
       DocumentHelper.showErrorMessage(this.passwordInput, validation.errors.password);
-
-      return;
-    }
-
-    // If an email is not in the correct format, an error message will be output
-    if (!validate.isValidEmail(data.email)) {
-      DocumentHelper.showErrorMessage(this.errorMessageEmailLogin, MESSAGES.emailWrongFormat);
 
       return;
     }
