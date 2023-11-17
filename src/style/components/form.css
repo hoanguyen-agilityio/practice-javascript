@@ -63,7 +63,7 @@
 .btn-group {
   display: flex;
   justify-content: flex-end;
-  padding-top: 25px;
+  padding: 25px 0;
 }
 
 /* Form confirm delete */
