@@ -25,6 +25,8 @@
   padding: 0 15px;
   position: absolute;
   top: 20%;
+  max-width: 500px;
+  width: 80%;
 }
 
 .title {
@@ -97,10 +99,6 @@
 
 /* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 766px) {
-  .modal-content {
-    width: 400px;
-  }
-
     /* Form confirm delete */
   .modal-content-delete {
     height: 250px;
@@ -132,10 +130,6 @@
   
 /* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 1200px) {
-  .modal-content {
-    width: 500px;
-  }
-
   .label-input {
     font-size: var(--font-size-l);
   }
