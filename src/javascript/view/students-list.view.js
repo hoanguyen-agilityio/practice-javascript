@@ -14,6 +14,9 @@ export class StudentsList {
     this.handleRenderTable()
   }
 
+  /**
+   * Handling getting data from the API and displaying it on a table in HTML
+   */
   async handleRenderTable() {
     try {
       const result = await StudentService.getAll();
@@ -25,11 +28,9 @@ export class StudentsList {
 
       this.tableRow.innerHTML = tableTemplate;
     } catch (error) {
-      alert('An error occurred while getting student', error)
+      alert('An error occurred while getting student', error);
     }
   }
-
-
 
   /**
    * Handle logout when the user clicks the logout button
