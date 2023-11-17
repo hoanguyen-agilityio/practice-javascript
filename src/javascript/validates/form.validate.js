@@ -1,4 +1,4 @@
-import { EMAIL_REGEX, PASSWORD_RULE } from '../constants/regex.constant';
+import { EMAIL_REGEX, PASSWORD_RULE, NUMBER_PHONE_RULE, NAME_RULE } from '../constants/regex.constant';
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 class Validate {
@@ -27,6 +27,19 @@ class Validate {
    */
   isValidPassword(value) {
     return PASSWORD_RULE.test(value);
+  }
+
+  /**
+   * Check the length of the phone number
+   * 
+   * @param {*} value - Comparative value
+   */
+  isValidNumberPhone(value) {
+    return NUMBER_PHONE_RULE.test(value);
+  }
+
+  isValidName(value) {
+    return NAME_RULE.test(value);
   }
 
   /**
@@ -72,6 +85,20 @@ class Validate {
 
             return;
           }
+
+          if (!formValidation.errors[key] && validationType === 'numberPhoneRule' && !this.isValidNumberPhone(value)) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.nameWrongFormat;
+
+            return;
+          }
+
+          if (!formValidation.errors[key] && validationType === 'nameRule' && !this.isValidName(value)) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.nameWrongFormat;
+
+            return;
+          }     
 
           // If the above conditions are not met, the notification will not appear
           if (!formValidation.errors[key]) {
