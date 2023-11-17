@@ -6,11 +6,11 @@ export class StudentTemplate {
       <td>
         <img src="/avatar.963bec68.svg" alt="avatar student" class="avt-student"/>
       </td>
-      <td>${move.Name}</td>
-      <td>${move.Email}</td>
-      <td>${move.Phone}</td>
-      <td>${move.EnrollNumber}</td>
-      <td>${move.DateOfAdmission}</td>
+      <td>${move.name}</td>
+      <td>${move.email}</td>
+      <td>${move.phone}</td>
+      <td>${move.enrollnumber}</td>
+      <td>${move.dateofadmission}</td>
       <td>
         <button class="btn-table btn-edit" aria-label="Edit student" data-id=${move.id}>
           <img src="/btn-edit.b2e14e07.svg" alt="button edit" />
