@@ -22,6 +22,7 @@ export class StudentsList {
   phoneStudent = this.modalForm.querySelector('#phone');
   phoneEnrollNumberStudent = this.modalForm.querySelector('#phoneenrollnumber');
   dateOfAdmission = this.modalForm.querySelector('#dateofadmission');
+  form = this.modalForm.querySelector('.form');
 
   constructor() {
     this.handleUserLogout();
@@ -29,6 +30,16 @@ export class StudentsList {
     this.addEventForCreateButton();
     this.cancelModalForm();
     this.handleRenderTable();
+  }
+
+  // Reset input and error message
+  resetForm() {
+    this.form.reset();
+    DocumentHelper.cleanErrorMessage(this.nameStudent);
+    DocumentHelper.cleanErrorMessage(this.emailStudent);
+    DocumentHelper.cleanErrorMessage(this.phoneStudent);
+    DocumentHelper.cleanErrorMessage(this.phoneEnrollNumberStudent);
+    DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
   }
 
   /**
@@ -108,6 +119,7 @@ export class StudentsList {
   cancelModalForm() {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modalForm);
+      this.resetForm();
     })
   }
 
