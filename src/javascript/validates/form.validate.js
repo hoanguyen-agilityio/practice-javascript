@@ -5,7 +5,7 @@ class Validate {
   /**
    * Checks for an empty value
    * 
-   * @param {*} value - Comparative value
+   * @param {string} value - Comparative value
    */
     isEmpty(value) {
       return value;
@@ -32,7 +32,7 @@ class Validate {
   /**
    * Check the length of the phone number
    * 
-   * @param {*} value - Comparative value
+   * @param {number} value - Comparative value
    */
   isValidNumberPhone(value) {
     return NUMBER_PHONE_RULE.test(value);
@@ -86,6 +86,7 @@ class Validate {
             return;
           }
 
+          // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
           if (!formValidation.errors[key] && validationType === 'numberPhoneRule' && !this.isValidNumberPhone(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.nameWrongFormat;
@@ -93,6 +94,7 @@ class Validate {
             return;
           }
 
+          // If there is a number in the name, an error message will be output
           if (!formValidation.errors[key] && validationType === 'nameRule' && !this.isValidName(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.nameWrongFormat;
