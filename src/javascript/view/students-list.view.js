@@ -2,16 +2,21 @@
 import { LOGIN_PAGE } from '../constants/app.constant';
 import { StudentTemplate } from '../templates/student.template';
 import { StudentService } from '../service/student.service';
+import { ModalHelper } from '../helpers/modal.helper';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
-  btnLogout = this.mainSidebar.querySelector('.btn-logout');
   table = document.querySelector('.table');
+  modalForm = document.querySelector('.modal-form');
+  studentsListHeader = document.querySelector('.students-list-header');
+  btnLogout = this.mainSidebar.querySelector('.btn-logout');
   tableRow = this.table.querySelector('.table-row');
+  btnShowFormAddStudent = this.studentsListHeader.querySelector('.btn-add-student');
 
   constructor() {
-    this.handleUserLogout()
-    this.handleRenderTable()
+    this.handleUserLogout();
+    this.showFormAddNewStudent();
+    this.handleRenderTable();
   }
 
   /**
@@ -30,6 +35,15 @@ export class StudentsList {
     } catch (error) {
       alert('An error occurred while getting student', error);
     }
+  }
+
+  /**
+   * Handle the event when clicking on the add student button, the add student form will appear
+   */
+  showFormAddNewStudent() {
+    this.btnShowFormAddStudent.addEventListener('click', () => {
+      ModalHelper.showModal(this.modalForm);
+    });
   }
 
   /**
