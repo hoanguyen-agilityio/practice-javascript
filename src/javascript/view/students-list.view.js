@@ -20,6 +20,7 @@ export class StudentsList {
   constructor() {
     this.handleUserLogout();
     this.showFormAddNewStudent();
+    this.cancelModalForm();
     this.handleRenderTable();
   }
 
@@ -50,6 +51,15 @@ export class StudentsList {
       DocumentHelper.hideElement(this.btnUpdateStudent);
       DocumentHelper.showElement(this.btnCreateStudent);
     });
+  }
+
+  /**
+   * Handle the event when the user clicks on the cancel button, the form will be hidden
+   */
+  cancelModalForm() {
+    this.btnCancel.addEventListener('click', () => {
+      ModalHelper.hideModal(this.modalForm);
+    })
   }
 
   /**
