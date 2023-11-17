@@ -1,7 +1,7 @@
 
-import { LOGIN_PAGE } from "../constants/app.constant";
-import { StudentTemplate } from "../templates/student.template";
-import { StudentService } from "../service/student.service";
+import { LOGIN_PAGE } from '../constants/app.constant';
+import { StudentTemplate } from '../templates/student.template';
+import { StudentService } from '../service/student.service';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');

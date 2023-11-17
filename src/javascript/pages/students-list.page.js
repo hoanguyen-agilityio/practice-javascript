@@ -1,4 +1,4 @@
-import { StudentsList } from "../view/students-list.view";
+import { StudentsList } from '../view/students-list.view';
 
 const studentsListPage = () => {
     new StudentsList();
