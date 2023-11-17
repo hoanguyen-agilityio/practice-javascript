@@ -3,6 +3,7 @@ import { LOGIN_PAGE } from '../constants/app.constant';
 import { StudentTemplate } from '../templates/student.template';
 import { StudentService } from '../service/student.service';
 import { ModalHelper } from '../helpers/modal.helper';
+import { DocumentHelper } from '../helpers/document.helper';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -12,6 +13,9 @@ export class StudentsList {
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
   tableRow = this.table.querySelector('.table-row');
   btnShowFormAddStudent = this.studentsListHeader.querySelector('.btn-add-student');
+  btnCancel = this.modalForm.querySelector('.btn-cancel');
+  btnCreateStudent = this.modalForm.querySelector('.btn-create-student');
+  btnUpdateStudent = this.modalForm.querySelector('.btn-update-student');
 
   constructor() {
     this.handleUserLogout();
@@ -43,6 +47,8 @@ export class StudentsList {
   showFormAddNewStudent() {
     this.btnShowFormAddStudent.addEventListener('click', () => {
       ModalHelper.showModal(this.modalForm);
+      DocumentHelper.hideElement(this.btnUpdateStudent);
+      DocumentHelper.showElement(this.btnCreateStudent);
     });
   }
 

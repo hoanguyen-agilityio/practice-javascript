@@ -22,4 +22,22 @@ export class DocumentHelper {
   static cleanErrorMessage(element) {
     this.showErrorMessage(element, EMPTY_TEXT);
   }
+
+  /**
+   * Hide element
+   *
+   * @param {HTMLElement} element - Element
+   */
+  static hideElement(element) {
+    element.classList.add('hide');
+  }
+
+  /**
+   * Show element
+   *
+   * @param {HTMLElement} element - Element
+   */
+  static showElement(element) {
+    element.classList.remove('hide');
+  } 
 }
