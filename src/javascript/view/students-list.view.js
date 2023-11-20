@@ -23,6 +23,7 @@ export class StudentsList {
   phoneEnrollNumberStudent = this.modalForm.querySelector('#phoneenrollnumber');
   dateOfAdmission = this.modalForm.querySelector('#dateofadmission');
   form = this.modalForm.querySelector('.form');
+  btnEdit = this.table.querySelector('.btn-edit');
 
   constructor() {
     this.handleUserLogout();
@@ -32,7 +33,9 @@ export class StudentsList {
     this.handleRenderTable();
   }
 
-  // Reset input and error message
+  /**
+   * Reset input and error message
+   */
   resetForm() {
     this.form.reset();
     DocumentHelper.cleanErrorMessage(this.nameStudent);
@@ -40,6 +43,39 @@ export class StudentsList {
     DocumentHelper.cleanErrorMessage(this.phoneStudent);
     DocumentHelper.cleanErrorMessage(this.phoneEnrollNumberStudent);
     DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
+  }
+
+  /**
+   * Show student edit form
+   * 
+   * @param {*} item - Edit buttons
+   */
+  async showEditStudentModal(item) {
+    const studentId = item.dataset.id;
+    const studentData = await StudentService.getById(studentId);
+
+    ModalHelper.showModal(this.modalForm);
+    this.nameStudent.value = studentData.name;
+    this.emailStudent.value = studentData.email;
+    this.phoneStudent.value = studentData.phone;
+    this.phoneEnrollNumberStudent.value = studentData.enrollnumber;
+    this.dateOfAdmission.value = studentData.dateofadmission;
+  }
+
+  /**
+   * Handle the edit form that appears when clicking on the edit button
+   */
+  handleButtonsEdit() {
+    const btnEdits = document.querySelectorAll('.table-row .btn-edit');
+
+    // Filter through each edit button
+    btnEdits.forEach((item) => {
+      item.addEventListener('click', async () => {
+        await this.showEditStudentModal(item);
+        DocumentHelper.hideElement(this.btnCreateStudent);
+        DocumentHelper.showElement(this.btnUpdateStudent);
+      });
+    });
   }
 
   /**
@@ -55,6 +91,7 @@ export class StudentsList {
       });
 
       this.tableRow.innerHTML = tableTemplate;
+      this.handleButtonsEdit();
     } catch (error) {
       alert('An error occurred while getting student', error);
     }
