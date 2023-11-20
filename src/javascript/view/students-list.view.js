@@ -5,7 +5,6 @@ import { StudentService } from '../service/student.service';
 import { ModalHelper } from '../helpers/modal.helper';
 import { DocumentHelper } from '../helpers/document.helper';
 import { validate } from '../validates/form.validate';
-import { log } from 'util';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -67,36 +66,42 @@ export class StudentsList {
   async handleAddForm() {
     try {
       const data = {
-        nameStudent: this.nameStudent.value,
+        name: this.nameStudent.value,
         email: this.emailStudent.value,
         phone: this.phoneStudent.value,
-        phoneEnrollNumber: this.phoneEnrollNumberStudent.value,
-        dateOfAdmission: this.dateOfAdmission.value,
+        enrollnumber: this.phoneEnrollNumberStudent.value,
+        dateofadmission: this.dateOfAdmission.value,
       };
       const config = {
-        nameStudent: ['empty', 'nameRule'],
+        name: ['empty', 'nameRule'],
         email: ['empty', 'formatEmail'],
         phone: ['empty', 'numberPhoneRule'],
-        // phoneEnrollNumber: ['empty'],
-        dateOfAdmission: ['empty']
+        enrollnumber: ['empty'],
+        dateofadmission: ['empty']
       };
       const validation = validate.validateForm(data, config);
   
       if (!validation.isValid) {
-        DocumentHelper.showErrorMessage(this.nameStudent, validation.errors.nameStudent);
+        DocumentHelper.showErrorMessage(this.nameStudent, validation.errors.name);
         DocumentHelper.showErrorMessage(this.emailStudent, validation.errors.email);
         DocumentHelper.showErrorMessage(this.phoneStudent, validation.errors.phone);
-        // DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, validation.errors.phoneEnrollNumber);
-        DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateOfAdmission);
+        DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, validation.errors.enrollnumber);
+        DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateofadmission);
   
         return;
       } else {
+        // Add newly created students to the database
         const newStudent = await StudentService.post(data);
-        console.log(newStudent)
         const newRow = this.tableRow.insertRow();
 
+        // Add class for new row
         newRow.className = 'content-row';
+
+        // Set attribute for new row
         newRow.setAttribute('data-id', newStudent.id);
+
+        // Display newly created students on the screen
+        newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
         ModalHelper.hideModal(this.modalForm);
       }
 
@@ -116,6 +121,9 @@ export class StudentsList {
     });
   }
 
+  /**
+   * Add event for create button
+   */
   addEventForCreateButton() {
     // New student will be created when clicking create button
     this.btnCreateStudent.addEventListener('click', async () => {

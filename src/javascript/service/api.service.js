@@ -22,15 +22,16 @@ class ApiService {
    * @param {*} data - Data updated to database
    */
   async post(url, data) {
-    const response = await fetch(url, data, {
-      method: 'POTS',
+    const option = {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    });
+    };
+    const response = await fetch(url, option);
 
-    return await response.json();
+    return response.json();
   }
 }
 
