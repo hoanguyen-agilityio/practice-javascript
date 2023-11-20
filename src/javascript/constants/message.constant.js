@@ -7,6 +7,9 @@ const MESSAGES = {
   getAccountErr: 'An error occurred! Can not get account list from server',
   numberPhoneWrongFormat: 'The phone number is not in the correct format',
   nameWrongFormat: 'Names cannot contain numbers',
+  duplicateEmail: 'Emails cannot be duplicated',
+  duplicatePhone: 'Phone numbers cannot be duplicated',
+  duplicateEnrollNumber: 'Enroll number cannot be duplicated',
 };
 
 export { EMPTY_TEXT, MESSAGES };

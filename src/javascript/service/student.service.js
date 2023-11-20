@@ -26,4 +26,14 @@ export class StudentService {
   static async getById(id) {
     return await apiService.get(`${STUDENT_API}/${id}`);
   }
+
+  /**
+   * Update movie in database
+   *
+   * @param {number} id - Id of the movie in the database
+   * @param {string} data - The object contains the information of the movie
+   */
+    static async update(id, data) {
+      return apiService.put(`${STUDENT_API}/${id}`, data);
+    }
 }

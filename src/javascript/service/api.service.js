@@ -43,7 +43,7 @@ class ApiService {
    */
   async put(url, data) {
     const option = {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },

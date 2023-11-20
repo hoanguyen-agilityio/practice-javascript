@@ -5,6 +5,7 @@ import { StudentService } from '../service/student.service';
 import { ModalHelper } from '../helpers/modal.helper';
 import { DocumentHelper } from '../helpers/document.helper';
 import { validate } from '../validates/form.validate';
+import { MESSAGES } from '../constants/message.constant';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -29,6 +30,7 @@ export class StudentsList {
     this.handleUserLogout();
     this.showFormAddNewStudent();
     this.addEventForCreateButton();
+    this.addEventForUpdateButton();
     this.cancelModalForm();
     this.handleRenderTable();
   }
@@ -60,6 +62,7 @@ export class StudentsList {
     this.phoneStudent.value = studentData.phone;
     this.phoneEnrollNumberStudent.value = studentData.enrollnumber;
     this.dateOfAdmission.value = studentData.dateofadmission;
+    this.form.setAttribute('data-id', studentId);
   }
 
   /**
@@ -151,6 +154,70 @@ export class StudentsList {
     }
   }
 
+  async handleUpdateForm() {
+    try {
+      const data = {
+        name: this.nameStudent.value,
+        email: this.emailStudent.value,
+        phone: this.phoneStudent.value,
+        enrollnumber: this.phoneEnrollNumberStudent.value,
+        dateofadmission: this.dateOfAdmission.value,
+      };
+      const config = {
+        name: ['empty', 'nameRule'],
+        email: ['empty', 'formatEmail'],
+        phone: ['empty', 'phoneRule'],
+        enrollnumber: ['empty', 'phoneRule'],
+        dateofadmission: ['empty']
+      };
+      const validation = validate.validateForm(data, config);
+      const formStudentId = this.form.getAttribute('data-id');
+      const studentsList = await StudentService.getAll();
+      
+      // Check entry requirements of all schools. If incorrect, output an error message
+      if (!validation.isValid) {
+        DocumentHelper.showErrorMessage(this.nameStudent, validation.errors.name);
+        DocumentHelper.showErrorMessage(this.emailStudent, validation.errors.email);
+        DocumentHelper.showErrorMessage(this.phoneStudent, validation.errors.phone);
+        DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, validation.errors.enrollnumber);
+        DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateofadmission);
+  
+        return;
+      } else {
+        const filterDuplicateData = (data, key, value) => data.find((item) => item[key] === value)
+        const duplicateEmail = filterDuplicateData(studentsList, 'email', data.email);
+        const duplicatePhoneNumber = filterDuplicateData(studentsList, 'phone', data.phone);
+        const duplicateEnrollNumber = filterDuplicateData(studentsList, 'enrollnumber', data.enrollnumber);
+        let isContinue = true;
+        if (duplicateEmail) {
+          isContinue = false;
+          DocumentHelper.showErrorMessage(this.emailStudent, MESSAGES.duplicateEmail);
+        } 
+        if (duplicatePhoneNumber) {
+          isContinue = false;
+          DocumentHelper.showErrorMessage(this.phoneStudent, MESSAGES.duplicatePhone);
+        }
+        if (duplicateEnrollNumber) {
+          isContinue = false;
+          DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, MESSAGES.duplicateEnrollNumber);
+        }
+        if (!isContinue) {
+          return;
+        }
+        
+        const updateRow = document.querySelector(`[data-id="${formStudentId}"]`);
+        const updateStudent = await StudentService.update(formStudentId, data);
+
+        updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
+        this.handleButtonsEdit();
+        ModalHelper.hideModal(this.modalForm);
+      }    
+      
+    } catch (error) {
+      alert('Something went wrong while updating the student', error);
+    }
+  }
+
   /**
    * Handle the event when clicking on the add student button, the add student form will appear
    */
@@ -170,6 +237,13 @@ export class StudentsList {
     // New student will be created when clicking create button
     this.btnCreateStudent.addEventListener('click', async () => {
       await this.handleAddForm();
+    });
+  }
+
+  addEventForUpdateButton() {
+    // Movie will be updated when the update button is clicked
+    this.btnUpdateStudent.addEventListener('click', async () => {
+      await this.handleUpdateForm();
     });
   }
 
