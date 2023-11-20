@@ -67,7 +67,7 @@ export class StudentsList {
   async handleAddForm() {
     try {
       const data = {
-        name: this.nameStudent.value,
+        nameStudent: this.nameStudent.value,
         email: this.emailStudent.value,
         phone: this.phoneStudent.value,
         phoneEnrollNumber: this.phoneEnrollNumberStudent.value,
