@@ -12,8 +12,25 @@ class ApiService {
       },
     });
 
-    const data = await response.json();
-    return data;
+    return await response.json();
+  }
+
+  /**
+   *  Create new by calling API
+   * 
+   * @param {*} url - link to the database
+   * @param {*} data - Data updated to database
+   */
+  async post(url, data) {
+    const response = await fetch(url, data, {
+      method: 'POTS',
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+      body: JSON.stringify(data),
+    });
+
+    return await response.json();
   }
 }
 

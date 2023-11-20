@@ -5,6 +5,7 @@ import { StudentService } from '../service/student.service';
 import { ModalHelper } from '../helpers/modal.helper';
 import { DocumentHelper } from '../helpers/document.helper';
 import { validate } from '../validates/form.validate';
+import { log } from 'util';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -66,7 +67,7 @@ export class StudentsList {
   async handleAddForm() {
     try {
       const data = {
-        nameStudent: this.nameStudent.value,
+        name: this.nameStudent.value,
         email: this.emailStudent.value,
         phone: this.phoneStudent.value,
         phoneEnrollNumber: this.phoneEnrollNumberStudent.value,
@@ -76,7 +77,7 @@ export class StudentsList {
         nameStudent: ['empty', 'nameRule'],
         email: ['empty', 'formatEmail'],
         phone: ['empty', 'numberPhoneRule'],
-        phoneEnrollNumber: ['empty', 'numberPhoneRule'],
+        // phoneEnrollNumber: ['empty'],
         dateOfAdmission: ['empty']
       };
       const validation = validate.validateForm(data, config);
@@ -85,11 +86,20 @@ export class StudentsList {
         DocumentHelper.showErrorMessage(this.nameStudent, validation.errors.nameStudent);
         DocumentHelper.showErrorMessage(this.emailStudent, validation.errors.email);
         DocumentHelper.showErrorMessage(this.phoneStudent, validation.errors.phone);
-        DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, validation.errors.phoneEnrollNumber);
+        // DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, validation.errors.phoneEnrollNumber);
         DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateOfAdmission);
   
         return;
-    }     
+      } else {
+        const newStudent = await StudentService.post(data);
+        console.log(newStudent)
+        const newRow = this.tableRow.insertRow();
+
+        newRow.className = 'content-row';
+        newRow.setAttribute('data-id', newStudent.id);
+        ModalHelper.hideModal(this.modalForm);
+      }
+
     } catch (error) {
       alert('An error occurred while creating a new student', error)
     }
