@@ -30,16 +30,21 @@ class Validate {
   }
 
   /**
+   * Check names contain only characters and no numbers
+   * 
+   * @param {*} value - Comparative value
+   */
+  isValidName(value) {
+    return NAME_RULE.test(value);
+  }
+
+  /**
    * Check the length of the phone number
    * 
    * @param {number} value - Comparative value
    */
   isValidNumberPhone(value) {
     return NUMBER_PHONE_RULE.test(value);
-  }
-
-  isValidName(value) {
-    return NAME_RULE.test(value);
   }
 
   /**
@@ -86,21 +91,21 @@ class Validate {
             return;
           }
 
-          // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
-          if (!formValidation.errors[key] && validationType === 'numberPhoneRule' && !this.isValidNumberPhone(value)) {
-            formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.nameWrongFormat;
-
-            return;
-          }
-
           // If there is a number in the name, an error message will be output
           if (!formValidation.errors[key] && validationType === 'nameRule' && !this.isValidName(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.nameWrongFormat;
 
             return;
-          }     
+          }  
+
+          // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
+          if (!formValidation.errors[key] && validationType === 'phoneRule' && !this.isValidNumberPhone(value)) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.numberPhoneWrongFormat;
+
+            return;
+          }
 
           // If the above conditions are not met, the notification will not appear
           if (!formValidation.errors[key]) {

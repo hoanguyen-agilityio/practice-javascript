@@ -6,7 +6,7 @@ const MESSAGES = {
   empty: 'Value should be not empty',
   getAccountErr: 'An error occurred! Can not get account list from server',
   numberPhoneWrongFormat: 'The phone number is not in the correct format',
-  nameWrongFormat: 'Names cannot contain numbers'
+  nameWrongFormat: 'Names cannot contain numbers',
 };
 
 export { EMPTY_TEXT, MESSAGES };

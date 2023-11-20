@@ -75,12 +75,13 @@ export class StudentsList {
       const config = {
         name: ['empty', 'nameRule'],
         email: ['empty', 'formatEmail'],
-        phone: ['empty', 'numberPhoneRule'],
-        enrollnumber: ['empty'],
+        phone: ['empty', 'phoneRule'],
+        enrollnumber: ['empty', 'phoneRule'],
         dateofadmission: ['empty']
       };
       const validation = validate.validateForm(data, config);
-  
+      
+      // Check entry requirements of all schools. If incorrect, output an error message
       if (!validation.isValid) {
         DocumentHelper.showErrorMessage(this.nameStudent, validation.errors.name);
         DocumentHelper.showErrorMessage(this.emailStudent, validation.errors.email);
@@ -93,9 +94,12 @@ export class StudentsList {
         // Add newly created students to the database
         const newStudent = await StudentService.post(data);
         const newRow = this.tableRow.insertRow();
+        const newHideRow = this.tableRow.insertRow();
 
         // Add class for new row
         newRow.className = 'content-row';
+
+        newHideRow.className = 'spacer';
 
         // Set attribute for new row
         newRow.setAttribute('data-id', newStudent.id);
@@ -118,6 +122,7 @@ export class StudentsList {
       ModalHelper.showModal(this.modalForm);
       DocumentHelper.hideElement(this.btnUpdateStudent);
       DocumentHelper.showElement(this.btnCreateStudent);
+      this.resetForm();
     });
   }
 
