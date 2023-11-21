@@ -9,20 +9,20 @@ import { validate } from '../validates/form.validate';
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
   table = document.querySelector('.table');
-  modalForm = document.querySelector('.modal-form');
+  modal = document.querySelector('.modal-form');
   studentsHeading = document.querySelector('.students-list-header');
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
   tableRow = this.table.querySelector('.table-row');
   btnShowFormAddStudent = this.studentsHeading.querySelector('.btn-add-student');
-  btnCancel = this.modalForm.querySelector('.btn-cancel');
-  btnCreateStudent = this.modalForm.querySelector('.btn-create-student');
-  btnUpdateStudent = this.modalForm.querySelector('.btn-update-student');
-  nameStudent = this.modalForm.querySelector('#namestudent');
-  emailStudent = this.modalForm.querySelector('#email');
-  phoneStudent = this.modalForm.querySelector('#phone');
-  phoneEnrollNumberStudent = this.modalForm.querySelector('#phoneenrollnumber');
-  dateOfAdmission = this.modalForm.querySelector('#dateofadmission');
-  form = this.modalForm.querySelector('.form');
+  btnCancel = this.modal.querySelector('.btn-cancel');
+  btnCreateStudent = this.modal.querySelector('.btn-create-student');
+  btnUpdateStudent = this.modal.querySelector('.btn-update-student');
+  nameStudent = this.modal.querySelector('#namestudent');
+  emailStudent = this.modal.querySelector('#email');
+  phoneStudent = this.modal.querySelector('#phone');
+  phoneEnrollNumberStudent = this.modal.querySelector('#phoneenrollnumber');
+  dateOfAdmission = this.modal.querySelector('#dateofadmission');
+  form = this.modal.querySelector('.form');
 
   constructor() {
     this.handleUserLogout();
@@ -106,7 +106,7 @@ export class StudentsList {
 
         // Display newly created students on the screen
         newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
-        ModalHelper.hideModal(this.modalForm);
+        ModalHelper.hideModal(this.modal);
       }
 
     } catch (error) {
@@ -119,7 +119,7 @@ export class StudentsList {
    */
   showFormAddNewStudent() {
     this.btnShowFormAddStudent.addEventListener('click', () => {
-      ModalHelper.showModal(this.modalForm);
+      ModalHelper.showModal(this.modal);
       DocumentHelper.hideElement(this.btnUpdateStudent);
       DocumentHelper.showElement(this.btnCreateStudent);
       this.resetForm();
@@ -141,7 +141,7 @@ export class StudentsList {
    */
   cancelModalForm() {
     this.btnCancel.addEventListener('click', () => {
-      ModalHelper.hideModal(this.modalForm);
+      ModalHelper.hideModal(this.modal);
       this.resetForm();
     })
   }
