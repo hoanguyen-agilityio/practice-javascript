@@ -25,10 +25,10 @@ export class StudentsList {
   btnCancel = this.modal.querySelector('.btn-cancel');
   btnCreateStudent = this.modal.querySelector('.btn-create-student');
   btnUpdateStudent = this.modal.querySelector('.btn-update-student');
-  nameStudent = this.modal.querySelector('#namestudent');
-  emailStudent = this.modal.querySelector('#email');
-  phoneStudent = this.modal.querySelector('#phone');
-  phoneEnrollNumberStudent = this.modal.querySelector('#phoneenrollnumber');
+  name = this.modal.querySelector('#namestudent');
+  email = this.modal.querySelector('#email');
+  phone = this.modal.querySelector('#phone');
+  enrollNumber = this.modal.querySelector('#phoneenrollnumber');
   dateOfAdmission = this.modal.querySelector('#dateofadmission');
   form = this.modal.querySelector('.form');
 
@@ -43,10 +43,10 @@ export class StudentsList {
   // Reset input and error message
   resetForm() {
     this.form.reset();
-    DocumentHelper.cleanErrorMessage(this.nameStudent);
-    DocumentHelper.cleanErrorMessage(this.emailStudent);
-    DocumentHelper.cleanErrorMessage(this.phoneStudent);
-    DocumentHelper.cleanErrorMessage(this.phoneEnrollNumberStudent);
+    DocumentHelper.cleanErrorMessage(this.name);
+    DocumentHelper.cleanErrorMessage(this.email);
+    DocumentHelper.cleanErrorMessage(this.phone);
+    DocumentHelper.cleanErrorMessage(this.enrollNumber);
     DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
   }
 
@@ -74,10 +74,10 @@ export class StudentsList {
   async handleAddForm() {
     try {
       const data = {
-        name: this.nameStudent.value,
-        email: this.emailStudent.value,
-        phone: this.phoneStudent.value,
-        enrollnumber: this.phoneEnrollNumberStudent.value,
+        name: this.name.value,
+        email: this.email.value,
+        phone: this.phone.value,
+        enrollnumber: this.enrollNumber.value,
         dateofadmission: this.dateOfAdmission.value,
       };
       const config = {
@@ -91,10 +91,10 @@ export class StudentsList {
       
       // Check entry requirements of all schools. If incorrect, output an error message
       if (!validation.isValid) {
-        DocumentHelper.showErrorMessage(this.nameStudent, validation.errors.name);
-        DocumentHelper.showErrorMessage(this.emailStudent, validation.errors.email);
-        DocumentHelper.showErrorMessage(this.phoneStudent, validation.errors.phone);
-        DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, validation.errors.enrollnumber);
+        DocumentHelper.showErrorMessage(this.name, validation.errors.name);
+        DocumentHelper.showErrorMessage(this.email, validation.errors.email);
+        DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
+        DocumentHelper.showErrorMessage(this.enrollNumber, validation.errors.enrollnumber);
         DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateofadmission);
   
         return;
