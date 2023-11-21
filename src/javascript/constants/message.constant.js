@@ -5,8 +5,8 @@ const MESSAGES = {
   incorrectLoginAccount: 'Email or password is incorrect. Please re-enter',
   empty: 'Value should be not empty',
   getAccountErr: 'An error occurred! Can not get account list from server',
-  numberPhoneWrongFormat: 'The phone number is not in the correct format',
-  nameWrongFormat: 'Names cannot contain numbers',
+  phoneNumberInvalid: 'Invalid phone number',
+  nameInvalid: 'Names cannot contain numbers',
 };
 
 export { EMPTY_TEXT, MESSAGES };
