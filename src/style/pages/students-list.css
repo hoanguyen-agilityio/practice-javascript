@@ -44,7 +44,7 @@
 }
 
 /* Students list header */
-.students-list-header {
+.list-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -168,7 +168,7 @@
     margin-left: 300px;
   }
 
-  .students-list-header {
+  .list-heading {
     margin-left: 300px;
     margin-right: 30px;
   }
@@ -199,7 +199,7 @@
     border-radius: 50%;
   }
 
-  .students-list-header {
+  .list-heading {
     margin-top: 12px;
   }
 
