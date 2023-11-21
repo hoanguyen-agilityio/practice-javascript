@@ -18,6 +18,7 @@
 
   .error-message {
     text-align: left;
+    padding-top: 5px;
   }
 }
 
@@ -135,6 +136,10 @@
 @media (min-width: 1200px) {
   .label-input {
     font-size: var(--font-size-l);
+  }
+
+  .form-input-group .data-input {
+    margin-top: 10px;
   }
   
   .form-control {

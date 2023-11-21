@@ -101,8 +101,9 @@ export class StudentsList {
       } else {
         // Add newly created students to the database
         const newStudent = await StudentService.post(data);
-        const newRow = this.tableRow.insertRow();
-        const hideRow = this.tableRow.insertRow();
+        const insertRow = this.tableRow.insertRow();
+        const newRow = insertRow;
+        const hideRow = insertRow;
 
         // Add class for new row
         newRow.className = 'content-row';
