@@ -1,4 +1,7 @@
+// Import variable EMAIL_REGEX, PASSWORD_RULE, VALID_PHONE_NUMBER, NAME_RULE from regex.constant
 import { EMAIL_REGEX, PASSWORD_RULE, VALID_PHONE_NUMBER, NAME_RULE } from '../constants/regex.constant';
+
+// Import variable MESSAGES, EMPTY_TEXT from message.constant
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 class Validate {
