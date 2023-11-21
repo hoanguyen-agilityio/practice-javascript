@@ -15,6 +15,10 @@
 
 .modal-form {
   display: none;
+
+  .error-message {
+    text-align: left;
+  }
 }
 
 .modal.modal-show {

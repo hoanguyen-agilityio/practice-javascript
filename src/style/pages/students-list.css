@@ -146,10 +146,6 @@
   padding-top: 10px;
 }
 
-.modal-form .error-message {
-  text-align: left;
-}
-
 /* STYLE APPLIED TO THE TABLET */
 @media (min-width: 766px) {
   .header {
