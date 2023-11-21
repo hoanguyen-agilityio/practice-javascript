@@ -28,7 +28,7 @@ export class StudentsList {
     this.handleUserLogout();
     this.showFormAddNewStudent();
     this.addEventForCreateButton();
-    this.cancelModalForm();
+    this.cancelModal();
     this.handleRenderTable();
   }
 
@@ -139,7 +139,7 @@ export class StudentsList {
   /**
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
-  cancelModalForm() {
+  cancelModal() {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
       this.resetForm();
