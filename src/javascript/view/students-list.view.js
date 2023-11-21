@@ -15,7 +15,7 @@ import { DocumentHelper } from '../helpers/document.helper';
 
 // Import class validate form form.validate
 import { validate } from '../validates/form.validate';
-import { MESSAGES } from '../constants/message.constant';
+import { EMPTY_TEXT, MESSAGES } from '../constants/message.constant';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -34,11 +34,13 @@ export class StudentsList {
   phoneEnrollNumberStudent = this.modal.querySelector('#phoneenrollnumber');
   dateOfAdmission = this.modal.querySelector('#dateofadmission');
   form = this.modal.querySelector('.form');
+  dataInput = this.modal.querySelectorAll('.data-input');
 
   constructor() {
     this.handleUserLogout();
     this.showFormAddNewStudent();
     this.addEventForCreateButton();
+    this.addEventForUpdateButton();
     this.cancelModal();
     this.handleRenderTable();
   }
@@ -47,7 +49,9 @@ export class StudentsList {
    * Reset input and error message
    */
   resetForm() {
-    this.form.reset();
+    this.dataInput.forEach((item) => {
+      item.value = EMPTY_TEXT;
+    })
     DocumentHelper.cleanErrorMessage(this.nameStudent);
     DocumentHelper.cleanErrorMessage(this.emailStudent);
     DocumentHelper.cleanErrorMessage(this.phoneStudent);
@@ -64,7 +68,7 @@ export class StudentsList {
     const studentId = item.dataset.id;
     const studentData = await StudentService.getById(studentId);
 
-    ModalHelper.showModal(this.modalForm);
+    ModalHelper.showModal(this.modal);
     this.nameStudent.value = studentData.name;
     this.emailStudent.value = studentData.email;
     this.phoneStudent.value = studentData.phone;
@@ -226,7 +230,7 @@ export class StudentsList {
 
         updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
         this.handleButtonsEdit();
-        ModalHelper.hideModal(this.modalForm);
+        ModalHelper.hideModal(this.modal);
       }    
     } catch (error) {
       alert('Something went wrong while updating the student', error);
