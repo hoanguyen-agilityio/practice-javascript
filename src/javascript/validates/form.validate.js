@@ -1,4 +1,4 @@
-import { EMAIL_REGEX, PASSWORD_RULE, NUMBER_PHONE_RULE, NAME_RULE } from '../constants/regex.constant';
+import { EMAIL_REGEX, PASSWORD_RULE, VALID_PHONE_NUMBER, NAME_RULE } from '../constants/regex.constant';
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 class Validate {
@@ -44,7 +44,7 @@ class Validate {
    * @param {number} value - Comparative value
    */
   isValidPhoneNumber(value) {
-    return NUMBER_PHONE_RULE.test(value);
+    return VALID_PHONE_NUMBER.test(value);
   }
 
   /**
