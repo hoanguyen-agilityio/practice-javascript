@@ -53,6 +53,23 @@ class ApiService {
 
     return response.json();
   }
+
+  /**
+   * Remove by calling API
+   * 
+   * @param {*} url 
+   */
+  async delete(url) {
+    const option = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await fetch(url, option);
+
+    return response.json();
+  }
 }
 
 const apiService = new ApiService();
