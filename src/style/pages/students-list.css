@@ -44,7 +44,7 @@
 }
 
 /* Students list header */
-.students-list-header {
+.list-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,10 +146,6 @@
   padding-top: 10px;
 }
 
-.modal-form .error-message {
-  text-align: left;
-}
-
 /* STYLE APPLIED TO THE TABLET */
 @media (min-width: 766px) {
   .header {
@@ -168,7 +164,7 @@
     margin-left: 300px;
   }
 
-  .students-list-header {
+  .list-heading {
     margin-left: 300px;
     margin-right: 30px;
   }
@@ -199,7 +195,7 @@
     border-radius: 50%;
   }
 
-  .students-list-header {
+  .list-heading {
     margin-top: 12px;
   }
 

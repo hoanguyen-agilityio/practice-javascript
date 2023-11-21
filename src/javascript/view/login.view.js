@@ -1,20 +1,16 @@
-// Import variable STUDENTS_LIST_PAGE from app.constant
+// Constants
 import { STUDENTS_LIST_PAGE } from '../constants/app.constant';
-
-// Import variable ACCOUNTS_API from url-api.constant
 import { ACCOUNTS_API } from '../constants/url-api.constant';
+import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
-// Import class apiService from api.service
+// Service
 import { apiService } from '../service/api.service';
 
-// Import class validate from form.validate
+// Validates
 import { validate } from '../validates/form.validate';
 
-// Import class DocumentHelper from document.helper
+// Helpers
 import { DocumentHelper } from '../helpers/document.helper';
-
-// Import variable MESSAGES, EMPTY_TEXT from message.constant
-import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 export class Login {
   formlogin = document.querySelector('#formlogin');
@@ -62,14 +58,14 @@ export class Login {
 
       // Login with the wrong account
       } else {
-        DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.incorrectLoginAccount);
+        DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.INCORRECT_LOGIN_ACCOUNT);
         DocumentHelper.showErrorMessage(this.errorMessageEmailLogin, EMPTY_TEXT);
         DocumentHelper.showErrorMessage(this.errorMessagePassword, EMPTY_TEXT);
 
         return;
       }
     } catch (error) {
-      DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.incorrectLoginAccount);
+      DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.GET_ACCOUNT_ERR);
 
       return;
     }
