@@ -31,12 +31,21 @@ export class StudentService {
   }
 
   /**
-   * Update movie in database
+   * Update student in database
    *
-   * @param {number} id - Id of the movie in the database
-   * @param {string} data - The object contains the information of the movie
+   * @param {number} id - Id of the student in the database
+   * @param {string} data - The object contains the information of the student
    */
     static async update(id, data) {
-      return apiService.put(`${STUDENT_API}/${id}`, data);
+      return await apiService.put(`${STUDENT_API}/${id}`, data);
     }
+
+  /**
+   * Remove student from database
+   *
+   * @param {number} id - Id of the student in the database
+   */
+  static async delete(id) {
+    return await apiService.delete(`${STUDENT_API}/${id}`);
+  }
 }
