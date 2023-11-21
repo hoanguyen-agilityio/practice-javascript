@@ -1,5 +1,5 @@
 // Import variable EMAIL_REGEX, PASSWORD_RULE, VALID_PHONE_NUMBER, NAME_RULE from regex.constant
-import { EMAIL_REGEX, PASSWORD_REGEX, VALID_PHONE_NUMBER, NAME_RULE } from '../constants/regex.constant';
+import { EMAIL_REGEX, PASSWORD_REGEX, VALID_PHONE_NUMBER, NAME_REGEX, NAME_REGEX } from '../constants/regex.constant';
 
 // Import variable MESSAGES, EMPTY_TEXT from message.constant
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
@@ -38,7 +38,7 @@ class Validate {
    * @param {*} value - Comparative value
    */
   isValidName(value) {
-    return NAME_RULE.test(value);
+    return NAME_REGEX.test(value);
   }
 
   /**
