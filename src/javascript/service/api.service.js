@@ -57,7 +57,7 @@ class ApiService {
   /**
    * Remove by calling API
    * 
-   * @param {*} url 
+   * @param {*} url - link to the database
    */
   async delete(url) {
     const option = {

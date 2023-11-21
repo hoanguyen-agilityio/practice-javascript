@@ -17,7 +17,7 @@ export class StudentTemplate {
         </button>
       </td>
       <td>
-        <button class="btn-table btn-delete" aria-label="Delete student" data-id=${move.id}>
+        <button class="btn-table btn-delete btn-table-delete" aria-label="Delete student" data-id=${move.id}>
           <img src="/btn-delete.a39890ce.svg" alt="button delete" />
         </button>
       </td>

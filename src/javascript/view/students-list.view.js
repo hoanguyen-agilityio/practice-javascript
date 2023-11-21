@@ -33,13 +33,19 @@ export class StudentsList {
   dateOfAdmission = this.modal.querySelector('#dateofadmission');
   form = this.modal.querySelector('.form');
   dataInput = this.modal.querySelectorAll('.data-input');
+  modalConfirmDelete = document.querySelector('.modal-confirm-delete');
+  modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector('.btn-cancel');
+  btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
+  modalContentDelete = this.modalConfirmDelete.querySelector('.modal-content-delete');
 
   constructor() {
     this.handleLogout();
     this.handleShowAddForm();
     this.handleAddEventForCreateButton();
     this.handleAddEventForUpdateButton();
+    this.handleAddEventForDeleteButton();
     this.handleCancelModal();
+    this.handleCancelModalConfirmDelete();
     this.handleRenderTable();
   }
 
@@ -93,6 +99,31 @@ export class StudentsList {
   }
 
   /**
+   * The deletion confirmation modal will appear when clicking the delete button
+   * 
+   * @param {*} item - Table delete button
+   */
+  handleShowDeleteStudentModal(item) {
+    const studentId = item.dataset.id;
+
+    ModalHelper.showModal(this.modalConfirmDelete);
+    this.modalContentDelete.setAttribute('data-id', studentId);
+  }
+
+  /**
+   * Query to all delete buttons in the table
+   */
+    handleDeleteButtons() {
+      const tableDeleteButtons = document.querySelectorAll('.btn-table-delete');
+  
+      tableDeleteButtons.forEach((item) => {
+        item.addEventListener('click', () => {
+          this.handleShowDeleteStudentModal(item);
+        });
+      });
+    }
+
+  /**
    * Handling getting data from the API and displaying it on a table in HTML
    */
   async handleRenderTable() {
@@ -106,6 +137,7 @@ export class StudentsList {
 
       this.tableRow.innerHTML = tableTemplate;
       this.handleButtonsEdit();
+      this.handleDeleteButtons();
     } catch (error) {
       alert('An error occurred while getting student', error);
     }
@@ -231,12 +263,23 @@ export class StudentsList {
 
         updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
         this.handleButtonsEdit();
+        this.handleDeleteButtons();
         ModalHelper.hideModal(this.modal);
       }    
     } catch (error) {
       alert('Something went wrong while updating the student', error);
     }
   }
+
+  /**
+   * Handle movie by calling API
+   */
+    async handleDeleteStudent() {
+      const modalContentDelete = this.modalContentDelete.getAttribute('data-id');
+      const deleteRow = document.querySelector(`[data-id="${modalContentDelete}"]`);
+      await StudentService.delete(deleteRow);
+      deleteRow.remove();
+    }
 
   /**
    * Handle the event when clicking on the add student button, the add student form will appear
@@ -268,12 +311,31 @@ export class StudentsList {
   }
 
   /**
+   * Handle the deletion of the student when the user presses the delete button
+   */
+  handleAddEventForDeleteButton() {
+    this.btnDelete.addEventListener('click', async () => {
+      await this.handleDeleteStudent();
+      ModalHelper.hideModal(this.modalConfirmDelete);
+    });
+  }
+
+  /**
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
   handleCancelModal() {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
       this.resetForm();
+    })
+  }
+
+  /**
+   * Handle the event when the user clicks on the cancel button, the form will be hidden
+   */
+  handleCancelModalConfirmDelete() {
+    this.modalConfirmDeleteBtnCancel.addEventListener('click', () => {
+      ModalHelper.hideModal(this.modalConfirmDelete);
     })
   }
 
