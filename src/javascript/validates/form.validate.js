@@ -93,7 +93,7 @@ class Validate {
           }
 
           // If there is a number in the name, an error message will be output
-          if (!formValidation.errors[key] && validationType === 'nameRule' && !this.isValidName(value)) {
+          if (!formValidation.errors[key] && validationType === 'name' && !this.isValidName(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.NAME_INVALID;
 
@@ -101,7 +101,7 @@ class Validate {
           }  
 
           // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
-          if (!formValidation.errors[key] && validationType === 'phoneRule' && !this.isValidPhoneNumber(value)) {
+          if (!formValidation.errors[key] && validationType === 'phone' && !this.isValidPhoneNumber(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.PHONE_NUMBER_INVALID;
 

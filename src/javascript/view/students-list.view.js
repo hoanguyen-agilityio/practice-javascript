@@ -81,10 +81,10 @@ export class StudentsList {
         dateofadmission: this.dateOfAdmission.value,
       };
       const config = {
-        name: ['empty', 'nameRule'],
+        name: ['empty', 'name'],
         email: ['empty', 'formatEmail'],
-        phone: ['empty', 'phoneRule'],
-        enrollnumber: ['empty', 'phoneRule'],
+        phone: ['empty', 'phone'],
+        enrollnumber: ['empty', 'phone'],
         dateofadmission: ['empty']
       };
       const validation = validate.validateForm(data, config);
@@ -102,12 +102,13 @@ export class StudentsList {
         // Add newly created students to the database
         const newStudent = await StudentService.post(data);
         const newRow = this.tableRow.insertRow();
-        const newHideRow = this.tableRow.insertRow();
+        const hideRow = this.tableRow.insertRow();
 
         // Add class for new row
         newRow.className = 'content-row';
 
-        newHideRow.className = 'spacer';
+        // Add class for hide row
+        hideRow.className = 'spacer';
 
         // Set attribute for new row
         newRow.setAttribute('data-id', newStudent.id);
