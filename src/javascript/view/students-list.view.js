@@ -1,19 +1,17 @@
 // Import variable LOGIN_PAGE from file app.constant
 import { LOGIN_PAGE } from '../constants/app.constant';
 
-// Import class StudentTemplate form student.template
+// Templates
 import { StudentTemplate } from '../templates/student.template';
 
-// Import class StudentService form student.service
+// Service
 import { StudentService } from '../service/student.service';
 
-// Import class ModalHelper form modal.helper
+// Helpers
 import { ModalHelper } from '../helpers/modal.helper';
-
-// Import class DocumentHelper form document.helper
 import { DocumentHelper } from '../helpers/document.helper';
 
-// Import class validate form form.validate
+// Validates
 import { validate } from '../validates/form.validate';
 
 export class StudentsList {

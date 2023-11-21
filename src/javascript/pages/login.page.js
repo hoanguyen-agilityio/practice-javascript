@@ -1,4 +1,4 @@
-// Impoet class Login from login.view
+// View
 import { Login } from '../view/login.view';
 
 const loginPage = () => {

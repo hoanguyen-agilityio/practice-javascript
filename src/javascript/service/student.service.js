@@ -1,4 +1,4 @@
-// Import variable STUDENT_API from url-api.constant
+// Constants
 import { STUDENT_API } from '../constants/url-api.constant';
 
 // Import class apiService from api.service
