@@ -10,10 +10,10 @@ export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
   table = document.querySelector('.table');
   modalForm = document.querySelector('.modal-form');
-  studentsListHeader = document.querySelector('.students-list-header');
+  studentsHeading = document.querySelector('.students-list-header');
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
   tableRow = this.table.querySelector('.table-row');
-  btnShowFormAddStudent = this.studentsListHeader.querySelector('.btn-add-student');
+  btnShowFormAddStudent = this.studentsHeading.querySelector('.btn-add-student');
   btnCancel = this.modalForm.querySelector('.btn-cancel');
   btnCreateStudent = this.modalForm.querySelector('.btn-create-student');
   btnUpdateStudent = this.modalForm.querySelector('.btn-update-student');
