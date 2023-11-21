@@ -117,6 +117,18 @@ class Validate {
 
     return formValidation;
   }
+
+  /**
+   * Filter out elements in the array to return duplicate elements
+   * 
+   * @param {*} data - array
+   * @param {*} key - The value is in the array
+   * @param {*} value - Values ​​in input fields
+   * @returns 
+   */
+  checkDuplicateData(data, key, value) {
+    return data.find((item) => item[key] === value);
+  }
 }
 
 export const validate = new Validate();

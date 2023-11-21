@@ -154,6 +154,9 @@ export class StudentsList {
     }
   }
 
+  /**
+   * Handling update form  by calling API
+   */
   async handleUpdateForm() {
     try {
       const data = {
@@ -184,19 +187,24 @@ export class StudentsList {
   
         return;
       } else {
-        const filterDuplicateData = (data, key, value) => data.find((item) => item[key] === value)
-        const duplicateEmail = filterDuplicateData(studentsList, 'email', data.email);
-        const duplicatePhoneNumber = filterDuplicateData(studentsList, 'phone', data.phone);
-        const duplicateEnrollNumber = filterDuplicateData(studentsList, 'enrollnumber', data.enrollnumber);
+        const duplicateEmail = validate.checkDuplicateData(studentsList, 'email', data.email);
+        const duplicatePhoneNumber = validate.checkDuplicateData(studentsList, 'phone', data.phone);
+        const duplicateEnrollNumber = validate.checkDuplicateData(studentsList, 'enrollnumber', data.enrollnumber);
         let isContinue = true;
+
+        // Checking for duplicate emails will produce an error message
         if (duplicateEmail) {
           isContinue = false;
           DocumentHelper.showErrorMessage(this.emailStudent, MESSAGES.duplicateEmail);
-        } 
+        }
+        
+        // If you check for duplicate phone numbers, an error message will appear
         if (duplicatePhoneNumber) {
           isContinue = false;
           DocumentHelper.showErrorMessage(this.phoneStudent, MESSAGES.duplicatePhone);
         }
+
+        // If you check for the same enrollment number, an error message will appear
         if (duplicateEnrollNumber) {
           isContinue = false;
           DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, MESSAGES.duplicateEnrollNumber);
@@ -204,7 +212,7 @@ export class StudentsList {
         if (!isContinue) {
           return;
         }
-        
+
         const updateRow = document.querySelector(`[data-id="${formStudentId}"]`);
         const updateStudent = await StudentService.update(formStudentId, data);
 
@@ -212,7 +220,6 @@ export class StudentsList {
         this.handleButtonsEdit();
         ModalHelper.hideModal(this.modalForm);
       }    
-      
     } catch (error) {
       alert('Something went wrong while updating the student', error);
     }
