@@ -1,3 +1,4 @@
+// Import variable EMPTY_TEXT from message.constant
 import { EMPTY_TEXT } from '../constants/message.constant';
 
 export class DocumentHelper {

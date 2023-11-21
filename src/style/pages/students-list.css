@@ -30,7 +30,7 @@
   justify-content: space-between;
   width: 270px;
   background: var(--primary-color-150);
-  height: 100%;
+  height: auto;
 }
 
 .profile {

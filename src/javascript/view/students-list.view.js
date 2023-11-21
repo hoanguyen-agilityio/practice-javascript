@@ -1,37 +1,45 @@
-
+// Import variable LOGIN_PAGE from file app.constant
 import { LOGIN_PAGE } from '../constants/app.constant';
+
+// Import class StudentTemplate form student.template
 import { StudentTemplate } from '../templates/student.template';
+
+// Import class StudentService form student.service
 import { StudentService } from '../service/student.service';
+
+// Import class ModalHelper form modal.helper
 import { ModalHelper } from '../helpers/modal.helper';
+
+// Import class DocumentHelper form document.helper
 import { DocumentHelper } from '../helpers/document.helper';
+
+// Import class validate form form.validate
 import { validate } from '../validates/form.validate';
 import { MESSAGES } from '../constants/message.constant';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
   table = document.querySelector('.table');
-  modalForm = document.querySelector('.modal-form');
-  studentsListHeader = document.querySelector('.students-list-header');
+  modal = document.querySelector('.modal-form');
+  studentsHeading = document.querySelector('.students-list-header');
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
   tableRow = this.table.querySelector('.table-row');
-  btnShowFormAddStudent = this.studentsListHeader.querySelector('.btn-add-student');
-  btnCancel = this.modalForm.querySelector('.btn-cancel');
-  btnCreateStudent = this.modalForm.querySelector('.btn-create-student');
-  btnUpdateStudent = this.modalForm.querySelector('.btn-update-student');
-  nameStudent = this.modalForm.querySelector('#namestudent');
-  emailStudent = this.modalForm.querySelector('#email');
-  phoneStudent = this.modalForm.querySelector('#phone');
-  phoneEnrollNumberStudent = this.modalForm.querySelector('#phoneenrollnumber');
-  dateOfAdmission = this.modalForm.querySelector('#dateofadmission');
-  form = this.modalForm.querySelector('.form');
-  btnEdit = this.table.querySelector('.btn-edit');
+  btnShowFormAddStudent = this.studentsHeading.querySelector('.btn-add-student');
+  btnCancel = this.modal.querySelector('.btn-cancel');
+  btnCreateStudent = this.modal.querySelector('.btn-create-student');
+  btnUpdateStudent = this.modal.querySelector('.btn-update-student');
+  nameStudent = this.modal.querySelector('#namestudent');
+  emailStudent = this.modal.querySelector('#email');
+  phoneStudent = this.modal.querySelector('#phone');
+  phoneEnrollNumberStudent = this.modal.querySelector('#phoneenrollnumber');
+  dateOfAdmission = this.modal.querySelector('#dateofadmission');
+  form = this.modal.querySelector('.form');
 
   constructor() {
     this.handleUserLogout();
     this.showFormAddNewStudent();
     this.addEventForCreateButton();
-    this.addEventForUpdateButton();
-    this.cancelModalForm();
+    this.cancelModal();
     this.handleRenderTable();
   }
 
@@ -146,7 +154,7 @@ export class StudentsList {
 
         // Display newly created students on the screen
         newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
-        ModalHelper.hideModal(this.modalForm);
+        ModalHelper.hideModal(this.modal);
       }
 
     } catch (error) {
@@ -230,7 +238,7 @@ export class StudentsList {
    */
   showFormAddNewStudent() {
     this.btnShowFormAddStudent.addEventListener('click', () => {
-      ModalHelper.showModal(this.modalForm);
+      ModalHelper.showModal(this.modal);
       DocumentHelper.hideElement(this.btnUpdateStudent);
       DocumentHelper.showElement(this.btnCreateStudent);
       this.resetForm();
@@ -257,9 +265,9 @@ export class StudentsList {
   /**
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
-  cancelModalForm() {
+  cancelModal() {
     this.btnCancel.addEventListener('click', () => {
-      ModalHelper.hideModal(this.modalForm);
+      ModalHelper.hideModal(this.modal);
       this.resetForm();
     })
   }

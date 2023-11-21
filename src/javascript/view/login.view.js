@@ -1,8 +1,19 @@
+// Import variable STUDENTS_LIST_PAGE from app.constant
 import { STUDENTS_LIST_PAGE } from '../constants/app.constant';
-import { ACCOUNTS_API } from '../constants/url-api.constant'
-import { apiService } from '../service/api.service'
+
+// Import variable ACCOUNTS_API from url-api.constant
+import { ACCOUNTS_API } from '../constants/url-api.constant';
+
+// Import class apiService from api.service
+import { apiService } from '../service/api.service';
+
+// Import class validate from form.validate
 import { validate } from '../validates/form.validate';
+
+// Import class DocumentHelper from document.helper
 import { DocumentHelper } from '../helpers/document.helper';
+
+// Import variable MESSAGES, EMPTY_TEXT from message.constant
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 export class Login {

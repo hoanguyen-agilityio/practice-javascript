@@ -1,4 +1,7 @@
-import { EMAIL_REGEX, PASSWORD_RULE, NUMBER_PHONE_RULE, NAME_RULE } from '../constants/regex.constant';
+// Import variable EMAIL_REGEX, PASSWORD_RULE, VALID_PHONE_NUMBER, NAME_RULE from regex.constant
+import { EMAIL_REGEX, PASSWORD_RULE, VALID_PHONE_NUMBER, NAME_RULE } from '../constants/regex.constant';
+
+// Import variable MESSAGES, EMPTY_TEXT from message.constant
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 class Validate {
@@ -43,8 +46,8 @@ class Validate {
    * 
    * @param {number} value - Comparative value
    */
-  isValidNumberPhone(value) {
-    return NUMBER_PHONE_RULE.test(value);
+  isValidPhoneNumber(value) {
+    return VALID_PHONE_NUMBER.test(value);
   }
 
   /**
@@ -94,15 +97,15 @@ class Validate {
           // If there is a number in the name, an error message will be output
           if (!formValidation.errors[key] && validationType === 'nameRule' && !this.isValidName(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.nameWrongFormat;
+            formValidation.errors[key] = MESSAGES.nameInvalid;
 
             return;
           }  
 
           // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
-          if (!formValidation.errors[key] && validationType === 'phoneRule' && !this.isValidNumberPhone(value)) {
+          if (!formValidation.errors[key] && validationType === 'phoneRule' && !this.isValidPhoneNumber(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.numberPhoneWrongFormat;
+            formValidation.errors[key] = MESSAGES.phoneNumberInvalid;
 
             return;
           }

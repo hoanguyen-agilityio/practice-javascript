@@ -16,6 +16,6 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "start": "parcel src/index.html src/students-list.html"
+    "start": "parcel src/pages/index.html src/pages/students-list.html"
   }
 }

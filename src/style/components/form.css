@@ -3,8 +3,9 @@
 .modal {
   display: none;
   justify-content: center;
+  align-items: center;
   position: fixed;
-  z-index: 10;
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -23,8 +24,6 @@
 .modal-content {
   background-color: var(--secondary-color-50);
   padding: 0 15px;
-  position: absolute;
-  top: 20%;
   max-width: 500px;
   width: 80%;
 }
