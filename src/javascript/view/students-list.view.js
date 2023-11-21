@@ -33,10 +33,10 @@ export class StudentsList {
   form = this.modal.querySelector('.form');
 
   constructor() {
-    this.handleUserLogout();
-    this.showFormAddNewStudent();
-    this.addEventForCreateButton();
-    this.cancelModal();
+    this.handleLogout();
+    this.handleShowAddForm();
+    this.handleAddEventForCreateButton();
+    this.handleCancelModal();
     this.handleRenderTable();
   }
 
@@ -125,7 +125,7 @@ export class StudentsList {
   /**
    * Handle the event when clicking on the add student button, the add student form will appear
    */
-  showFormAddNewStudent() {
+  handleShowAddForm() {
     this.btnShowFormAddStudent.addEventListener('click', () => {
       ModalHelper.showModal(this.modal);
       DocumentHelper.hideElement(this.btnUpdateStudent);
@@ -137,7 +137,7 @@ export class StudentsList {
   /**
    * Add event for create button
    */
-  addEventForCreateButton() {
+  handleAddEventForCreateButton() {
     // New student will be created when clicking create button
     this.btnCreateStudent.addEventListener('click', async () => {
       await this.handleAddForm();
@@ -147,7 +147,7 @@ export class StudentsList {
   /**
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
-  cancelModal() {
+  handleCancelModal() {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
       this.resetForm();
@@ -157,7 +157,7 @@ export class StudentsList {
   /**
    * Handle logout when the user clicks the logout button
    */
-  handleUserLogout() {
+  handleLogout() {
     this.btnLogout.addEventListener('click', () => {
       window.location.href = LOGIN_PAGE
     })
