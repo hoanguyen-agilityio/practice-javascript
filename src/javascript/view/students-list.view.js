@@ -38,6 +38,7 @@ export class StudentsList {
     this.handleLogout();
     this.handleShowAddForm();
     this.handleAddEventForCreateButton();
+    this.handleAddEventForUpdateButton();
     this.handleCancelModal();
     this.handleRenderTable();
   }
@@ -49,10 +50,10 @@ export class StudentsList {
     this.dataInput.forEach((item) => {
       item.value = EMPTY_TEXT;
     })
-    DocumentHelper.cleanErrorMessage(this.nameStudent);
-    DocumentHelper.cleanErrorMessage(this.emailStudent);
-    DocumentHelper.cleanErrorMessage(this.phoneStudent);
-    DocumentHelper.cleanErrorMessage(this.phoneEnrollNumberStudent);
+    DocumentHelper.cleanErrorMessage(this.name);
+    DocumentHelper.cleanErrorMessage(this.email);
+    DocumentHelper.cleanErrorMessage(this.phone);
+    DocumentHelper.cleanErrorMessage(this.enrollNumber);
     DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
   }
 
@@ -66,10 +67,10 @@ export class StudentsList {
     const studentData = await StudentService.getById(studentId);
 
     ModalHelper.showModal(this.modal);
-    this.nameStudent.value = studentData.name;
-    this.emailStudent.value = studentData.email;
-    this.phoneStudent.value = studentData.phone;
-    this.phoneEnrollNumberStudent.value = studentData.enrollnumber;
+    this.name.value = studentData.name;
+    this.email.value = studentData.email;
+    this.phone.value = studentData.phone;
+    this.enrollNumber.value = studentData.enrollnumber;
     this.dateOfAdmission.value = studentData.dateofadmission;
     this.form.setAttribute('data-id', studentId);
   }
@@ -170,10 +171,10 @@ export class StudentsList {
   async handleUpdateForm() {
     try {
       const data = {
-        name: this.nameStudent.value,
-        email: this.emailStudent.value,
-        phone: this.phoneStudent.value,
-        enrollnumber: this.phoneEnrollNumberStudent.value,
+        name: this.name.value,
+        email: this.email.value,
+        phone: this.phone.value,
+        enrollnumber: this.enrollNumber.value,
         dateofadmission: this.dateOfAdmission.value,
       };
       const config = {
@@ -189,10 +190,10 @@ export class StudentsList {
       
       // Check entry requirements of all schools. If incorrect, output an error message
       if (!validation.isValid) {
-        DocumentHelper.showErrorMessage(this.nameStudent, validation.errors.name);
-        DocumentHelper.showErrorMessage(this.emailStudent, validation.errors.email);
-        DocumentHelper.showErrorMessage(this.phoneStudent, validation.errors.phone);
-        DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, validation.errors.enrollnumber);
+        DocumentHelper.showErrorMessage(this.name, validation.errors.name);
+        DocumentHelper.showErrorMessage(this.email, validation.errors.email);
+        DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
+        DocumentHelper.showErrorMessage(this.enrollNumber, validation.errors.enrollnumber);
         DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateofadmission);
   
         return;
@@ -205,19 +206,19 @@ export class StudentsList {
         // Checking for duplicate emails will produce an error message
         if (duplicateEmail) {
           isContinue = false;
-          DocumentHelper.showErrorMessage(this.emailStudent, MESSAGES.DUPLICATE_EMAIL);
+          DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
         }
         
         // If you check for duplicate phone numbers, an error message will appear
         if (duplicatePhoneNumber) {
           isContinue = false;
-          DocumentHelper.showErrorMessage(this.phoneStudent, MESSAGES.DUPLICATE_PHONE);
+          DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
         }
 
         // If you check for the same enrollment number, an error message will appear
         if (duplicateEnrollNumber) {
           isContinue = false;
-          DocumentHelper.showErrorMessage(this.phoneEnrollNumberStudent, MESSAGES.DUPLICATE_ENROLL_NUMBER);
+          DocumentHelper.showErrorMessage(this.enrollNumber, MESSAGES.DUPLICATE_ENROLL_NUMBER);
         }
         if (!isContinue) {
           return;
@@ -257,7 +258,7 @@ export class StudentsList {
     });
   }
 
-  addEventForUpdateButton() {
+  handleAddEventForUpdateButton() {
     // Movie will be updated when the update button is clicked
     this.btnUpdateStudent.addEventListener('click', async () => {
       await this.handleUpdateForm();
