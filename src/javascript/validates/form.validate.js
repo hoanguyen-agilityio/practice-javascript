@@ -73,7 +73,7 @@ class Validate {
           // If there is an empty word, continue to consider the isEmpty condition
           if (validationType === 'empty' && !this.isEmpty(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.empty;
+            formValidation.errors[key] = MESSAGES.EMPTY;
 
             return;
           }
@@ -81,7 +81,7 @@ class Validate {
           // If there is an formatEmail word, continue to consider the isValidEmail condition
           if (!formValidation.errors[key] && validationType === 'formatEmail' && !this.isValidEmail(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.emailWrongFormat;
+            formValidation.errors[key] = MESSAGES.EMAIL_WRONG_FORMAT;
 
             return;
           }
@@ -89,7 +89,7 @@ class Validate {
           // If there is an passwordRule word, continue to consider the isValidPassword condition
           if (!formValidation.errors[key] && validationType === 'passwordRule' && !this.isValidPassword(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.passwordWrongFormat;
+            formValidation.errors[key] = MESSAGES.PASSWORD_WRONG_FORMAT;
 
             return;
           }
@@ -97,7 +97,7 @@ class Validate {
           // If there is a number in the name, an error message will be output
           if (!formValidation.errors[key] && validationType === 'nameRule' && !this.isValidName(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.nameInvalid;
+            formValidation.errors[key] = MESSAGES.NAME_INVALID;
 
             return;
           }  
@@ -105,7 +105,7 @@ class Validate {
           // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
           if (!formValidation.errors[key] && validationType === 'phoneRule' && !this.isValidPhoneNumber(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.phoneNumberInvalid;
+            formValidation.errors[key] = MESSAGES.PHONE_NUMBER_INVALID;
 
             return;
           }

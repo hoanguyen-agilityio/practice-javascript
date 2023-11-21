@@ -62,14 +62,14 @@ export class Login {
 
       // Login with the wrong account
       } else {
-        DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.incorrectLoginAccount);
+        DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.INCORRECT_LOGIN_ACCOUNT);
         DocumentHelper.showErrorMessage(this.errorMessageEmailLogin, EMPTY_TEXT);
         DocumentHelper.showErrorMessage(this.errorMessagePassword, EMPTY_TEXT);
 
         return;
       }
     } catch (error) {
-      DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.incorrectLoginAccount);
+      DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.GET_ACCOUNT_ERR);
 
       return;
     }
