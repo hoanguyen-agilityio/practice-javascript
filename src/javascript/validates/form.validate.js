@@ -43,7 +43,7 @@ class Validate {
    * 
    * @param {number} value - Comparative value
    */
-  isValidNumberPhone(value) {
+  isValidPhoneNumber(value) {
     return NUMBER_PHONE_RULE.test(value);
   }
 
@@ -100,7 +100,7 @@ class Validate {
           }  
 
           // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
-          if (!formValidation.errors[key] && validationType === 'phoneRule' && !this.isValidNumberPhone(value)) {
+          if (!formValidation.errors[key] && validationType === 'phoneRule' && !this.isValidPhoneNumber(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.numberPhoneWrongFormat;
 
