@@ -85,6 +85,7 @@ export class StudentsList {
     btnEdits.forEach((item) => {
       item.addEventListener('click', async () => {
         await this.showEditStudentModal(item);
+
         DocumentHelper.hideElement(this.btnCreateStudent);
         DocumentHelper.showElement(this.btnUpdateStudent);
       });
