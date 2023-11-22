@@ -52,7 +52,7 @@
   border-bottom: 2px solid var(--secondary-color-150);
 }
 
-.title-students-list-header {
+.students-list-heading {
   font-size: var(--font-size-m);
 }
 
