@@ -33,6 +33,10 @@ export class StudentsList {
   dateOfAdmission = this.modal.querySelector('#dateofadmission');
   form = this.modal.querySelector('.form');
   dataInput = this.modal.querySelectorAll('.data-input');
+  modalConfirmDelete = document.querySelector('.modal-confirm-delete');
+  modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector('.btn-cancel');
+  modalContentDelete = this.modalConfirmDelete.querySelector('.modal-content-delete');
+  btnDelete = this.modalConfirmDelete.querySelector('.btn-delete'); 
 
   constructor() {
     this.handleLogout();
@@ -40,6 +44,7 @@ export class StudentsList {
     this.handleAddEventForCreateButton();
     this.handleAddEventForUpdateButton();
     this.handleCancelModal();
+    this.handleAddEventForDeleteButton();
     this.handleCancelModalConfirmDelete();
     this.handleRenderTable();
   }
