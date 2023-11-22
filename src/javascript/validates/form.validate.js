@@ -1,9 +1,11 @@
 // Constants
-import { EMAIL_REGEX, 
+import { 
+  EMAIL_REGEX, 
   PASSWORD_REGEX, 
   PHONE_NUMBER_REGEX, 
   NAME_REGEX, 
-  NAME_REGEX } from '../constants/regex.constant';
+  NAME_REGEX, 
+} from '../constants/regex.constant';
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
 
 class Validate {
