@@ -1,6 +1,6 @@
 /* START INPUT */
 /* STYLE APPLIED TO THE MOBILE */
-.data-input {
+.form-input {
   border-radius: var(--border-radius-s);
   margin-top: 10px;
   padding: 10px 30px;
@@ -11,7 +11,7 @@
 
 /* STYLE APPLIED TO THE MOBILE */
 @media (min-width: 769px) {
-  .data-input {
+  .form-input {
     margin-top: 20px;
   }
 }
