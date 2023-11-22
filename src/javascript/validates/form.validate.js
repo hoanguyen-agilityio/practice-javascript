@@ -1,7 +1,7 @@
 // Constants
 import { EMAIL_REGEX, 
   PASSWORD_REGEX, 
-  VALID_PHONE_NUMBER, 
+  PHONE_NUMBER_REGEX, 
   NAME_REGEX, 
   NAME_REGEX } from '../constants/regex.constant';
 import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
@@ -49,7 +49,7 @@ class Validate {
    * @param {number} value - Comparative value
    */
   isValidPhoneNumber(value) {
-    return VALID_PHONE_NUMBER.test(value);
+    return PHONE_NUMBER_REGEX.test(value);
   }
 
   /**
