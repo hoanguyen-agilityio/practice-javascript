@@ -158,6 +158,12 @@
   padding-top: 10px;
 }
 
+.scroll-y {
+  width: 100%;
+  height: 80%;
+  overflow-y: auto;
+}
+
 /* STYLE APPLIED TO THE TABLET */
 @media (min-width: 766px) {
   .header {
