@@ -32,7 +32,7 @@ export class StudentsList {
   enrollNumber = this.modal.querySelector('#phoneenrollnumber');
   dateOfAdmission = this.modal.querySelector('#dateofadmission');
   form = this.modal.querySelector('.form');
-  dataInput = this.modal.querySelectorAll('.data-input');
+  formInput = this.modal.querySelectorAll('.form-input');
   modalConfirmDelete = document.querySelector('.modal-confirm-delete');
   modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector('.btn-cancel');
   modalContentDelete = this.modalConfirmDelete.querySelector('.modal-content-delete');
