@@ -33,17 +33,12 @@ export class StudentsList {
   dateOfAdmission = this.modal.querySelector('#dateofadmission');
   form = this.modal.querySelector('.form');
   dataInput = this.modal.querySelectorAll('.data-input');
-  modalConfirmDelete = document.querySelector('.modal-confirm-delete');
-  modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector('.btn-cancel');
-  btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
-  modalContentDelete = this.modalConfirmDelete.querySelector('.modal-content-delete');
 
   constructor() {
     this.handleLogout();
     this.handleShowAddForm();
     this.handleAddEventForCreateButton();
     this.handleAddEventForUpdateButton();
-    this.handleAddEventForDeleteButton();
     this.handleCancelModal();
     this.handleCancelModalConfirmDelete();
     this.handleRenderTable();
@@ -53,7 +48,7 @@ export class StudentsList {
    * Reset input and error message
    */
   resetForm() {
-    this.dataInput.forEach((item) => {
+    this.formInput.forEach((item) => {
       item.value = EMPTY_TEXT;
     })
     DocumentHelper.cleanErrorMessage(this.name);

@@ -2,7 +2,6 @@
 /* STYLE APPLIED TO THE MOBILE */
 .modal {
   display: none;
-  justify-content: center;
   align-items: center;
   position: fixed;
   z-index: 1;
@@ -31,6 +30,7 @@
   padding: 0 15px;
   max-width: 500px;
   width: 80%;
+  margin: auto;
 }
 
 .title {
@@ -138,7 +138,7 @@
     font-size: var(--font-size-l);
   }
 
-  .form-input-group .data-input {
+  .form-input-group .form-input {
     margin-top: 10px;
   }
   

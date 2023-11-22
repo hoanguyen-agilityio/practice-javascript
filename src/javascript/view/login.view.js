@@ -52,15 +52,15 @@ export class Login {
       // Correct login account      
       if (user.email === data.email && user.password === data.password) {
         window.location.href = STUDENTS_LIST_PAGE;
-        DocumentHelper.showErrorMessage(this.errorMessage, EMPTY_TEXT);
-        DocumentHelper.showErrorMessage(this.errorMessageEmailLogin, EMPTY_TEXT);
-        DocumentHelper.showErrorMessage(this.errorMessagePassword, EMPTY_TEXT);
+        DocumentHelper.cleanErrorMessage(this.errorMessage);
+        DocumentHelper.cleanErrorMessage(this.errorMessageEmailLogin);
+        DocumentHelper.cleanErrorMessage(this.errorMessagePassword);
 
       // Login with the wrong account
       } else {
         DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.INCORRECT_LOGIN_ACCOUNT);
-        DocumentHelper.showErrorMessage(this.errorMessageEmailLogin, EMPTY_TEXT);
-        DocumentHelper.showErrorMessage(this.errorMessagePassword, EMPTY_TEXT);
+        DocumentHelper.cleanErrorMessage(this.errorMessageEmailLogin);
+        DocumentHelper.cleanErrorMessage(this.errorMessagePassword);
 
         return;
       }

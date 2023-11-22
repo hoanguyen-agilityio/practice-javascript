@@ -3,211 +3,223 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
     <title>Lists Student</title>
   </head>
   <body class="body-page-students-list">
-    <header class="header">
-      <button class="btn-hide-sidebar" aria-label="hide/show sidebar">
-        <img src="../assets/btn-hide-sidebar.svg" alt="btn hide sidebar" />
-      </button>
-      <form action="/" method="GET" class="form-search">
-        <input
-          type="search"
-          placeholder="Search..."
-          class="search-field"
-          aria-label="Enter the content you want to search for"
-        />
-        <button type="submit" class="btn-search" aria-label="search">
-          <img src="../assets/search.svg" />
-        </button>
-      </form>
-      <button class="btn-notification" aria-label="See announcement">
-        <img src="../assets/notification-btn.svg" alt="btn notification" />
-      </button>
-    </header>
+    <div class="container-page-students-list">
+      <div class="container-sidebar">
+        <main class="main-sidebar" id="mainsidebar">
+          <!-- logo and avatar -->
+          <div class="profile">
+            <h1 class="logo">CRUD OPERATIONS</h1>
+            <img
+              src="../assets/avatar.svg"
+              alt="avatar user"
+              class="avt-user"
+            />
+            <h3 class="user-name ">Karthi Madesh</h3>
+            <span class="user-rights">Admin</span>
+          </div>
 
-    <main class="main-sidebar" id="mainsidebar">
-      <!-- logo and avatar -->
-      <div class="profile">
-        <h1 class="logo">CRUD OPERATIONS</h1>
-        <img src="../assets/avatar.svg" alt="avatar user" class="avt-user" />
-        <h3 class="username ">Karthi Madesh</h3>
-        <span class="user-rights">Admin</span>
+          <!-- sidebar -->
+          <aside class="sub-sidebar-content">
+            <ul class="sub-sidebar-list">
+              <li>
+                <a href="javascript:void(0);" aria-label="Go to home page">
+                  <img src="../assets/home.svg" alt="icon home" />
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" aria-label="Go to course page">
+                  <img src="../assets/course.svg" alt="icon Course" />
+                  Course
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" aria-label="Go to student page">
+                  <img src="../assets/graduation.svg" alt="icon Students" />
+                  Students
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" aria-label="Go to payment page">
+                  <img src="../assets/payment.svg" alt="icon Payment" />
+                  Payment
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" aria-label="Go to report page">
+                  <img src="../assets/report.svg" alt="icon Report" />
+                  Report
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" aria-label="Go to setting page">
+                  <img src="../assets/setting.svg" alt="icon Settings" />
+                  Settings
+                </a>
+              </li>
+            </ul>
+            <div class="navigation">
+              <button class="btn-logout" aria-label="logout">
+                Logout<img src="../assets/logout.svg" class="btn-logout-icon" />
+              </button>
+            </div>
+          </aside>
+        </main>
       </div>
 
-      <!-- sidebar -->
-      <aside class="sub-sidebar-content">
-        <ul class="sub-sidebar-list">
-          <li>
-            <a href="javascript:void(0);" aria-label="Go to home page">
-              <img src="../assets/home.svg" alt="icon home" />
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" aria-label="Go to course page">
-              <img src="../assets/course.svg" alt="icon Course" />
-              Course
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" aria-label="Go to student page">
-              <img src="../assets/graduation.svg" alt="icon Students" />
-              Students
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" aria-label="Go to payment page">
-              <img src="../assets/payment.svg" alt="icon Payment" />
-              Payment
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" aria-label="Go to report page">
-              <img src="../assets/report.svg" alt="icon Report" />
-              Report
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" aria-label="Go to setting page">
-              <img src="../assets/setting.svg" alt="icon Settings" />
-              Settings
-            </a>
-          </li>
-        </ul>
-        <div class="navigation">
-          <button class="btn-logout" aria-label="logout">
-            Logout<img src="../assets/logout.svg" class="btn-logout-icon" />
+      <div class="container-content">
+        <header class="header">
+          <button class="btn-hide-sidebar" aria-label="hide/show sidebar">
+            <img src="../assets/btn-hide-sidebar.svg" alt="btn hide sidebar" />
           </button>
-        </div>
-      </aside>
-    </main>
+          <form action="/" method="GET" class="form-search">
+            <input
+              type="search"
+              placeholder="Search..."
+              class="search-field"
+              aria-label="Enter the content you want to search for"
+            />
+            <button type="submit" class="btn-search" aria-label="search">
+              <img src="../assets/search.svg" />
+            </button>
+          </form>
+          <button class="btn-notification" aria-label="See announcement">
+            <img src="../assets/notification-btn.svg" alt="btn notification" />
+          </button>
+        </header>
 
-    <!-- Title students list and button Add and sort -->
-    <section class="list-heading">
-      <h2 class="title title-students-list-header">Students List</h2>
-      <button class="btn-sort" aria-label="Sort the list">
-        <img src="../assets/sort.svg" alt="btn sort" />
-      </button>
-      <button class="btn btn-add-student" aria-label="Add new student">
-        ADD NEW STUDENT
-      </button>
-    </section>
+        <!-- Title students list and button Add and sort -->
+        <section class="list-heading">
+          <h2 class="title students-list-heading">Students List</h2>
+          <button class="btn-sort" aria-label="Sort the list">
+            <img src="../assets/sort.svg" alt="btn sort" />
+          </button>
+          <button class="btn btn-add-student" aria-label="Add new student">
+            ADD NEW STUDENT
+          </button>
+        </section>
 
-    <!-- Students list table -->
-    <div class="table">
-      <table class="students-list-table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Enroll Number</th>
-            <th scope="col">
-              Date of admission
-            </th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody class="table-row"></tbody>
-      </table>
-    </div>
-
-    <!-- Form -->
-    <div class="modal modal-form">
-      <div class="modal-content">
-        <h3 class="title title-form-add-update">Student</h3>
-        <div class="form">
-          <div class="form-input-group">
-            <label class="label-input">Name</label>
-            <input
-              type="text"
-              class="data-input"
-              id="namestudent"
-              aria-label="Enter name"
-            />
-            <p class="error-message"></p>
-          </div>
-          <div class="form-input-group">
-            <label class="label-input">Email</label>
-            <input
-              type="email"
-              class="data-input"
-              id="email"
-              aria-label="Enter email"
-            />
-            <p class="error-message"></p>
-          </div>
-          <div class="form-input-group">
-            <label class="label-input">Phone</label>
-            <input
-              type="tel"
-              class="data-input"
-              id="phone"
-              aria-label="Enter phone"
-            />
-            <p class="error-message"></p>
-          </div>
-          <div class="form-input-group">
-            <label class="label-input">Phone Enroll Number</label>
-            <input
-              type="tel"
-              class="data-input"
-              id="phoneenrollnumber"
-              aria-label="Enter phone enroll number"
-            />
-            <p class="error-message"></p>
-          </div>
-          <div class="form-input-group">
-            <label class="label-input">Date of admission</label>
-            <input
-              type="date"
-              class="data-input"
-              id="dateofadmission"
-              aria-label="Enter date of admission"
-            />
-            <p class="error-message"></p>
-          </div>
-        </div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-cancel" aria-label="Cancel">
-            Cancel
-          </button>
-          <button
-            type="button"
-            class="btn btn-create-student"
-            aria-label="Create Student"
-          >
-            Create Student
-          </button>
-          <button
-            type="button"
-            class="btn btn-update-student"
-            aria-label="Update Student"
-          >
-            Update Student
-          </button>
+        <!-- Students list table -->
+        <div class="table">
+          <table class="students-list-table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Enroll Number</th>
+                <th scope="col">
+                  Date of admission
+                </th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class="table-row"></tbody>
+          </table>
         </div>
       </div>
-    </div>
 
-    <!-- FORM CONFIRM DELETE -->
-    <div class="modal modal-confirm-delete">
-      <div class="modal-content modal-content-delete">
-        <div class="content">
-          <p class="title title-confirm-delete">CONFIRM DELETE!!!</p>
-          <p class="describe">Are you sure you want delete this student</p>
+      <!-- Form -->
+      <div class="modal modal-form">
+        <div class="scroll-y">
+          <div class="modal-content">
+            <h3 class="title title-form-add-update">Student</h3>
+            <div class="form">
+              <div class="form-input-group">
+                <label class="label-input">Name</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="namestudent"
+                  aria-label="Enter name"
+                />
+                <p class="error-message"></p>
+              </div>
+              <div class="form-input-group">
+                <label class="label-input">Email</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  id="email"
+                  aria-label="Enter email"
+                />
+                <p class="error-message"></p>
+              </div>
+              <div class="form-input-group">
+                <label class="label-input">Phone</label>
+                <input
+                  type="tel"
+                  class="form-input"
+                  id="phone"
+                  aria-label="Enter phone"
+                />
+                <p class="error-message"></p>
+              </div>
+              <div class="form-input-group">
+                <label class="label-input">Phone Enroll Number</label>
+                <input
+                  type="tel"
+                  class="form-input"
+                  id="phoneenrollnumber"
+                  aria-label="Enter phone enroll number"
+                />
+                <p class="error-message"></p>
+              </div>
+              <div class="form-input-group">
+                <label class="label-input">Date of admission</label>
+                <input
+                  type="date"
+                  class="form-input"
+                  id="dateofadmission"
+                  aria-label="Enter date of admission"
+                />
+                <p class="error-message"></p>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-cancel" aria-label="Cancel">
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-create-student"
+                aria-label="Create Student"
+              >
+                Create Student
+              </button>
+              <button
+                type="button"
+                class="btn btn-update-student"
+                aria-label="Update Student"
+              >
+                Update Student
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="btn-form-confirm-delete">
-          <button type="button" class="btn btn-cancel" aria-label="Cancel">
-            Cancel
-          </button>
-          <button type="button" class="btn btn-delete" aria-label="Delete">
-            Delete
-          </button>
+      </div>
+
+      <!-- FORM CONFIRM DELETE -->
+      <div class="modal modal-confirm-delete">
+        <div class="modal-content modal-content-delete">
+          <div class="content">
+            <p class="title title-confirm-delete">CONFIRM DELETE!!!</p>
+            <p class="describe">Are you sure you want delete this student</p>
+          </div>
+          <div class="btn-form-confirm-delete">
+            <button type="button" class="btn btn-cancel" aria-label="Cancel">
+              Cancel
+            </button>
+            <button type="button" class="btn btn-delete" aria-label="Delete">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

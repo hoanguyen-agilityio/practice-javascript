@@ -3,6 +3,20 @@
   background-color: var(--secondary-color-250);
 }
 
+.container-page-students-list {
+  flex-direction: row;
+  display: flex;
+}
+
+.container-sidebar {
+  width: 270px;
+  min-height: 100vh;
+}
+
+.container-content {
+  width: 100%;
+}
+
 .header {
   display: flex;
   height: 80px;
@@ -18,7 +32,7 @@
 
 .btn-notification {
   margin-right: 25px;
-} 
+}
 
 .btn-hide-sidebar {
   margin-left: 15px;
@@ -28,9 +42,7 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 270px;
   background: var(--primary-color-150);
-  height: auto;
 }
 
 .profile {
@@ -52,7 +64,7 @@
   border-bottom: 2px solid var(--secondary-color-150);
 }
 
-.title-students-list-header {
+.students-list-heading {
   font-size: var(--font-size-m);
 }
 
@@ -75,9 +87,9 @@
 
 .students-list-table {
   min-width: 900px;
+  margin: 0 15px;
   border-spacing: 0;
   width: -webkit-fill-available;
-  margin: 0 15px;
   text-indent: initial;
   border-spacing: 2px;
   box-sizing: border-box;
@@ -146,6 +158,12 @@
   padding-top: 10px;
 }
 
+.scroll-y {
+  width: 100%;
+  height: 80%;
+  overflow-y: auto;
+}
+
 /* STYLE APPLIED TO THE TABLET */
 @media (min-width: 766px) {
   .header {
@@ -154,26 +172,24 @@
 
   .main-sidebar {
     display: flex;
-    position: absolute;
     height: 100%;
     top: 0;
     left: 0;
   }
 
   .btn-hide-sidebar {
-    margin-left: 300px;
+    margin-left: 30px;
   }
 
   .list-heading {
-    margin-left: 300px;
-    margin-right: 30px;
+    margin: 12px 30px 0;
   }
 
   .students-list-table {
-    margin: 0 15px 0 300px;
+    margin: 0 30px;
   }
 
-    /* Form */
+  /* Form */
   .title-form-add-update {
     padding-top: 20px;
   }
@@ -195,10 +211,6 @@
     border-radius: 50%;
   }
 
-  .list-heading {
-    margin-top: 12px;
-  }
-
   .form-search {
     margin: 12px 27px 12px auto;
   }
@@ -213,11 +225,6 @@
 
   .btn-add-student {
     margin-left: 30px;
-  }
-
-  .students-list-table {
-    margin-left: 300px;
-    margin-right: 30px;
   }
 
   .students-list-table th:nth-child(2), 
