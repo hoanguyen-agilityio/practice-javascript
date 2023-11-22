@@ -36,7 +36,7 @@ export class StudentsList {
   modalConfirmDelete = document.querySelector('.modal-confirm-delete');
   modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector('.btn-cancel');
   modalContentDelete = this.modalConfirmDelete.querySelector('.modal-content-delete');
-  btnDelete = this.modalConfirmDelete.querySelector('.btn-delete'); 
+  btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
 
   constructor() {
     this.handleLogout();
