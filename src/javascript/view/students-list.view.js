@@ -32,13 +32,12 @@ export class StudentsList {
   enrollNumber = this.modal.querySelector('#phoneenrollnumber');
   dateOfAdmission = this.modal.querySelector('#dateofadmission');
   form = this.modal.querySelector('.form');
-  dataInput = this.modal.querySelectorAll('.data-input');
+  formInput = this.modal.querySelectorAll('.form-input');
 
   constructor() {
     this.handleLogout();
     this.handleShowAddForm();
     this.handleAddEventForCreateButton();
-    this.handleAddEventForUpdateButton();
     this.handleCancelModal();
     this.handleRenderTable();
   }
@@ -47,7 +46,7 @@ export class StudentsList {
    * Reset input and error message
    */
   resetForm() {
-    this.dataInput.forEach((item) => {
+    this.formInput.forEach((item) => {
       item.value = EMPTY_TEXT;
     })
     DocumentHelper.cleanErrorMessage(this.name);
