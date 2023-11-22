@@ -54,21 +54,17 @@ export class Login {
 
     try {
       const userList = await apiService.get(ACCOUNTS_API);
-      const user = userList.find(({ email }) => email === data.email);   
+      const user = userList.find(({ email }) => email === data.email);
+      // Clear error messages
+      cleanErrorMessage;   
       
       // Correct login account      
       if (user.email === data.email && user.password === data.password) {
         window.location.href = STUDENTS_LIST_PAGE;
 
-        // Clear error messages
-        cleanErrorMessage;
-
       // Login with the wrong account
       } else {
         DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.INCORRECT_LOGIN_ACCOUNT);
-        
-        // Clear error messages
-        cleanErrorMessage;
 
         return;
       }
