@@ -275,9 +275,10 @@ export class StudentsList {
    * Handle movie by calling API
    */
     async handleDeleteStudent() {
-      const modalContentDelete = this.modalContentDelete.getAttribute('data-id');
-      const deleteRow = document.querySelector(`[data-id="${modalContentDelete}"]`);
-      await StudentService.delete(deleteRow);
+      const modalContentDeleteId = this.modalContentDelete.getAttribute('data-id');
+      const deleteRow = document.querySelector(`[data-id="${modalContentDeleteId}"]`);
+ 
+      await StudentService.delete(modalContentDeleteId);
       deleteRow.remove();
     }
 
