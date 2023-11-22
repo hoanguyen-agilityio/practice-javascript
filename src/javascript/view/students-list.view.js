@@ -38,6 +38,7 @@ export class StudentsList {
     this.handleLogout();
     this.handleShowAddForm();
     this.handleAddEventForCreateButton();
+    this.handleAddEventForUpdateButton();
     this.handleCancelModal();
     this.handleRenderTable();
   }
