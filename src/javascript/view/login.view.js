@@ -34,6 +34,13 @@ export class Login {
       email: ['empty','formatEmail'],
       password: ['empty','passwordRule'],
     };
+
+    const errorMessage = [this.errorMessage, this.errorMessageEmailLogin, this.errorMessagePassword];
+
+    // Filter out and get each element in the array errorMessage
+    const cleanErrorMessage = errorMessage.forEach((item) => {
+      DocumentHelper.cleanErrorMessage(item);
+    });
     const validation = validate.validateForm(data, config);
 
     // If the input is empty, an error message will be output
@@ -52,15 +59,16 @@ export class Login {
       // Correct login account      
       if (user.email === data.email && user.password === data.password) {
         window.location.href = STUDENTS_LIST_PAGE;
-        DocumentHelper.cleanErrorMessage(this.errorMessage);
-        DocumentHelper.cleanErrorMessage(this.errorMessageEmailLogin);
-        DocumentHelper.cleanErrorMessage(this.errorMessagePassword);
+
+        // Clear error messages
+        cleanErrorMessage;
 
       // Login with the wrong account
       } else {
         DocumentHelper.showErrorMessage(this.errorMessage, MESSAGES.INCORRECT_LOGIN_ACCOUNT);
-        DocumentHelper.cleanErrorMessage(this.errorMessageEmailLogin);
-        DocumentHelper.cleanErrorMessage(this.errorMessagePassword);
+        
+        // Clear error messages
+        cleanErrorMessage;
 
         return;
       }
