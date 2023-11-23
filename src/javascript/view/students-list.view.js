@@ -198,9 +198,12 @@ export class StudentsList {
         DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
         DocumentHelper.showErrorMessage(this.enrollNumber, validation.errors.enrollnumber);
         DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateofadmission);
-  
+
         return;
       } else {
+        // Disable button
+        DocumentHelper.disableBtn(this.btnCreateStudent);
+
         // Add newly created students to the database
         const newStudent = await StudentService.post(data);
         const insertRow = this.tableRow.insertRow();
@@ -218,7 +221,12 @@ export class StudentsList {
 
         // Display newly created students on the screen
         newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
+        
+        // Hide modal 
         ModalHelper.hideModal(this.modal);
+
+        // Cancel the disable button
+        DocumentHelper.removeDisableBtn(this.btnCreateStudent);
       }
 
     } catch (error) {

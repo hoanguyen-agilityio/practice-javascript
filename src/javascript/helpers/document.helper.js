@@ -40,5 +40,25 @@ export class DocumentHelper {
    */
   static showElement(element) {
     element.classList.remove('hide');
-  } 
+  }
+  
+  /**
+   * Disable button
+   * 
+   * @param {*} btn - element button
+   */
+  static disableBtn(btn) {
+    btn.disabled = true;
+
+    return;
+  }
+
+  /**
+   * Cancel the disable button
+   * 
+   * @param {*} btn - element button
+   */
+  static removeDisableBtn(btn) {
+    btn.disabled = false;
+  }
 }

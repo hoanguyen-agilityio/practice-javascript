@@ -72,12 +72,11 @@ class Validate {
 
       // There is a key in the config
       if (config[key]) {
-        config[key].forEach((validationType) => {
-          
+        config[key].forEach((validationType) => {         
           // If there are emptyEmail words, continue to consider the isEmpty condition
-          if (validationType === 'emptyEmail' && !this.isEmpty(value)) {
+          if (validationType === 'empty' && !this.isEmpty(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.EMPTY_EMAIL;
+            formValidation.errors[key] = MESSAGES.EMPTY;
 
             return;
           }
