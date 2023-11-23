@@ -74,10 +74,18 @@ class Validate {
       if (config[key]) {
         config[key].forEach((validationType) => {
           
-          // If there is an empty word, continue to consider the isEmpty condition
-          if (validationType === 'empty' && !this.isEmpty(value)) {
+          // If there are emptyEmail words, continue to consider the isEmpty condition
+          if (validationType === 'emptyEmail' && !this.isEmpty(value)) {
             formValidation.isValid = false;
-            formValidation.errors[key] = MESSAGES.EMPTY;
+            formValidation.errors[key] = MESSAGES.EMPTY_EMAIL;
+
+            return;
+          }
+
+          // If there are emptyPassword words, continue to consider the isEmpty condition
+          if (!formValidation.errors[key] && validationType === 'emptyPassword' && !this.isEmpty(value)) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.EMPTY_PASSWORD;
 
             return;
           }

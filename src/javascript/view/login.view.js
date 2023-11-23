@@ -31,8 +31,8 @@ export class Login {
       password: this.passwordInput.value,
     };
     const config = {
-      email: ['empty','formatEmail'],
-      password: ['empty','passwordRule'],
+      email: ['emptyEmail','formatEmail'],
+      password: ['emptyPassword','passwordRule'],
     };
 
     const errorMessage = [this.errorMessage, this.errorMessageEmailLogin, this.errorMessagePassword];
