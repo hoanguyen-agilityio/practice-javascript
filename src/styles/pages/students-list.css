@@ -23,26 +23,31 @@
   background-color: var(--secondary-color-50);
 }
 
-.btn-hide-sidebar, 
+.btn-show-sidebar, 
 .btn-notification,
 .btn-sort {
   border: none;
   background-color: var(--secondary-color-50);
+  cursor: pointer;
 }
 
 .btn-notification {
   margin-right: 25px;
 }
 
-.btn-hide-sidebar {
+.btn-show-sidebar {
   margin-left: 15px;
 }
 
 .main-sidebar {
-  display: none;
   flex-direction: column;
   justify-content: space-between;
   background: var(--primary-color-150);
+  height: 100%;
+}
+
+.hide-sidebar {
+  display: none;
 }
 
 .profile {
@@ -113,7 +118,6 @@
 }
 
 .avt-student {
-  border-radius: 25px;
   padding: 20px 0 20px 15px;
 }
 
@@ -139,6 +143,7 @@
 .btn-table {
   border: none;
   background-color: var(--secondary-color-50);
+  cursor: pointer;
 }
 
 .students-list-table thead tr {
@@ -177,7 +182,7 @@
     left: 0;
   }
 
-  .btn-hide-sidebar {
+  .btn-show-sidebar {
     margin-left: 30px;
   }
 

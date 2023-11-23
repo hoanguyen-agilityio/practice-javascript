@@ -12,4 +12,16 @@
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
   }
 }
+
+.hide-btn-close {
+  display: none;
+}
+
+.btn-close {
+  border: none;
+  background-color: var(--primary-color-150);
+  padding-top: 10px;
+  width: 100%;
+  cursor: pointer;
+}
 /* END BUTTON */

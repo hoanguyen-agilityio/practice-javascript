@@ -14,6 +14,7 @@ import { DocumentHelper } from '../helpers/document.helper';
 // Validates
 import { validate } from '../validates/form.validate';
 import { EMPTY_TEXT, MESSAGES } from '../constants/message.constant';
+import { doc } from 'prettier';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -37,6 +38,9 @@ export class StudentsList {
   modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector('.btn-cancel');
   modalContentDelete = this.modalConfirmDelete.querySelector('.modal-content-delete');
   btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
+  sidebar = document.querySelector('.main-sidebar');
+  btnShowSidebar = document.querySelector('.btn-show-sidebar');
+  btnHideSidebar = document.querySelector('.btn-close');
 
   constructor() {
     this.handleLogout();
@@ -47,6 +51,8 @@ export class StudentsList {
     this.handleAddEventForDeleteButton();
     this.handleCancelModalConfirmDelete();
     this.handleRenderTable();
+    this.handleAddEventForBtnShowSidebar();
+    this.handleAddEventForBtnHideSidebar();
   }
 
   /**
@@ -61,6 +67,28 @@ export class StudentsList {
     DocumentHelper.cleanErrorMessage(this.phone);
     DocumentHelper.cleanErrorMessage(this.enrollNumber);
     DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
+  }
+
+  showSidebar() {
+    this.sidebar.classList.remove('hide-sidebar');
+    this.btnHideSidebar.classList.remove('hide-btn-close');
+  }
+
+  handleAddEventForBtnShowSidebar() {
+    this.btnShowSidebar.addEventListener('click', () => {
+      this.showSidebar();
+    })
+  }
+
+  hideSidebar() {
+    this.sidebar.classList.add('hide-sidebar');
+    this.btnHideSidebar.classList.add('hide-btn-close');
+  }
+
+  handleAddEventForBtnHideSidebar() {
+    this.btnHideSidebar.addEventListener('click', () => {
+      this.hideSidebar();
+    })
   }
 
   /**

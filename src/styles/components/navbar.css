@@ -1,13 +1,13 @@
 /* START NAVBAR */
 .sub-sidebar-content {
-  padding: 0 38px 31px;
+  padding: 30px 38px 31px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 193px;
-  height: 100%;
+  height: 85%;
 }
 
 .sub-sidebar-list {
