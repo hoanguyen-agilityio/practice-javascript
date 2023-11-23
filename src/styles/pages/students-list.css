@@ -1,5 +1,20 @@
+/* START PAGE STUDENTS LIST */
 .body-page-students-list {
   background-color: var(--secondary-color-250);
+}
+
+.container-page-students-list {
+  flex-direction: row;
+  display: flex;
+}
+
+.container-sidebar {
+  width: 270px;
+  min-height: 100vh;
+}
+
+.container-content {
+  width: 100%;
 }
 
 .header {
@@ -8,27 +23,31 @@
   background-color: var(--secondary-color-50);
 }
 
-.btn-hide-sidebar, 
-.notification-btn,
+.btn-show-sidebar, 
+.btn-notification,
 .btn-sort {
   border: none;
   background-color: var(--secondary-color-50);
+  cursor: pointer;
 }
 
-.notification-btn {
+.btn-notification {
   margin-right: 25px;
-} 
+}
 
-.btn-hide-sidebar {
+.btn-show-sidebar {
   margin-left: 15px;
 }
 
-.main {
-  display: none;
+.main-sidebar {
   flex-direction: column;
-  width: 270px;
+  justify-content: space-between;
   background: var(--primary-color-150);
   height: 100%;
+}
+
+.hide-sidebar {
+  display: none;
 }
 
 .profile {
@@ -42,16 +61,16 @@
 }
 
 /* Students list header */
-.students-list-header {
+.list-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 30px;
+  margin: 30px 15px 0;
+  border-bottom: 2px solid var(--secondary-color-150);
 }
 
-.title-students-list-header {
+.students-list-heading {
   font-size: var(--font-size-m);
-  margin-left: 15px;
 }
 
 .btn-sort {
@@ -61,33 +80,27 @@
 
 .btn-add-student {
   padding: 14px 27px;
-  margin: 0 15px;
-}
-
-/* Line */
-.line {
-  color: var(--secondary-color-150);
-  margin: 30px 15px 0;
+  margin-left: 15px;
 }
 
 /* Students list table mobile */
 .table {
   overflow-x:auto;
   border-collapse: collapse;
+  text-align: left;
 }
 
 .students-list-table {
   min-width: 900px;
+  margin: 0 15px;
   border-spacing: 0;
   width: -webkit-fill-available;
-  margin: 0 15px;
   text-indent: initial;
   border-spacing: 2px;
   box-sizing: border-box;
 }
 
 .students-list-table thead {
-  text-align: left;
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
@@ -105,7 +118,6 @@
 }
 
 .avt-student {
-  border-radius: 25px;
   padding: 20px 0 20px 15px;
 }
 
@@ -128,9 +140,10 @@
   background-color: var(--secondary-color-50);
 }
 
-.table-btn {
+.btn-table {
   border: none;
   background-color: var(--secondary-color-50);
+  cursor: pointer;
 }
 
 .students-list-table thead tr {
@@ -150,31 +163,38 @@
   padding-top: 10px;
 }
 
+.scroll-y {
+  width: 100%;
+  height: 80%;
+  overflow-y: auto;
+}
+
 /* STYLE APPLIED TO THE TABLET */
 @media (min-width: 766px) {
   .header {
     height: 70px;
   }
 
-  .main {
+  .main-sidebar {
     display: flex;
-    position: absolute;
+    height: 100%;
     top: 0;
+    left: 0;
   }
 
-  .btn-hide-sidebar {
-    margin-left: 300px;
+  .btn-show-sidebar {
+    margin-left: 30px;
   }
 
-  .title-students-list-header {
-    margin-left: 300px;
+  .list-heading {
+    margin: 12px 30px 0;
   }
 
   .students-list-table {
-    margin: 0 15px 0 300px;
+    margin: 0 30px;
   }
 
-    /* Form */
+  /* Form */
   .title-form-add-update {
     padding-top: 20px;
   }
@@ -184,12 +204,6 @@
 @media (min-width: 1024px) {
   .header {
     height: 60px;
-  }
-
-  .main {
-    height: auto;
-    position: absolute;
-    top: 0;
   }
   
   .profile {
@@ -202,15 +216,11 @@
     border-radius: 50%;
   }
 
-  .students-list-header {
-    margin-top: 12px;
-  }
-
   .form-search {
     margin: 12px 27px 12px auto;
   }
 
-  .notification-btn {
+  .btn-notification {
     margin-right: 51px;
   }
 
@@ -219,31 +229,26 @@
   }
 
   .btn-add-student {
-    margin: 0 30px;
+    margin-left: 30px;
   }
 
-  .line {
-    margin: 12px 30px 0 300px;
-  }
-
-  .students-list-table {
-    margin-left: 300px;
-    margin-right: 30px;
-  }
-
-  .name-table {
+  .students-list-table th:nth-child(2), 
+  .table-row td:nth-child(2) {
     padding-left: 31px;
-  }
+  } 
 
-  .email-table {
+  .students-list-table th:nth-child(3), 
+  .table-row td:nth-child(3) {
     padding-left: 135px;
   }
 
-  .phone-table {
+  .students-list-table th:nth-child(4), 
+  .table-row td:nth-child(4) {
     padding: 0 44px;
   }
 
-  .date-of-admission-table {
+  .students-list-table th:nth-child(6), 
+  .table-row td:nth-child(6) {
     padding-left: 70px;
   }
 
@@ -260,12 +265,9 @@
     padding-left: 84px;
   }
 
-  .btn-delete {
-    padding: 0 20px 0 33px;
-  }
-
   /* Form */
   .title-form-add-update {
     padding-top: 30px;
   }
 }
+/* END PAGE STUDENTS LIST */

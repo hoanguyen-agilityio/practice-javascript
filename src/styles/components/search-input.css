@@ -15,14 +15,10 @@
   outline: none;
 }
 
-.search-button {
+.btn-search {
   background: transparent;
   border: none;
   outline: none;
   margin-left: -33px;
-}
-
-@media (min-width: 1024px) {
-
 }
 /* END SEARCH INPUT */

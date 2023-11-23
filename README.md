@@ -65,6 +65,12 @@ git checkout practice-JS
 cd practice-js
 ```
 
+- Install NPM
+
+```
+npm install
+```
+
 - Run application
 
 ```

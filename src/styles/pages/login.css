@@ -43,7 +43,7 @@
   font-size: var(--font-size-xs);
 }
 
-.form-login-btn {
+.btn-login-form {
   display: flex;
   flex-direction: column;
   padding: 25px 15px 0;
@@ -62,6 +62,11 @@
 
 .message-reset-password a {
   color: var(--primary-color-100);
+}
+
+.error-message-email-login,
+.error-message-password {
+  text-align: left;
 }
 
 /* STYLE APPLIED TO THE TABLET */
@@ -89,7 +94,7 @@
     padding: 30px 20px 0;
   }
 
-  .form-login-btn {
+  .btn-login-form {
     padding: 30px 20px 0;
   }
 
@@ -114,7 +119,7 @@
     padding: 35px 20px 0;
   }
 
-  .form-login-btn {
+  .btn-login-form{
     padding: 35px 20px 0;
   }
 }

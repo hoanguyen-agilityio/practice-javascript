@@ -2,10 +2,9 @@
 /* STYLE APPLIED TO THE MOBILE */
 .modal {
   display: none;
-  justify-content: center;
+  align-items: center;
   position: fixed;
-  z-index: 10;
-  padding-top: 70px;
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -15,6 +14,11 @@
 
 .modal-form {
   display: none;
+
+  .error-message {
+    text-align: left;
+    padding-top: 5px;
+  }
 }
 
 .modal.modal-show {
@@ -23,9 +27,10 @@
 
 .modal-content {
   background-color: var(--secondary-color-50);
-  height: 500px;
-  max-width: 510px;
   padding: 0 15px;
+  max-width: 500px;
+  width: 80%;
+  margin: auto;
 }
 
 .title {
@@ -64,10 +69,18 @@
 .btn-group {
   display: flex;
   justify-content: flex-end;
-  padding-top: 25px;
+  padding: 25px 0;
+}
+
+.btn-cancel {
+  margin-right: 15px;
 }
 
 /* Form confirm delete */
+.modal-confirm-delete {
+  top: 20px;
+}
+
 .modal-content-delete {
   height: 200px;
 }
@@ -83,7 +96,7 @@
   margin-top: 20px;
 }
 
-.button-form-confirm-delete {
+.btn-form-confirm-delete {
   margin-top: 30px;
   text-align: right;
 }
@@ -104,17 +117,17 @@
     margin-top: 40px;
   }
 
-  .button-form-confirm-delete {
+  .btn-form-confirm-delete {
     margin-top: 35px;
     text-align: right;
   }
 
-  .delete-btn {
+  .btn-delete {
     padding: 15px 20px;
     margin-left: 15px;
   }
 
-  .cancel-btn {
+  .btn-cancel {
     padding: 15px 20px;
   }
 }
@@ -123,6 +136,10 @@
 @media (min-width: 1200px) {
   .label-input {
     font-size: var(--font-size-l);
+  }
+
+  .form-input-group .form-input {
+    margin-top: 10px;
   }
   
   .form-control {

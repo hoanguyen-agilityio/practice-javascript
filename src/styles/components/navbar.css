@@ -1,12 +1,13 @@
 /* START NAVBAR */
 .sub-sidebar-content {
-  padding: 0 38px 31px;
+  padding: 30px 38px 31px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 193px;
+  height: 85%;
 }
 
 .sub-sidebar-list {
@@ -27,16 +28,18 @@
 
 .sub-sidebar-list li a {
   text-decoration: none;
+  font-weight: var(--font-weight-m);
+  color: var(--default-color);
 }
 
-.sub-sidebar-list li a span {
+.sub-sidebar-list li a img {
   font-weight: var(--font-weight-m);
-  padding-left: 15px;
+  padding-right: 15px;
   color: var(--default-color);
 }
 
 .navigation {
-  margin: 148px auto 0;
+  margin: 0 auto;
 }
 
 .sub-sidebar-list li:nth-child(1) {
@@ -51,13 +54,20 @@
   color: var(--default-color);
   font-weight: var(--font-weight-m);
   background-color: var(--primary-color-150);
-  /* margin-top: 148px; */
 }
 
-.icon-btn-logout {
+.btn-logout-icon {
   padding-left: 23px;
 }
 
+/* STYLE APPLIED TO THE TABLET */
+@media (min-width: 766px) {
+  .sub-sidebar-content {
+    padding: 70px 38px 31px;
+  }
+}
+
+/* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 1024px) {
   .sub-sidebar-content {
     padding: 91px 38px 31px;

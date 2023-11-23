@@ -6,6 +6,7 @@
 /* BASES */
 @import url(./Bases/reset.css);
 @import url(./Bases/typography.css);
+@import url(./bases/common.css);
 
 /* COMPONENTS */
 @import url(./components/input.css);

@@ -5,11 +5,7 @@
   text-align: center;
 }
 
-.avt-user {
-  border-radius: var(--dorder-radius-xl);
-}
-
-.name-user {
+.user-name {
   margin: 20px 0 10px;
   font-weight: var(--font-weight-xl);
   font-size: var(--font-size-m);
