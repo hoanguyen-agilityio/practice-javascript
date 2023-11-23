@@ -10,7 +10,6 @@
     <div class="container-page-students-list">
       <div class="container-sidebar">
         <main class="main-sidebar hide-sidebar" id="mainsidebar">
-          <button class="btn-close hide-btn-close">X</button>
           <!-- logo and avatar -->
           <div class="profile">
             <h1 class="logo">CRUD OPERATIONS</h1>
@@ -74,8 +73,17 @@
 
       <div class="container-content">
         <header class="header">
-          <button class="btn-show-sidebar" aria-label="hide/show sidebar">
+          <button
+            class="btn-show-hide-sidebar btn-hide-sidebar"
+            aria-label="hide sidebar"
+          >
             <img src="../assets/btn-hide-sidebar.svg" alt="btn hide sidebar" />
+          </button>
+          <button
+            class="btn-show-hide-sidebar btn-show-sidebar"
+            aria-label="show sidebar"
+          >
+            <img src="../assets/btn-show-sidebar.svg" alt="btn show sidebar" />
           </button>
           <form action="/" method="GET" class="form-search">
             <input

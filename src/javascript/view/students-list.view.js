@@ -39,7 +39,7 @@ export class StudentsList {
   btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
   sidebar = document.querySelector('.main-sidebar');
   btnShowSidebar = document.querySelector('.btn-show-sidebar');
-  btnHideSidebar = document.querySelector('.btn-close');
+  btnHideSidebar = document.querySelector('.btn-hide-sidebar');
 
   constructor() {
     this.handleLogout();
@@ -70,7 +70,8 @@ export class StudentsList {
 
   showSidebar() {
     this.sidebar.classList.remove('hide-sidebar');
-    this.btnHideSidebar.classList.remove('hide-btn-close');
+    this.btnShowSidebar.classList.add('hide');
+    this.btnHideSidebar.classList.remove('btn-hide-sidebar');
   }
 
   handleAddEventForBtnShowSidebar() {
@@ -81,7 +82,8 @@ export class StudentsList {
 
   hideSidebar() {
     this.sidebar.classList.add('hide-sidebar');
-    this.btnHideSidebar.classList.add('hide-btn-close');
+    this.btnShowSidebar.classList.remove('hide');
+    this.btnHideSidebar.classList.add('btn-hide-sidebar');
   }
 
   handleAddEventForBtnHideSidebar() {
