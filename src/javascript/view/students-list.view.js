@@ -14,7 +14,6 @@ import { DocumentHelper } from '../helpers/document.helper';
 // Validates
 import { validate } from '../validates/form.validate';
 import { EMPTY_TEXT, MESSAGES } from '../constants/message.constant';
-import { doc } from 'prettier';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
