@@ -68,24 +68,36 @@ export class StudentsList {
     DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
   }
 
+  /**
+   * Show sidebar, hide sidebar appear button and show sidebar hide button
+   */
   showSidebar() {
     this.sidebar.classList.remove('hide-sidebar');
     this.btnShowSidebar.classList.add('hide');
     this.btnHideSidebar.classList.remove('btn-hide-sidebar');
   }
 
+  /**
+   * Event handling adds event to the show sidebar button
+   */
   handleAddEventForBtnShowSidebar() {
     this.btnShowSidebar.addEventListener('click', () => {
       this.showSidebar();
     })
   }
 
+  /**
+   * Hide sidebar, hide sidebar hide button and show sidebar button
+   */
   hideSidebar() {
     this.sidebar.classList.add('hide-sidebar');
     this.btnShowSidebar.classList.remove('hide');
     this.btnHideSidebar.classList.add('btn-hide-sidebar');
   }
 
+  /**
+   * Event handling adds event to the hide sidebar button
+   */
   handleAddEventForBtnHideSidebar() {
     this.btnHideSidebar.addEventListener('click', () => {
       this.hideSidebar();

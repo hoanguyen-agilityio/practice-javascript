@@ -11,6 +11,7 @@ import { validate } from '../validates/form.validate';
 
 // Helpers
 import { DocumentHelper } from '../helpers/document.helper';
+import { LoaderHelper } from '../helpers/loader.helper';
 
 export class Login {
   formlogin = document.querySelector('#formlogin');
@@ -20,6 +21,8 @@ export class Login {
   errorMessage = formlogin.querySelector('.error-message');
   errorMessageEmailLogin = formlogin.querySelector('.error-message-email-login');
   errorMessagePassword = formlogin.querySelector('.error-message-password');
+  containerLoader = document.querySelector('.container-loader');
+  loader = this.containerLoader.querySelector('.loader');
 
   constructor() {
     this.addLoginEvent();
@@ -60,6 +63,7 @@ export class Login {
       
       // Correct login account      
       if (user.email === data.email && user.password === data.password) {
+        setTimeout(LoaderHelper.showLoader(this.containerLoader), 5000);
         window.location.href = STUDENTS_LIST_PAGE;
 
       // Login with the wrong account
