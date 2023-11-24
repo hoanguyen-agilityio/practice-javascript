@@ -323,7 +323,7 @@ export class StudentsList {
         DocumentHelper.disableBtn(this.btnUpdateStudent);
         const updateRow = document.querySelector(`[data-id="${formStudentId}"]`);
         const updateStudent = await StudentService.update(formStudentId, data);
-        
+
         ModalHelper.hideModal(this.modal);
 
         // Show loader
@@ -391,9 +391,18 @@ export class StudentsList {
    * Handle the deletion of the student when the user presses the delete button
    */
   handleAddEventForDeleteButton() {
-    this.btnDelete.addEventListener('click', async () => {
-      await this.handleDeleteStudent();
+    this.btnDelete.addEventListener('click', () => {
+
+      // Hide modal
       ModalHelper.hideModal(this.modalConfirmDelete);
+
+      // Show loader
+      LoaderHelper.showLoader(this.containerLoader);
+      setTimeout(async () => {
+        // Hide loader
+        LoaderHelper.hideLoader(this.containerLoader);
+        await this.handleDeleteStudent();
+      }, 2000);
     });
   }
 
