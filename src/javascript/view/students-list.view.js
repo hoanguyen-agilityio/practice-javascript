@@ -10,6 +10,7 @@ import { StudentService } from '../service/student.service';
 // Helpers
 import { ModalHelper } from '../helpers/modal.helper';
 import { DocumentHelper } from '../helpers/document.helper';
+import { LoaderHelper } from '../helpers/loader.helper';
 
 // Validates
 import { validate } from '../validates/form.validate';
@@ -40,6 +41,8 @@ export class StudentsList {
   sidebar = document.querySelector('.main-sidebar');
   btnShowSidebar = document.querySelector('.btn-show-sidebar');
   btnHideSidebar = document.querySelector('.btn-hide-sidebar');
+  containerLoader = document.querySelector('.container-loader');
+  loader = this.containerLoader.querySelector('.loader');
 
   constructor() {
     this.handleLogout();
@@ -119,7 +122,6 @@ export class StudentsList {
     this.phone.value = studentData.phone;
     this.enrollNumber.value = studentData.enrollnumber;
     this.dateOfAdmission.value = studentData.dateofadmission;
-    // Đổi màu hoặc giảm OPACITY cho btn
     // DocumentHelper.disableBtn(this.btnUpdateStudent);
     this.form.setAttribute('data-id', studentId);
   }
@@ -234,15 +236,26 @@ export class StudentsList {
 
         // Set attribute for new row
         newRow.setAttribute('data-id', newStudent.id);
-
-        // Display newly created students on the screen
-        newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
         
         // Hide modal 
-        // ModalHelper.hideModal(this.modal);
+        ModalHelper.hideModal(this.modal);
 
-        // Cancel the disable button
-        DocumentHelper.removeDisableBtn(this.btnCreateStudent);
+        // Show loader
+        LoaderHelper.showLoader(this.containerLoader);
+
+        setTimeout(() => {
+          // Hide loader
+          LoaderHelper.hideLoader(this.containerLoader);
+
+          // Hide modal 
+          ModalHelper.hideModal(this.modal);
+          
+          // Display newly created students on the screen
+          newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
+
+          // Cancel the disable button
+          DocumentHelper.removeDisableBtn(this.btnCreateStudent);
+        }, 2000);
       }
 
     } catch (error) {

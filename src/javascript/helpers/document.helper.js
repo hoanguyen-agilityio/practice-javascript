@@ -48,8 +48,8 @@ export class DocumentHelper {
    * @param {*} btn - element button
    */
   static disableBtn(btn) {
-    btn.disabled = true;
     btn.style.opacity = '0.5';
+    btn.disabled = true;
 
     return;
   }
@@ -60,6 +60,9 @@ export class DocumentHelper {
    * @param {*} btn - element button
    */
   static removeDisableBtn(btn) {
+    btn.style.opacity = '1';
     btn.disabled = false;
+
+    return
   }
 }

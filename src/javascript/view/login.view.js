@@ -63,8 +63,7 @@ export class Login {
       
       // Correct login account      
       if (user.email === data.email && user.password === data.password) {
-        LoaderHelper.showLoader(this.containerLoader)
-        // sửa lại màu vàng
+        LoaderHelper.showLoader(this.containerLoader);
         setTimeout(() => {window.location.href = STUDENTS_LIST_PAGE;}, 3000);
         
 
