@@ -49,6 +49,7 @@ export class DocumentHelper {
    */
   static disableBtn(btn) {
     btn.disabled = true;
+    btn.style.opacity = '0.5';
 
     return;
   }

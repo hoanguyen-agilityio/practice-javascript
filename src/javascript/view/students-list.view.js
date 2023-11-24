@@ -119,6 +119,8 @@ export class StudentsList {
     this.phone.value = studentData.phone;
     this.enrollNumber.value = studentData.enrollnumber;
     this.dateOfAdmission.value = studentData.dateofadmission;
+    // Đổi màu hoặc giảm OPACITY cho btn
+    // DocumentHelper.disableBtn(this.btnUpdateStudent);
     this.form.setAttribute('data-id', studentId);
   }
 
@@ -237,7 +239,7 @@ export class StudentsList {
         newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
         
         // Hide modal 
-        ModalHelper.hideModal(this.modal);
+        // ModalHelper.hideModal(this.modal);
 
         // Cancel the disable button
         DocumentHelper.removeDisableBtn(this.btnCreateStudent);

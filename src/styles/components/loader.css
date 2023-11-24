@@ -1,3 +1,4 @@
+/* START LOADER */
 .container-loader {
   display: none;
   position: fixed;
@@ -15,10 +16,10 @@
 
 .loader {
   margin: auto;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid blue;
-  border-bottom: 16px solid blue;
+  border: var(--border-m) solid var(--primary-color-150);
+  border-radius: var(--dorder-radius-xl);
+  border-top: var(--border-m) solid var(--primary-color-100);
+  border-bottom: var(--border-m) solid var(--primary-color-100);
   width: 30px;
   height: 30px;
   -webkit-animation: spin 2s linear infinite;
@@ -34,3 +35,4 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/* END LOADER */

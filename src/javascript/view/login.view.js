@@ -63,8 +63,10 @@ export class Login {
       
       // Correct login account      
       if (user.email === data.email && user.password === data.password) {
-        setTimeout(LoaderHelper.showLoader(this.containerLoader), 5000);
-        window.location.href = STUDENTS_LIST_PAGE;
+        LoaderHelper.showLoader(this.containerLoader)
+        // sửa lại màu vàng
+        setTimeout(() => {window.location.href = STUDENTS_LIST_PAGE;}, 3000);
+        
 
       // Login with the wrong account
       } else {
