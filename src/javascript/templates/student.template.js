@@ -4,7 +4,7 @@ export class StudentTemplate {
     const tableRow = `
     <tr class="content-row" data-id=${move.id}>
       <td>
-        <img src="/avatar.963bec68.svg" alt="avatar student" class="avt-student"/>
+        <img src="/avatar.7bb99cdb.svg" alt="avatar student" class="avt-student"/>
       </td>
       <td>${move.name}</td>
       <td>${move.email}</td>
@@ -13,12 +13,12 @@ export class StudentTemplate {
       <td>${move.dateofadmission}</td>
       <td>
         <button class="btn-table btn-edit" aria-label="Edit student" data-id=${move.id}>
-          <img src="/btn-edit.b2e14e07.svg" alt="button edit" />
+          <img src="/btn-edit.20bca2e1.svg" alt="button edit" />
         </button>
       </td>
       <td>
         <button class="btn-table btn-delete btn-table-delete" aria-label="Delete student" data-id=${move.id}>
-          <img src="/btn-delete.a39890ce.svg" alt="button delete" />
+          <img src="/btn-delete.0d75958c.svg" alt="button delete" />
         </button>
       </td>
     </tr>

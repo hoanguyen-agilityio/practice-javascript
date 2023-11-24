@@ -19,6 +19,7 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "start": "parcel src/pages/index.html src/pages/students-list.html"
+    "start": "parcel src/pages/index.html src/pages/students-list.html",
+    "build": "parcel build src/pages/index.html src/pages/students-list.html"
   }
 }

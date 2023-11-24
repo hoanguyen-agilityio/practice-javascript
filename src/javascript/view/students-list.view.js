@@ -35,8 +35,12 @@ export class StudentsList {
   form = this.modal.querySelector('.form');
   formInput = this.modal.querySelectorAll('.form-input');
   modalConfirmDelete = document.querySelector('.modal-confirm-delete');
-  modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector('.btn-cancel');
-  modalContentDelete = this.modalConfirmDelete.querySelector('.modal-content-delete');
+  modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector(
+    '.btn-cancel',
+  );
+  modalContentDelete = this.modalConfirmDelete.querySelector(
+    '.modal-content-delete',
+  );
   btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
   sidebar = document.querySelector('.main-sidebar');
   btnShowSidebar = document.querySelector('.btn-show-sidebar');
@@ -57,18 +61,95 @@ export class StudentsList {
     this.handleAddEventForBtnHideSidebar();
   }
 
+  getValueForm() {
+    return {
+      name: this.name.value,
+      email: this.email.value,
+      phone: this.phone.value,
+      enrollnumber: this.enrollNumber.value,
+      dateofadmission: this.dateOfAdmission.value,
+    };
+  }
+
+  getConfig() {
+    return {
+      name: ['empty', 'name'],
+      email: ['empty', 'formatEmail'],
+      phone: ['empty', 'phone'],
+      enrollnumber: ['empty', 'phone'],
+      dateofadmission: ['empty'],
+    };
+  }
+
+  checkDuplicate(studentsList) {
+    let isContinue = true;
+    const duplicateEmail = validate.checkDuplicateData(
+      studentsList,
+      'email',
+      data.email,
+    );
+    const duplicatePhone = validate.checkDuplicateData(
+      studentsList,
+      'phone',
+      data.phone,
+    );
+    const enrollNumber = validate.checkDuplicateData(
+      studentsList,
+      'enrollnumber',
+      data.enrollNumber,
+    );
+
+    if (duplicateEmail) {
+      isContinue = false;
+      DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+    } else {
+      isContinue = true;
+      DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+    }
+
+    if (duplicatePhone) {
+      isContinue = false;
+      DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
+    } else {
+      isContinue = true;
+      DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+    }
+
+    if (enrollNumber) {
+      isContinue = false;
+      DocumentHelper.showErrorMessage(
+        this.phone,
+        MESSAGES.DUPLICATE_ENROLL_NUMBER,
+      );
+    } else {
+      isContinue = true;
+      DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+    }
+
+    if (!isContinue) {
+      return;
+    }
+  }
+
   /**
    * Reset input and error message
    */
   resetForm() {
-    this.formInput.forEach((item) => {
+    this.formInput.forEach(item => {
       item.value = EMPTY_TEXT;
-    })
-    DocumentHelper.cleanErrorMessage(this.name);
-    DocumentHelper.cleanErrorMessage(this.email);
-    DocumentHelper.cleanErrorMessage(this.phone);
-    DocumentHelper.cleanErrorMessage(this.enrollNumber);
-    DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
+    });
+    const errorMessage = [
+      this.name,
+      this.email,
+      this.phone,
+      this.enrollNumber,
+      this.dateOfAdmission,
+    ];
+
+    // Filter out and get each element in the array errorMessage
+    errorMessage.forEach(item => {
+      DocumentHelper.cleanErrorMessage(item);
+    });
   }
 
   /**
@@ -86,7 +167,7 @@ export class StudentsList {
   handleAddEventForBtnShowSidebar() {
     this.btnShowSidebar.addEventListener('click', () => {
       this.showSidebar();
-    })
+    });
   }
 
   /**
@@ -104,12 +185,12 @@ export class StudentsList {
   handleAddEventForBtnHideSidebar() {
     this.btnHideSidebar.addEventListener('click', () => {
       this.hideSidebar();
-    })
+    });
   }
 
   /**
    * Show student edit form
-   * 
+   *
    * @param {*} item - Edit buttons
    */
   async showEditStudentModal(item) {
@@ -133,7 +214,7 @@ export class StudentsList {
     const btnEdits = document.querySelectorAll('.table-row .btn-edit');
 
     // Filter through each edit button
-    btnEdits.forEach((item) => {
+    btnEdits.forEach(item => {
       item.addEventListener('click', async () => {
         await this.showEditStudentModal(item);
 
@@ -145,7 +226,7 @@ export class StudentsList {
 
   /**
    * The deletion confirmation modal will appear when clicking the delete button
-   * 
+   *
    * @param {*} item - Table delete button
    */
   handleShowDeleteStudentModal(item) {
@@ -158,15 +239,15 @@ export class StudentsList {
   /**
    * Query to all delete buttons in the table
    */
-    handleDeleteButtons() {
-      const tableDeleteButtons = document.querySelectorAll('.btn-table-delete');
-  
-      tableDeleteButtons.forEach((item) => {
-        item.addEventListener('click', () => {
-          this.handleShowDeleteStudentModal(item);
-        });
+  handleDeleteButtons() {
+    const tableDeleteButtons = document.querySelectorAll('.btn-table-delete');
+
+    tableDeleteButtons.forEach(item => {
+      item.addEventListener('click', () => {
+        this.handleShowDeleteStudentModal(item);
       });
-    }
+    });
+  }
 
   /**
    * Handling getting data from the API and displaying it on a table in HTML
@@ -176,7 +257,7 @@ export class StudentsList {
       const result = await StudentService.getAll();
       let tableTemplate = '';
 
-      result.forEach((student) => {
+      result.forEach(student => {
         tableTemplate += StudentTemplate.renderTableRow(student);
       });
 
@@ -192,83 +273,87 @@ export class StudentsList {
    * Handling create form  by calling API
    */
   async handleAddForm() {
+    const data = this.getValueForm();
+    const config = this.getConfig();
+
+    const validation = validate.validateForm(data, config);
+    const studentsList = await StudentService.getAll();
+
+    DocumentHelper.showErrorMessage(this.name, validation.errors.name);
+    DocumentHelper.showErrorMessage(this.email, validation.errors.email);
+    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
+    DocumentHelper.showErrorMessage(
+      this.enrollNumber,
+      validation.errors.enrollnumber,
+    );
+    DocumentHelper.showErrorMessage(
+      this.dateOfAdmission,
+      validation.errors.dateofadmission,
+    );
+
+    if (!validation.isValid) {
+      return;
+    }
+
     try {
-      const data = {
-        name: this.name.value,
-        email: this.email.value,
-        phone: this.phone.value,
-        enrollnumber: this.enrollNumber.value,
-        dateofadmission: this.dateOfAdmission.value,
-      };
-      const config = {
-        name: ['empty', 'name'],
-        email: ['empty', 'formatEmail'],
-        phone: ['empty', 'phone'],
-        enrollnumber: ['empty', 'phone'],
-        dateofadmission: ['empty']
-      };
-      const validation = validate.validateForm(data, config);
-      const studentsList = await StudentService.getAll();
-      
       // Check entry requirements of all schools. If incorrect, output an error message
-      if (!validation.isValid) {
-        DocumentHelper.showErrorMessage(this.name, validation.errors.name);
-        DocumentHelper.showErrorMessage(this.email, validation.errors.email);
-        DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
-        DocumentHelper.showErrorMessage(this.enrollNumber, validation.errors.enrollnumber);
-        DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateofadmission);
 
-        return;
-      } else {
-        let isContinue = true;
-        const duplicateEmail = validate.checkDuplicateData(studentsList, 'email', data.email)
-        console.log(duplicateEmail)
-        if (duplicateEmail) {
-          isContinue = false;
-          DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-        }
+      // let isContinue = true;
+      // const duplicateEmail = validate.checkDuplicateData(
+      //   studentsList,
+      //   'email',
+      //   data.email,
+      // );
+      // if (duplicateEmail) {
+      //   isContinue = false;
+      //   DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+      //   console.log(this.checkDuplicate());
+      // } else {
+      //   isContinue = true;
+      //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+      // }
 
-        if (!isContinue) {
-          return;
-        }
-        // Disable button
-        DocumentHelper.disableBtn(this.btnCreateStudent);
+      // if (!isContinue) {
+      //   return;
+      // }
+      !this.checkDuplicate(studentsList);
 
-        // Add newly created students to the database
-        const newStudent = await StudentService.post(data);
-        const insertRow = this.tableRow.insertRow();
-        const newRow = insertRow;
-        const hideRow = insertRow;
+      // Disable button
+      DocumentHelper.disableBtn(this.btnCreateStudent);
 
-        // Add class for new row
-        newRow.className = 'content-row';
+      // Add newly created students to the database
+      const newStudent = await StudentService.post(data);
+      const insertRow = this.tableRow.insertRow();
+      const newRow = insertRow;
+      const hideRow = insertRow;
 
-        // Add class for hide row
-        hideRow.className = 'spacer';
+      // Add class for new row
+      newRow.className = 'content-row';
 
-        // Set attribute for new row
-        newRow.setAttribute('data-id', newStudent.id);
-        
-        // Hide modal 
-        ModalHelper.hideModal(this.modal);
+      // Add class for hide row
+      hideRow.className = 'spacer';
 
-        // Show loader
-        LoaderHelper.showLoader(this.containerLoader);
+      // Set attribute for new row
+      newRow.setAttribute('data-id', newStudent.id);
 
-        setTimeout(() => {
-          // Hide loader
-          LoaderHelper.hideLoader(this.containerLoader);
-          
-          // Display newly created students on the screen
-          newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
+      // Hide modal
+      ModalHelper.hideModal(this.modal);
 
-          // Cancel the disable button
-          DocumentHelper.removeDisableBtn(this.btnCreateStudent);
-        }, 2000);
-      }
+      // Show loader
+      LoaderHelper.showLoader(this.containerLoader);
 
+      setTimeout(() => {
+        // Hide loader
+        LoaderHelper.hideLoader(this.containerLoader);
+
+        // Display newly created students on the screen
+        newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
+
+        // Cancel the disable button
+        DocumentHelper.removeDisableBtn(this.btnCreateStudent);
+      }, 2000);
     } catch (error) {
-      alert('An error occurred while creating a new student', error)
+      alert('An error occurred while creating a new student', error);
     }
   }
 
@@ -289,25 +374,43 @@ export class StudentsList {
         email: ['empty', 'formatEmail'],
         phone: ['empty', 'phoneRule'],
         enrollnumber: ['empty', 'phoneRule'],
-        dateofadmission: ['empty']
+        dateofadmission: ['empty'],
       };
       const validation = validate.validateForm(data, config);
       const formStudentId = this.form.getAttribute('data-id');
       const studentsList = await StudentService.getAll();
-      
+
       // Check entry requirements of all schools. If incorrect, output an error message
       if (!validation.isValid) {
         DocumentHelper.showErrorMessage(this.name, validation.errors.name);
         DocumentHelper.showErrorMessage(this.email, validation.errors.email);
         DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
-        DocumentHelper.showErrorMessage(this.enrollNumber, validation.errors.enrollnumber);
-        DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateofadmission);
-  
+        DocumentHelper.showErrorMessage(
+          this.enrollNumber,
+          validation.errors.enrollnumber,
+        );
+        DocumentHelper.showErrorMessage(
+          this.dateOfAdmission,
+          validation.errors.dateofadmission,
+        );
+
         return;
       } else {
-        const duplicateEmail = validate.checkDuplicateData(studentsList, 'email', data.email);
-        const duplicatePhoneNumber = validate.checkDuplicateData(studentsList, 'phone', data.phone);
-        const duplicateEnrollNumber = validate.checkDuplicateData(studentsList, 'enrollnumber', data.enrollnumber);
+        const duplicateEmail = validate.checkDuplicateData(
+          studentsList,
+          'email',
+          data.email,
+        );
+        const duplicatePhoneNumber = validate.checkDuplicateData(
+          studentsList,
+          'phone',
+          data.phone,
+        );
+        const duplicateEnrollNumber = validate.checkDuplicateData(
+          studentsList,
+          'enrollnumber',
+          data.enrollnumber,
+        );
         let isContinue = true;
 
         // Checking for duplicate emails will produce an error message
@@ -315,7 +418,7 @@ export class StudentsList {
           isContinue = false;
           DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
         }
-        
+
         // If you check for duplicate phone numbers, an error message will appear
         if (duplicatePhoneNumber) {
           isContinue = false;
@@ -325,7 +428,10 @@ export class StudentsList {
         // If you check for the same enrollment number, an error message will appear
         if (duplicateEnrollNumber) {
           isContinue = false;
-          DocumentHelper.showErrorMessage(this.enrollNumber, MESSAGES.DUPLICATE_ENROLL_NUMBER);
+          DocumentHelper.showErrorMessage(
+            this.enrollNumber,
+            MESSAGES.DUPLICATE_ENROLL_NUMBER,
+          );
         }
         if (!isContinue) {
           return;
@@ -333,7 +439,9 @@ export class StudentsList {
 
         // Disable button
         DocumentHelper.disableBtn(this.btnUpdateStudent);
-        const updateRow = document.querySelector(`[data-id="${formStudentId}"]`);
+        const updateRow = document.querySelector(
+          `[data-id="${formStudentId}"]`,
+        );
         const updateStudent = await StudentService.update(formStudentId, data);
 
         ModalHelper.hideModal(this.modal);
@@ -344,7 +452,7 @@ export class StudentsList {
         setTimeout(() => {
           // Hide loader
           LoaderHelper.hideLoader(this.containerLoader);
-          
+
           // Show updated data on screen
           updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
           this.handleButtonsEdit();
@@ -353,7 +461,7 @@ export class StudentsList {
           // Cancel the disable button
           DocumentHelper.removeDisableBtn(this.btnUpdateStudent);
         }, 2000);
-      }    
+      }
     } catch (error) {
       alert('Something went wrong while updating the student', error);
     }
@@ -362,13 +470,17 @@ export class StudentsList {
   /**
    * Handle movie by calling API
    */
-    async handleDeleteStudent() {
-      const modalContentDeleteId = this.modalContentDelete.getAttribute('data-id');
-      const deleteRow = document.querySelector(`[data-id="${modalContentDeleteId}"]`);
- 
-      await StudentService.delete(modalContentDeleteId);
-      deleteRow.remove();
-    }
+  async handleDeleteStudent() {
+    const modalContentDeleteId = this.modalContentDelete.getAttribute(
+      'data-id',
+    );
+    const deleteRow = document.querySelector(
+      `[data-id="${modalContentDeleteId}"]`,
+    );
+
+    await StudentService.delete(modalContentDeleteId);
+    deleteRow.remove();
+  }
 
   /**
    * Handle the event when clicking on the add student button, the add student form will appear
@@ -404,7 +516,6 @@ export class StudentsList {
    */
   handleAddEventForDeleteButton() {
     this.btnDelete.addEventListener('click', () => {
-
       // Hide modal
       ModalHelper.hideModal(this.modalConfirmDelete);
 
@@ -425,7 +536,7 @@ export class StudentsList {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
       this.resetForm();
-    })
+    });
   }
 
   /**
@@ -434,7 +545,7 @@ export class StudentsList {
   handleCancelModalConfirmDelete() {
     this.modalConfirmDeleteBtnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modalConfirmDelete);
-    })
+    });
   }
 
   /**
@@ -442,7 +553,7 @@ export class StudentsList {
    */
   handleLogout() {
     this.btnLogout.addEventListener('click', () => {
-      window.location.href = LOGIN_PAGE
-    })
+      window.location.href = LOGIN_PAGE;
+    });
   }
 }
