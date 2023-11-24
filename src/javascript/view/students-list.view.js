@@ -208,6 +208,7 @@ export class StudentsList {
         dateofadmission: ['empty']
       };
       const validation = validate.validateForm(data, config);
+      const studentsList = await StudentService.getAll();
       
       // Check entry requirements of all schools. If incorrect, output an error message
       if (!validation.isValid) {
@@ -219,6 +220,17 @@ export class StudentsList {
 
         return;
       } else {
+        let isContinue = true;
+        const duplicateEmail = validate.checkDuplicateData(studentsList, 'email', data.email)
+        console.log(duplicateEmail)
+        if (duplicateEmail) {
+          isContinue = false;
+          DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+        }
+
+        if (!isContinue) {
+          return;
+        }
         // Disable button
         DocumentHelper.disableBtn(this.btnCreateStudent);
 
