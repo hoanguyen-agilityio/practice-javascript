@@ -246,9 +246,6 @@ export class StudentsList {
         setTimeout(() => {
           // Hide loader
           LoaderHelper.hideLoader(this.containerLoader);
-
-          // Hide modal 
-          ModalHelper.hideModal(this.modal);
           
           // Display newly created students on the screen
           newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
@@ -322,13 +319,28 @@ export class StudentsList {
           return;
         }
 
+        // Disable button
+        DocumentHelper.disableBtn(this.btnUpdateStudent);
         const updateRow = document.querySelector(`[data-id="${formStudentId}"]`);
         const updateStudent = await StudentService.update(formStudentId, data);
-
-        updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
-        this.handleButtonsEdit();
-        this.handleDeleteButtons();
+        
         ModalHelper.hideModal(this.modal);
+
+        // Show loader
+        LoaderHelper.showLoader(this.containerLoader);
+
+        setTimeout(() => {
+          // Hide loader
+          LoaderHelper.hideLoader(this.containerLoader);
+          
+          // Show updated data on screen
+          updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
+          this.handleButtonsEdit();
+          this.handleDeleteButtons();
+
+          // Cancel the disable button
+          DocumentHelper.removeDisableBtn(this.btnUpdateStudent);
+        }, 2000);
       }    
     } catch (error) {
       alert('Something went wrong while updating the student', error);
