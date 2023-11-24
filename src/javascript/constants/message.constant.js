@@ -10,6 +10,8 @@ const MESSAGES = {
   DUPLICATE_EMAIL: 'Emails cannot be duplicated',
   DUPLICATE_PHONE: 'Phone numbers cannot be duplicated',
   DUPLICATE_ENROLL_NUMBER: 'Enroll number cannot be duplicated',
+  EMPTY_EMAIL: 'Email value cannot be empty',
+  EMPTY_PASSWORD: 'Password value cannot be blank',
 };
 
 export { EMPTY_TEXT, MESSAGES };

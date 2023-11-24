@@ -10,11 +10,11 @@ import { StudentService } from '../service/student.service';
 // Helpers
 import { ModalHelper } from '../helpers/modal.helper';
 import { DocumentHelper } from '../helpers/document.helper';
+import { LoaderHelper } from '../helpers/loader.helper';
 
 // Validates
 import { validate } from '../validates/form.validate';
 import { EMPTY_TEXT, MESSAGES } from '../constants/message.constant';
-import { doc } from 'prettier';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -40,7 +40,9 @@ export class StudentsList {
   btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
   sidebar = document.querySelector('.main-sidebar');
   btnShowSidebar = document.querySelector('.btn-show-sidebar');
-  btnHideSidebar = document.querySelector('.btn-close');
+  btnHideSidebar = document.querySelector('.btn-hide-sidebar');
+  containerLoader = document.querySelector('.container-loader');
+  loader = this.containerLoader.querySelector('.loader');
 
   constructor() {
     this.handleLogout();
@@ -69,22 +71,36 @@ export class StudentsList {
     DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
   }
 
+  /**
+   * Show sidebar, hide sidebar appear button and show sidebar hide button
+   */
   showSidebar() {
     this.sidebar.classList.remove('hide-sidebar');
-    this.btnHideSidebar.classList.remove('hide-btn-close');
+    this.btnShowSidebar.classList.add('hide');
+    this.btnHideSidebar.classList.remove('btn-hide-sidebar');
   }
 
+  /**
+   * Event handling adds event to the show sidebar button
+   */
   handleAddEventForBtnShowSidebar() {
     this.btnShowSidebar.addEventListener('click', () => {
       this.showSidebar();
     })
   }
 
+  /**
+   * Hide sidebar, hide sidebar hide button and show sidebar button
+   */
   hideSidebar() {
     this.sidebar.classList.add('hide-sidebar');
-    this.btnHideSidebar.classList.add('hide-btn-close');
+    this.btnShowSidebar.classList.remove('hide');
+    this.btnHideSidebar.classList.add('btn-hide-sidebar');
   }
 
+  /**
+   * Event handling adds event to the hide sidebar button
+   */
   handleAddEventForBtnHideSidebar() {
     this.btnHideSidebar.addEventListener('click', () => {
       this.hideSidebar();
@@ -106,6 +122,7 @@ export class StudentsList {
     this.phone.value = studentData.phone;
     this.enrollNumber.value = studentData.enrollnumber;
     this.dateOfAdmission.value = studentData.dateofadmission;
+    // DocumentHelper.disableBtn(this.btnUpdateStudent);
     this.form.setAttribute('data-id', studentId);
   }
 
@@ -191,6 +208,7 @@ export class StudentsList {
         dateofadmission: ['empty']
       };
       const validation = validate.validateForm(data, config);
+      const studentsList = await StudentService.getAll();
       
       // Check entry requirements of all schools. If incorrect, output an error message
       if (!validation.isValid) {
@@ -199,9 +217,23 @@ export class StudentsList {
         DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
         DocumentHelper.showErrorMessage(this.enrollNumber, validation.errors.enrollnumber);
         DocumentHelper.showErrorMessage(this.dateOfAdmission, validation.errors.dateofadmission);
-  
+
         return;
       } else {
+        let isContinue = true;
+        const duplicateEmail = validate.checkDuplicateData(studentsList, 'email', data.email)
+        console.log(duplicateEmail)
+        if (duplicateEmail) {
+          isContinue = false;
+          DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+        }
+
+        if (!isContinue) {
+          return;
+        }
+        // Disable button
+        DocumentHelper.disableBtn(this.btnCreateStudent);
+
         // Add newly created students to the database
         const newStudent = await StudentService.post(data);
         const insertRow = this.tableRow.insertRow();
@@ -216,10 +248,23 @@ export class StudentsList {
 
         // Set attribute for new row
         newRow.setAttribute('data-id', newStudent.id);
-
-        // Display newly created students on the screen
-        newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
+        
+        // Hide modal 
         ModalHelper.hideModal(this.modal);
+
+        // Show loader
+        LoaderHelper.showLoader(this.containerLoader);
+
+        setTimeout(() => {
+          // Hide loader
+          LoaderHelper.hideLoader(this.containerLoader);
+          
+          // Display newly created students on the screen
+          newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
+
+          // Cancel the disable button
+          DocumentHelper.removeDisableBtn(this.btnCreateStudent);
+        }, 2000);
       }
 
     } catch (error) {
@@ -286,13 +331,28 @@ export class StudentsList {
           return;
         }
 
+        // Disable button
+        DocumentHelper.disableBtn(this.btnUpdateStudent);
         const updateRow = document.querySelector(`[data-id="${formStudentId}"]`);
         const updateStudent = await StudentService.update(formStudentId, data);
 
-        updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
-        this.handleButtonsEdit();
-        this.handleDeleteButtons();
         ModalHelper.hideModal(this.modal);
+
+        // Show loader
+        LoaderHelper.showLoader(this.containerLoader);
+
+        setTimeout(() => {
+          // Hide loader
+          LoaderHelper.hideLoader(this.containerLoader);
+          
+          // Show updated data on screen
+          updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
+          this.handleButtonsEdit();
+          this.handleDeleteButtons();
+
+          // Cancel the disable button
+          DocumentHelper.removeDisableBtn(this.btnUpdateStudent);
+        }, 2000);
       }    
     } catch (error) {
       alert('Something went wrong while updating the student', error);
@@ -343,9 +403,18 @@ export class StudentsList {
    * Handle the deletion of the student when the user presses the delete button
    */
   handleAddEventForDeleteButton() {
-    this.btnDelete.addEventListener('click', async () => {
-      await this.handleDeleteStudent();
+    this.btnDelete.addEventListener('click', () => {
+
+      // Hide modal
       ModalHelper.hideModal(this.modalConfirmDelete);
+
+      // Show loader
+      LoaderHelper.showLoader(this.containerLoader);
+      setTimeout(async () => {
+        // Hide loader
+        LoaderHelper.hideLoader(this.containerLoader);
+        await this.handleDeleteStudent();
+      }, 2000);
     });
   }
 

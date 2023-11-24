@@ -10,7 +10,6 @@
     <div class="container-page-students-list">
       <div class="container-sidebar">
         <main class="main-sidebar hide-sidebar" id="mainsidebar">
-          <button class="btn-close hide-btn-close">X</button>
           <!-- logo and avatar -->
           <div class="profile">
             <h1 class="logo">CRUD OPERATIONS</h1>
@@ -74,8 +73,17 @@
 
       <div class="container-content">
         <header class="header">
-          <button class="btn-show-sidebar" aria-label="hide/show sidebar">
+          <button
+            class="btn-show-hide-sidebar btn-hide-sidebar"
+            aria-label="hide sidebar"
+          >
             <img src="../assets/btn-hide-sidebar.svg" alt="btn hide sidebar" />
+          </button>
+          <button
+            class="btn-show-hide-sidebar btn-show-sidebar"
+            aria-label="show sidebar"
+          >
+            <img src="../assets/btn-show-sidebar.svg" alt="btn show sidebar" />
           </button>
           <form action="/" method="GET" class="form-search">
             <input
@@ -93,36 +101,38 @@
           </button>
         </header>
 
-        <!-- Title students list and button Add and sort -->
-        <section class="list-heading">
-          <h2 class="title students-list-heading">Students List</h2>
-          <button class="btn-sort" aria-label="Sort the list">
-            <img src="../assets/sort.svg" alt="btn sort" />
-          </button>
-          <button class="btn btn-add-student" aria-label="Add new student">
-            ADD NEW STUDENT
-          </button>
-        </section>
+        <div>
+          <!-- Title students list and button Add and sort -->
+          <section class="list-heading">
+            <h2 class="title students-list-heading">Students List</h2>
+            <button class="btn-sort" aria-label="Sort the list">
+              <img src="../assets/sort.svg" alt="btn sort" />
+            </button>
+            <button class="btn btn-add-student" aria-label="Add new student">
+              ADD NEW STUDENT
+            </button>
+          </section>
 
-        <!-- Students list table -->
-        <div class="table">
-          <table class="students-list-table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Enroll Number</th>
-                <th scope="col">
-                  Date of admission
-                </th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody class="table-row"></tbody>
-          </table>
+          <!-- Students list table -->
+          <div class="table">
+            <table class="students-list-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Enroll Number</th>
+                  <th scope="col">
+                    Date of admission
+                  </th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="table-row"></tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -222,6 +232,9 @@
             </button>
           </div>
         </div>
+      </div>
+      <div class="container-loader">
+        <div class="loader"></div>
       </div>
     </div>
 

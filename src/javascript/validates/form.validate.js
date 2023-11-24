@@ -55,6 +55,18 @@ class Validate {
   }
 
   /**
+   * Filter out elements in the array to return duplicate elements
+   * 
+   * @param {*} data - array
+   * @param {*} key - The value is in the array
+   * @param {*} value - Values ​​in input fields
+   * @returns 
+   */
+    checkDuplicateData(data, key, value) {
+      return data.find((item) => item[key] === value);
+    }
+
+  /**
    * Function to check for empty input
    *
    * @param {object} data - The data object contains all the input elements 
@@ -72,12 +84,19 @@ class Validate {
 
       // There is a key in the config
       if (config[key]) {
-        config[key].forEach((validationType) => {
-          
-          // If there is an empty word, continue to consider the isEmpty condition
+        config[key].forEach((validationType) => {         
+          // If there are emptyEmail words, continue to consider the isEmpty condition
           if (validationType === 'empty' && !this.isEmpty(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.EMPTY;
+
+            return;
+          }
+
+          // If there are emptyPassword words, continue to consider the isEmpty condition
+          if (!formValidation.errors[key] && validationType === 'emptyPassword' && !this.isEmpty(value)) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.EMPTY_PASSWORD;
 
             return;
           }
@@ -123,18 +142,6 @@ class Validate {
     });
 
     return formValidation;
-  }
-
-  /**
-   * Filter out elements in the array to return duplicate elements
-   * 
-   * @param {*} data - array
-   * @param {*} key - The value is in the array
-   * @param {*} value - Values ​​in input fields
-   * @returns 
-   */
-  checkDuplicateData(data, key, value) {
-    return data.find((item) => item[key] === value);
   }
 }
 
