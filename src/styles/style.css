@@ -4,8 +4,8 @@
 @import url(./abstracts/border.css);
 
 /* BASES */
-@import url(./Bases/reset.css);
-@import url(./Bases/typography.css);
+@import url(./bases/reset.css);
+@import url(./bases/typography.css);
 @import url(./bases/common.css);
 
 /* COMPONENTS */
