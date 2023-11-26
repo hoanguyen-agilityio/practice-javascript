@@ -81,54 +81,56 @@ export class StudentsList {
     };
   }
 
-  checkDuplicate(studentsList) {
-    let isContinue = true;
+  checkDuplicate(arr,data) {
     const duplicateEmail = validate.checkDuplicateData(
-      studentsList,
+      arr,
       'email',
       data.email,
     );
-    const duplicatePhone = validate.checkDuplicateData(
-      studentsList,
-      'phone',
-      data.phone,
-    );
-    const enrollNumber = validate.checkDuplicateData(
-      studentsList,
-      'enrollnumber',
-      data.enrollNumber,
-    );
+    let isContinue = true;
 
     if (duplicateEmail) {
-      isContinue = false;
+      isContinue = false
       DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-    } else {
-      isContinue = true;
+      console.log(2)
+      return;
+    } 
+    else {
+      isContinue = true
       DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-    }
-
-    if (duplicatePhone) {
-      isContinue = false;
-      DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
-    } else {
-      isContinue = true;
-      DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-    }
-
-    if (enrollNumber) {
-      isContinue = false;
-      DocumentHelper.showErrorMessage(
-        this.phone,
-        MESSAGES.DUPLICATE_ENROLL_NUMBER,
-      );
-    } else {
-      isContinue = true;
-      DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+      console.log(3)
     }
 
     if (!isContinue) {
+      
+      console.log(4)
       return;
-    }
+    } 
+
+
+
+    // if (duplicatePhone) {
+    //   isContinue = false;
+    //   DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
+    // } else {
+    //   isContinue = true;
+    //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+    // }
+
+    // if (enrollNumber) {
+    //   isContinue = false;
+    //   DocumentHelper.showErrorMessage(
+    //     this.phone,
+    //     MESSAGES.DUPLICATE_ENROLL_NUMBER,
+    //   );
+    // } else {
+    //   isContinue = true;
+    //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+    // }
+
+    // if (!isContinue) {
+    //   return;
+    // }
   }
 
   /**
@@ -275,9 +277,8 @@ export class StudentsList {
   async handleAddForm() {
     const data = this.getValueForm();
     const config = this.getConfig();
-
-    const validation = validate.validateForm(data, config);
     const studentsList = await StudentService.getAll();
+    const validation = validate.validateForm(data, config);   
 
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
@@ -292,32 +293,38 @@ export class StudentsList {
     );
 
     if (!validation.isValid) {
+      console.log(!validation.isValid)
       return;
     }
 
     try {
       // Check entry requirements of all schools. If incorrect, output an error message
-
-      // let isContinue = true;
       // const duplicateEmail = validate.checkDuplicateData(
       //   studentsList,
       //   'email',
       //   data.email,
       // );
+      // let isContinue = true;
+
       // if (duplicateEmail) {
       //   isContinue = false;
       //   DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-      //   console.log(this.checkDuplicate());
+      //   console.log(2);
       // } else {
       //   isContinue = true;
       //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+      //   console.log(3);
       // }
 
       // if (!isContinue) {
+      //   console.log(4);
       //   return;
       // }
-      !this.checkDuplicate(studentsList);
-
+      console.log(1);
+      
+      this.checkDuplicate(studentsList, data)
+   
+      console.log(5)
       // Disable button
       DocumentHelper.disableBtn(this.btnCreateStudent);
 
