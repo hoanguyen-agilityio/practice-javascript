@@ -81,7 +81,22 @@ export class StudentsList {
       dateofadmission: ['empty'],
     };
   }
+  async checkDuplicate(field, data) {
+    const studentsList = await StudentService.getAll();
+    return validate.checkDuplicateData(studentsList, field, data);
+  }
 
+  showErr(name, msg) {
+    if (this.checkDuplicate(name, data[name])) {
+      isContinue = false;
+      DocumentHelper.showErrorMessage(this[name], msg);
+      console.log(2);
+    } else {
+      isContinue = true;
+      DocumentHelper.showErrorMessage(this[name], EMPTY_TEXT);
+      console.log(3);
+    }
+  }
   // checkDuplicate(arr,data) {
   //   let test = {
   //     duplicateEmail: validate.checkDuplicateData(
@@ -91,55 +106,53 @@ export class StudentsList {
   //     ),
   //     isContinue: true
   //   };
-    // const duplicateEmail = validate.checkDuplicateData(
-    //   arr,
-    //   'email',
-    //   data.email,
-    // );
-    // let isContinue = true;
+  // const duplicateEmail = validate.checkDuplicateData(
+  //   arr,
+  //   'email',
+  //   data.email,
+  // );
+  // let isContinue = true;
 
-    // if (test.duplicateEmail) {
-    //   test.isContinue = false
-    //   DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-    //   console.log(2)
-    //   return;
-    // } 
-    // else {
-    //   test.isContinue = true
-    //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-    //   console.log(3)
-    // }
+  // if (test.duplicateEmail) {
+  //   test.isContinue = false
+  //   DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+  //   console.log(2)
+  //   return;
+  // }
+  // else {
+  //   test.isContinue = true
+  //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+  //   console.log(3)
+  // }
 
-    // if (!test.isContinue) {
-      
-    //   console.log(4)
-    //   return;
-    // } 
+  // if (!test.isContinue) {
 
+  //   console.log(4)
+  //   return;
+  // }
 
+  // if (duplicatePhone) {
+  //   isContinue = false;
+  //   DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
+  // } else {
+  //   isContinue = true;
+  //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+  // }
 
-    // if (duplicatePhone) {
-    //   isContinue = false;
-    //   DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
-    // } else {
-    //   isContinue = true;
-    //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-    // }
+  // if (enrollNumber) {
+  //   isContinue = false;
+  //   DocumentHelper.showErrorMessage(
+  //     this.phone,
+  //     MESSAGES.DUPLICATE_ENROLL_NUMBER,
+  //   );
+  // } else {
+  //   isContinue = true;
+  //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+  // }
 
-    // if (enrollNumber) {
-    //   isContinue = false;
-    //   DocumentHelper.showErrorMessage(
-    //     this.phone,
-    //     MESSAGES.DUPLICATE_ENROLL_NUMBER,
-    //   );
-    // } else {
-    //   isContinue = true;
-    //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-    // }
-
-    // if (!isContinue) {
-    //   return;
-    // }
+  // if (!isContinue) {
+  //   return;
+  // }
   // }
 
   /**
@@ -287,7 +300,7 @@ export class StudentsList {
     const data = this.getValueForm();
     const config = this.getConfig();
     const studentsList = await StudentService.getAll();
-    const validation = validate.validateForm(data, config);   
+    const validation = validate.validateForm(data, config);
 
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
@@ -324,38 +337,39 @@ export class StudentsList {
       );
       let isContinue = true;
 
-      if (duplicateEmail) {
-        isContinue = false;
-        DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-        console.log(2);
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-        console.log(3);
-      }
+      // if (duplicateEmail) {
+      //   isContinue = false;
+      //   DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+      //   console.log(2);
+      // } else {
+      //   isContinue = true;
+      //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+      //   console.log(3);
+      // }
+      this.showErr(email, MESSAGES.DUPLICATE_EMAIL);
 
-      if (duplicatePhone) {
-        isContinue = false;
-        DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
-      }
+      // if (duplicatePhone) {
+      //   isContinue = false;
+      //   DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
+      // } else {
+      //   isContinue = true;
+      //   DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
+      // }
 
-      if (duplicateEnrollNumber) {
-      isContinue = false;
-      DocumentHelper.showErrorMessage(
-        this.enrollNumber,
-        MESSAGES.DUPLICATE_ENROLL_NUMBER,
-      );
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
-      }
+      // if (duplicateEnrollNumber) {
+      //   isContinue = false;
+      //   DocumentHelper.showErrorMessage(
+      //     this.enrollNumber,
+      //     MESSAGES.DUPLICATE_ENROLL_NUMBER,
+      //   );
+      // } else {
+      //   isContinue = true;
+      //   DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
+      // }
 
-      if (!isContinue) {
-        return;
-      }
+      // if (!isContinue) {
+      //   return;
+      // }
 
       // Disable button
       DocumentHelper.disableBtn(this.btnCreateStudent);
@@ -402,8 +416,8 @@ export class StudentsList {
   async handleUpdateForm() {
     const data = this.getValueForm();
     const config = this.getConfig();
-    const validation = validate.validateForm(data, config);   
-    DocumentHelper.disableBtn(this.btnUpdateStudent); 
+    const validation = validate.validateForm(data, config);
+    DocumentHelper.disableBtn(this.btnUpdateStudent);
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
     DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
@@ -415,22 +429,22 @@ export class StudentsList {
       this.dateOfAdmission,
       validation.errors.dateofadmission,
     );
-    // DocumentHelper.disableBtn(this.btnUpdateStudent);  
+    // DocumentHelper.disableBtn(this.btnUpdateStudent);
     // if (data.name === data.name ||data.email === data.email || data.phone === data.phone || data.enrollnumber === data.enrollnumber) {
     //   DocumentHelper.disableBtn(this.btnUpdateStudent);
 
-    // } 
+    // }
 
     if (!validation.isValid) {
       return;
     }
     const studentsList = await StudentService.getAll();
-    const newStudentsList = studentsList.map((student) => {
-     const email = student.email;
-     const phone = student.phone;
-     const enrollNumber = student.enrollnumber;
+    const newStudentsList = studentsList.map(student => {
+      const email = student.email;
+      const phone = student.phone;
+      const enrollNumber = student.enrollnumber;
 
-     return {email, phone, enrollNumber}
+      return { email, phone, enrollNumber };
     });
     console.log(newStudentsList);
     console.log(this.email === this.email, 1);
@@ -441,11 +455,11 @@ export class StudentsList {
       //  const email = student.email;
       //  const phone = student.phone;
       //  const enrollNumber = student.enrollnumber;
-  
+
       //  return {email, phone, enrollNumber}
       // });
       const formStudentId = this.form.getAttribute('data-id');
-      
+
       // Check entry requirements of all schools. If incorrect, output an error message
       const duplicateEmail = validate.checkDuplicateData(
         newStudentsList,
@@ -481,11 +495,11 @@ export class StudentsList {
       }
 
       if (duplicateEnrollNumber) {
-      isContinue = false;
-      DocumentHelper.showErrorMessage(
-        this.enrollNumber,
-        MESSAGES.DUPLICATE_ENROLL_NUMBER,
-      );
+        isContinue = false;
+        DocumentHelper.showErrorMessage(
+          this.enrollNumber,
+          MESSAGES.DUPLICATE_ENROLL_NUMBER,
+        );
       } else {
         isContinue = true;
         DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
@@ -494,12 +508,10 @@ export class StudentsList {
       if (!isContinue) {
         return;
       }
-      
+
       // Disable button
       DocumentHelper.disableBtn(this.btnUpdateStudent);
-      const updateRow = document.querySelector(
-        `[data-id="${formStudentId}"]`,
-      );
+      const updateRow = document.querySelector(`[data-id="${formStudentId}"]`);
       const updateStudent = await StudentService.update(formStudentId, data);
 
       ModalHelper.hideModal(this.modal);
