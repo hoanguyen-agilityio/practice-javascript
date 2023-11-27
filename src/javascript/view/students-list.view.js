@@ -320,22 +320,22 @@ export class StudentsList {
 
     try {
       // Check entry requirements of all schools. If incorrect, output an error message
-      const duplicateEmail = validate.checkDuplicateData(
-        studentsList,
-        'email',
-        data.email,
-      );
-      const duplicatePhone = validate.checkDuplicateData(
-        studentsList,
-        'phone',
-        data.phone,
-      );
-      const duplicateEnrollNumber = validate.checkDuplicateData(
-        studentsList,
-        'enrollnumber',
-        data.enrollnumber,
-      );
-      let isContinue = true;
+      // const duplicateEmail = validate.checkDuplicateData(
+      //   studentsList,
+      //   'email',
+      //   data.email,
+      // );
+      // const duplicatePhone = validate.checkDuplicateData(
+      //   studentsList,
+      //   'phone',
+      //   data.phone,
+      // );
+      // const duplicateEnrollNumber = validate.checkDuplicateData(
+      //   studentsList,
+      //   'enrollnumber',
+      //   data.enrollnumber,
+      // );
+      // let isContinue = true;
 
       // if (duplicateEmail) {
       //   isContinue = false;
