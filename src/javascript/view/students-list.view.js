@@ -15,7 +15,6 @@ import { LoaderHelper } from '../helpers/loader.helper';
 // Validates
 import { validate } from '../validates/form.validate';
 import { EMPTY_TEXT, MESSAGES } from '../constants/message.constant';
-import { log } from 'util';
 
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -81,22 +80,45 @@ export class StudentsList {
       dateofadmission: ['empty'],
     };
   }
+
+  listErrorMessage = [
+    {
+      name: 'email',
+      message: MESSAGES.DUPLICATE_EMAIL,
+    },
+    {
+      name: 'phone',
+      message: MESSAGES.DUPLICATE_PHONE,
+    },
+    {
+      name: 'enrollnumber',
+      message: MESSAGES.DUPLICATE_ENROLL_NUMBER,
+    },
+  ];
+
   async checkDuplicate(field, data) {
     const studentsList = await StudentService.getAll();
     return validate.checkDuplicateData(studentsList, field, data);
   }
 
-  showErr(name, msg) {
-    if (this.checkDuplicate(name, data[name])) {
-      isContinue = false;
-      DocumentHelper.showErrorMessage(this[name], msg);
-      console.log(2);
-    } else {
-      isContinue = true;
-      DocumentHelper.showErrorMessage(this[name], EMPTY_TEXT);
-      console.log(3);
-    }
-  }
+  // showErr() {
+  //   let isContinue = true;
+  //   this.listErrorMessage.forEach(key => {
+  //     if (this.checkDuplicate(toString(key.name), data.key.name)) {
+  //       isContinue = false;
+  //       DocumentHelper.showErrorMessage(this.key.name, key.message);
+  //     } else {
+  //       isContinue = true;
+  //       DocumentHelper.showErrorMessage(this.key.name, EMPTY_TEXT);
+  //       console.log(3);
+  //     }
+
+  //     if (!isContinue) {
+  //       return;
+  //     }
+  //   });
+  // }
+
   // checkDuplicate(arr,data) {
   //   let test = {
   //     duplicateEmail: validate.checkDuplicateData(
@@ -314,6 +336,9 @@ export class StudentsList {
       validation.errors.dateofadmission,
     );
 
+    this.studentsList.forEach(key => {
+      console.log(key.name);
+    });
     if (!validation.isValid) {
       return;
     }
@@ -346,7 +371,6 @@ export class StudentsList {
       //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
       //   console.log(3);
       // }
-      this.showErr(email, MESSAGES.DUPLICATE_EMAIL);
 
       // if (duplicatePhone) {
       //   isContinue = false;
@@ -477,8 +501,8 @@ export class StudentsList {
         data.enrollnumber,
       );
       let isContinue = true;
-      console.log(duplicateEmail, 'hhhhh');
-      if (duplicateEmail) {
+      console.log(duplicateEmail.email, 'hhhhh');
+      if (duplicateEmail.email != data.email) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
       } else {
