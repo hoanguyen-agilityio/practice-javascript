@@ -1,5 +1,5 @@
 // Constants
-import { EMPTY_TEXT } from '../constants/message.constant';
+import { EMPTY_TEXT } from '@/constant';
 
 export class DocumentHelper {
   

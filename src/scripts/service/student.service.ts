@@ -1,5 +1,5 @@
 // Constants
-import { STUDENT_API } from '../constants/url-api.constant';
+import { STUDENT_API } from '@/constant';
 
 // Import class apiService from api.service
 import { apiService } from './api.service';

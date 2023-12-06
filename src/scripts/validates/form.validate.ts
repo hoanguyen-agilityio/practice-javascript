@@ -4,8 +4,9 @@ import {
   PASSWORD_REGEX,
   PHONE_NUMBER_REGEX,
   NAME_REGEX,
-} from '../constants/regex.constant';
-import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
+  MESSAGES,
+  EMPTY_TEXT
+} from '@/constant';
 
 class Validate {
   /**

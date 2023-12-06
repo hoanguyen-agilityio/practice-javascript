@@ -1,17 +1,22 @@
 // Constants
-import { STUDENTS_LIST_PAGE } from '../constants/app.constant';
-import { ACCOUNTS_API } from '../constants/url-api.constant';
-import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
+import { 
+  STUDENTS_LIST_PAGE,
+  ACCOUNTS_API,
+  MESSAGES,
+  EMPTY_TEXT
+} from '@/constant';
 
 // Service
-import { apiService } from '../service/api.service';
+import { apiService } from '@/service';
 
 // Validates
-import { validate } from '../validates/form.validate';
+import { validate } from '@/validates';
 
 // Helpers
-import { DocumentHelper } from '../helpers/document.helper';
-import { LoaderHelper } from '../helpers/loader.helper';
+import { 
+  DocumentHelper,
+  LoaderHelper
+} from '@/helpers';
 
 export class Login {
   formlogin = document.querySelector('#formlogin');

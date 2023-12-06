@@ -1,22 +1,27 @@
 // Import variable LOGIN_PAGE from file app.constant
-import { LOGIN_PAGE } from '../constants/app.constant';
+import { LOGIN_PAGE } from '@/constant';
 
 // Templates
-import { StudentTemplate } from '../templates/student.template';
+import { StudentTemplate } from '@/templates';
 
 // Service
-import { StudentService } from '../service/student.service';
+import { StudentService } from '@/service';
 
 // Helpers
-import { ModalHelper } from '../helpers/modal.helper';
-import { DocumentHelper } from '../helpers/document.helper';
-import { LoaderHelper } from '../helpers/loader.helper';
-
-// import { ModalHelper, DocumentHelper, LoaderHelper } from './helper'
+import { 
+  ModalHelper,
+  DocumentHelper,
+  LoaderHelper
+} from '@/helpers';
 
 // Validates
-import { validate } from '../validates/form.validate';
-import { EMPTY_TEXT, MESSAGES } from '../constants/message.constant';
+import { validate } from '@/validates';
+
+// Constants
+import { 
+  EMPTY_TEXT, 
+  MESSAGES 
+} from '@/constant';
 
 // import { STUDENTS_LIST_PAGE } from '@/constants'
 export class StudentsList {
