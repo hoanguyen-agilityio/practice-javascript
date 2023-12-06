@@ -12,10 +12,13 @@ import { ModalHelper } from '../helpers/modal.helper';
 import { DocumentHelper } from '../helpers/document.helper';
 import { LoaderHelper } from '../helpers/loader.helper';
 
+// import { ModalHelper, DocumentHelper, LoaderHelper } from './helper'
+
 // Validates
 import { validate } from '../validates/form.validate';
 import { EMPTY_TEXT, MESSAGES } from '../constants/message.constant';
 
+// import { STUDENTS_LIST_PAGE } from '@/constants'
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
   table = document.querySelector('.table');
@@ -438,9 +441,12 @@ export class StudentsList {
    * Handling update form  by calling API
    */
   async handleUpdateForm() {
+    // Get value and validate
     const data = this.getValueForm();
     const config = this.getConfig();
     const validation = validate.validateForm(data, config);
+
+    // Show errors
     DocumentHelper.disableBtn(this.btnUpdateStudent);
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
@@ -462,6 +468,7 @@ export class StudentsList {
     if (!validation.isValid) {
       return;
     }
+    // Write a util to use Generic for e.g Student or Product
     const studentsList = await StudentService.getAll();
     const newStudentsList = studentsList.map(student => {
       const email = student.email;

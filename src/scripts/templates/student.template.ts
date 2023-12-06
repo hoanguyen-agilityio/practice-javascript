@@ -24,8 +24,8 @@ export class StudentTemplate {
     </tr>
     <tr class="spacer">
       <td></td>
-    </tr>`
-    
+    </tr>`;
+
     return tableRow;
-  } 
+  }
 }
