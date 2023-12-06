@@ -9,6 +9,7 @@
 }
 
 .container-sidebar {
+  width: 270px;
   min-height: 100vh;
 }
 
@@ -45,6 +46,10 @@
 
 .btn-hide-sidebar {
   display: none;
+}
+
+.set-width-container-content {
+  width: calc(100% - 270px);
 }
 
 .main-sidebar {
@@ -179,6 +184,10 @@
 
 /* STYLE APPLIED TO THE TABLET */
 @media (min-width: 766px) {
+  .container-content {
+    width: calc(100% - 270px);
+  }
+
   .header {
     height: 70px;
   }

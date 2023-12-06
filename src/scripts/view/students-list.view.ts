@@ -26,6 +26,8 @@ import {
 // import { STUDENTS_LIST_PAGE } from '@/constants'
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
+  containerPageStudentsList = document.querySelector('.container-page-students-list');
+  containerContent = this.containerPageStudentsList.querySelector('.container-content');
   table = document.querySelector('.table');
   modal = document.querySelector('.modal-form');
   listHeading = document.querySelector('.list-heading');
@@ -213,6 +215,7 @@ export class StudentsList {
     this.sidebar.classList.remove('hide-sidebar');
     this.btnShowSidebar.classList.add('hide');
     this.btnHideSidebar.classList.remove('btn-hide-sidebar');
+    this.containerContent.classList.add('set-width-container-content');
   }
 
   /**
@@ -231,6 +234,7 @@ export class StudentsList {
     this.sidebar.classList.add('hide-sidebar');
     this.btnShowSidebar.classList.remove('hide');
     this.btnHideSidebar.classList.add('btn-hide-sidebar');
+    this.containerContent.classList.remove('set-width-container-content');
   }
 
   /**
