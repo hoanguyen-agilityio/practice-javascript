@@ -324,7 +324,6 @@ export class StudentsList {
   async handleAddForm() {
     const data = this.getValueForm();
     const config = this.getConfig();
-    const studentsList = await StudentService.getAll();
     const validation = validate.validateForm(data, config);
 
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);

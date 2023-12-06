@@ -58,7 +58,7 @@ class Validate {
    *
    * @param {*} data - array
    * @param {*} key - The value is in the array
-   * @param {*} value - Values ​​in input fields
+   * @param {*} value - Values in input fields
    * @returns
    */
   checkDuplicateData(data, key, value) {
@@ -72,7 +72,7 @@ class Validate {
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
   validateForm(data, config) {
-    let formValidation = {
+    const formValidation = {
       isValid: true,
       errors: {},
     };
