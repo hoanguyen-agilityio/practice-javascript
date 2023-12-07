@@ -32,7 +32,7 @@ export class StudentsList {
   modal = document.querySelector('.modal-form');
   listHeading = document.querySelector('.list-heading');
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
-  tableRow = this.table.querySelector('.table-row');
+  tableRow = this.table.querySelector('.students-list-table');
   btnShowFormAddStudent = this.listHeading.querySelector('.btn-add-student');
   btnCancel = this.modal.querySelector('.btn-cancel');
   btnCreateStudent = this.modal.querySelector('.btn-create-student');
@@ -313,7 +313,7 @@ export class StudentsList {
   async handleRenderTable() {
     try {
       const result = await StudentService.getAll();
-      let tableTemplate = '';
+      let tableTemplate = StudentTemplate.renderTableThead();
 
       result.forEach(student => {
         tableTemplate += StudentTemplate.renderTableRow(student);

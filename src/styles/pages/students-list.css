@@ -96,79 +96,14 @@
   margin-left: 15px;
 }
 
-/* Students list table mobile */
-.table {
-  overflow-x:auto;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-.students-list-table {
-  min-width: 900px;
-  margin: 0 15px;
-  border-spacing: 0;
-  width: -webkit-fill-available;
-  text-indent: initial;
-  border-spacing: 2px;
-  box-sizing: border-box;
-}
-
-.students-list-table thead {
-  display: table-header-group;
-  vertical-align: middle;
-  border-color: inherit;
-}
-
-.students-list-table thead th {
-  padding-top: 22px;
-  padding-bottom: 22px;
-}
-
-.students-list-table thead tr {
-  font-weight: var(--font-weight-l);
-  font-size: var(--font-size-xs);
-  color: var(--secondary-color-300);
-}
-
 .avt-student {
   padding: 20px 0 20px 15px;
-}
-
-.table-row tr td {
-  font-weight: var(--font-weight-s);
-  font-size: var(--font-size-s);
-  line-height: var(--line-height-s);
-}
-
-.table-row tr td:nth-child(n+2) {
-  vertical-align: middle;
-}
-
-.table-row tr:nth-child(2n) {
-  background-color: var(--secondary-color-250);
-  height: 10px;
-}
-
-.table-row tr {
-  background-color: var(--secondary-color-50);
 }
 
 .btn-table {
   border: none;
   background-color: var(--secondary-color-50);
   cursor: pointer;
-}
-
-.students-list-table thead tr {
-  font-weight: var(--font-weight-l);
-  font-size: var(--font-size-xs);
-  color: var(--secondary-color-300);
-}
-
-.table-row tr td {
-  font-weight: var(--font-weight-s);
-  font-size: var(--font-size-s);
-  line-height: var(--line-height-s);
 }
 
 /* Form */
@@ -215,10 +150,6 @@
     margin: 12px 30px 0;
   }
 
-  .students-list-table {
-    margin: 0 30px;
-  }
-
   /* Form */
   .title-form-add-update {
     padding-top: 20px;
@@ -255,35 +186,6 @@
 
   .btn-add-student {
     margin-left: 30px;
-  }
-
-  .students-list-table th:nth-child(2), 
-  .table-row td:nth-child(2) {
-    padding-left: 31px;
-  } 
-
-  .students-list-table th:nth-child(3), 
-  .table-row td:nth-child(3) {
-    padding-left: 135px;
-  }
-
-  .students-list-table th:nth-child(4), 
-  .table-row td:nth-child(4) {
-    padding: 0 44px;
-  }
-
-  .students-list-table th:nth-child(6), 
-  .table-row td:nth-child(6) {
-    padding-left: 70px;
-  }
-
-  .avt-student {
-    padding: 15px 0 15px 13px;
-  }
-
-  .students-list-table thead th {
-    padding-top: 22px;
-    padding-bottom: 22px;
   }
 
   .btn-edit {

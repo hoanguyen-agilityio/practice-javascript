@@ -1,0 +1,113 @@
+/* Students list table mobile */
+/* .table {
+  overflow-x:auto;
+  margin: 0 15px;
+  border-spacing: 0 10px;
+}
+
+.students-list-table {
+  display: table-row-group;
+  min-width: 900px;
+}
+
+.table-thead {
+  font-weight: var(--font-weight-l);
+  font-size: var(--font-size-xs);
+  color: var(--secondary-color-300);
+}
+
+.resp-table-row {
+  display: table-row;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.table-thead .table-cell {
+  padding: 22px 0;
+}
+
+.table-body {
+  font-weight: var(--font-weight-s);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  background-color: var(--secondary-color-50);
+}
+
+.table-cell:nth-child(1) {
+  width: 5%;
+}
+
+.table-cell:nth-child(2) {
+  width: 10%;
+}
+
+.table-cell:nth-child(3) {
+  width: 25%;
+}
+
+.table-cell:nth-child(4) {
+  width: 20%;
+}
+
+.table-cell:nth-child(5) {
+  width: 20%;
+}
+
+.table-cell:nth-child(6) {
+  width: 10%;
+}
+
+.table-cell:nth-child(7),
+.table-cell:nth-child(8) {
+  width: 5%;
+}
+
+
+@media (min-width: 766px) {
+  .table {
+    margin: 0 30px;
+  }
+} */
+.table {
+  overflow-x:auto;
+  border-spacing: 0 10px;
+  margin: 22px 15px 0;
+}
+
+.students-list-table {
+  display: grid;
+  grid-row-gap: 20px;
+  min-width: 900px;
+}
+
+.table-thead {
+  display: grid;
+  grid-template-columns: 78px 17fr 20fr 20fr 30fr 20fr 10fr 10fr;
+  font-weight: var(--font-weight-l);
+  font-size: var(--font-size-xs);
+  color: var(--secondary-color-300);
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 78px 17fr 20fr 20fr 30fr 20fr 10fr 10fr;
+  font-weight: var(--font-weight-s);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  background-color: var(--secondary-color-50);
+  align-items: center;
+}
+
+.table-thead div:nth-child(n+2),
+.table-row div:nth-child(n+2) {
+  padding-left: 31px;
+}
+
+@media (min-width: 766px) {
+  .table {
+    margin: 22px 30px 0;
+  }
+}

@@ -1,30 +1,34 @@
 export class StudentTemplate {
+  static renderTableThead() {
+    const tableThead = `
+    <li class="table-thead">
+      <div></div>
+      <div>Name</div>
+      <div>Email</div>
+      <div>Phone</div>
+      <div>Enroll Number</div>
+      <div>Date of admission</div>
+      <div></div>
+      <div></div>
+    </li>
+  `
+
+  return tableThead;
+  }
+
   // Display table rows when data is passed in
   static renderTableRow(move) {
     const tableRow = `
-    <tr class="content-row" data-id=${move.id}>
-      <td>
-        <img src="/avatar.7bb99cdb.svg" alt="avatar student" class="avt-student"/>
-      </td>
-      <td>${move.name}</td>
-      <td>${move.email}</td>
-      <td>${move.phone}</td>
-      <td>${move.enrollnumber}</td>
-      <td>${move.dateofadmission}</td>
-      <td>
-        <button class="btn-table btn-edit" aria-label="Edit student" data-id=${move.id}>
-          <img src="/btn-edit.20bca2e1.svg" alt="button edit" />
-        </button>
-      </td>
-      <td>
-        <button class="btn-table btn-delete btn-table-delete" aria-label="Delete student" data-id=${move.id}>
-          <img src="/btn-delete.0d75958c.svg" alt="button delete" />
-        </button>
-      </td>
-    </tr>
-    <tr class="spacer">
-      <td></td>
-    </tr>`;
+      <li class="table-row" data-id=${move.id}>
+        <div><img src="/avatar.7bb99cdb.svg" alt="avatar student" class="avt-student"></div>
+        <div>${move.name}</div>
+        <div>${move.email}</div>
+        <div>${move.phone}</div>
+        <div>${move.enrollnumber}</div>
+        <div>${move.dateofadmission}</div>
+        <div><button class="btn-table btn-edit" data-id=${move.id}><img src="/btn-edit.87768a19.svg"></button></div>
+        <div><button class="btn-table btn-delete btn-table-delete" data-id=${move.id}><img src="/btn-delete.98640746.svg"></button></div>
+      </li>`
 
     return tableRow;
   }
