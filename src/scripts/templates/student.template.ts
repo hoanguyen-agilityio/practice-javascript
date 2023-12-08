@@ -2,14 +2,14 @@ export class StudentTemplate {
   static renderTableThead() {
     const tableThead = `
     <li class="table-thead">
-      <div></div>
-      <div>Name</div>
-      <div>Email</div>
-      <div>Phone</div>
-      <div>Enroll Number</div>
-      <div>Date of admission</div>
-      <div></div>
-      <div></div>
+      <span></span>
+      <span>Name</span>
+      <span>Email</span>
+      <span>Phone</span>
+      <span>Enroll Number</span>
+      <span>Date of admission</span>
+      <span></span>
+      <span></span>
     </li>
   `
 
@@ -20,14 +20,14 @@ export class StudentTemplate {
   static renderTableRow(move) {
     const tableRow = `
       <li class="table-row" data-id=${move.id}>
-        <div><img src="/avatar.7bb99cdb.svg" alt="avatar student" class="avt-student"></div>
-        <div>${move.name}</div>
-        <div>${move.email}</div>
-        <div>${move.phone}</div>
-        <div>${move.enrollnumber}</div>
-        <div>${move.dateofadmission}</div>
-        <div><button class="btn-table btn-edit" data-id=${move.id}><img src="/btn-edit.87768a19.svg"></button></div>
-        <div><button class="btn-table btn-delete btn-table-delete" data-id=${move.id}><img src="/btn-delete.98640746.svg"></button></div>
+        <span><img src="/avatar.7bb99cdb.svg" alt="avatar student" class="avt-student"></span>
+        <span>${move.name}</span>
+        <span>${move.email}</span>
+        <span>${move.phone}</span>
+        <span>${move.enrollnumber}</span>
+        <span>${move.dateofadmission}</span>
+        <span><button class="btn-table btn-edit" data-id=${move.id}><img src="/btn-edit.87768a19.svg"></button></span>
+        <span><button class="btn-table btn-delete btn-table-delete" data-id=${move.id}><img src="/btn-delete.98640746.svg"></button></span>
       </li>`
 
     return tableRow;
