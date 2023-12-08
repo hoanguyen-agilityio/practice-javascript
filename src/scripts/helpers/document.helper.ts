@@ -20,7 +20,7 @@ export class DocumentHelper {
     *
     * @param {HtmlInputElement} element - Element input
     */
-  static cleanErrorMessage(element) {
+  static cleanErrorMessage(element: Element) {
     this.showErrorMessage(element, EMPTY_TEXT);
   }
 
@@ -29,7 +29,7 @@ export class DocumentHelper {
    *
    * @param {HTMLElement} element - Element
    */
-  static hideElement(element) {
+  static hideElement(element: Element) {
     element.classList.add('hide');
   }
 
@@ -38,7 +38,7 @@ export class DocumentHelper {
    *
    * @param {HTMLElement} element - Element
    */
-  static showElement(element) {
+  static showElement(element: Element) {
     element.classList.remove('hide');
   }
   
