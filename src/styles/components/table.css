@@ -35,6 +35,31 @@
   padding-left: 31px;
 }
 
+.table-thead span:nth-child(2),
+.table-row span:nth-child(2) {
+  min-width: 100px;
+}
+
+.table-thead span:nth-child(3),
+.table-row span:nth-child(3) {
+  min-width: 300px;
+}
+
+.table-thead span:nth-child(4),
+.table-row span:nth-child(4) {
+  min-width: 130px;
+}
+
+.table-thead span:nth-child(5),
+.table-row span:nth-child(5) {
+  min-width: 160px;
+}
+
+.table-thead span:nth-child(6),
+.table-row span:nth-child(6) {
+  min-width: 110px;
+}
+
 @media (min-width: 766px) {
   .table {
     margin: 22px 30px 0;
