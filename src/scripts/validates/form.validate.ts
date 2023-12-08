@@ -32,7 +32,7 @@ class Validate {
    *
    * @param {string} value - Comparative value
    */
-  isValidPassword(value) {
+  isValidPassword(value: string): boolean {
     return PASSWORD_REGEX.test(value);
   }
 
