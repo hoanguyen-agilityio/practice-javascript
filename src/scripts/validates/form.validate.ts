@@ -73,7 +73,7 @@ class Validate {
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
   validateForm(data, config) {
-    const formValidation: {isValid: boolean, errors: {email?: string[], password?: string}} = {
+    const formValidation: {isValid: boolean, errors: {email?: string[], password?: string[]}} = {
       isValid: true,
       errors: {},
     };
@@ -84,7 +84,7 @@ class Validate {
 
       // There is a key in the config
       if (config[key]) {
-        config[key].forEach(validationType => {
+        config[key].forEach((validationType: string) => {
           // If there are emptyEmail words, continue to consider the isEmpty condition
           if (validationType === 'empty' && !this.isEmpty(value)) {
             formValidation.isValid = false;
