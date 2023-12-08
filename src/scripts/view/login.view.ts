@@ -20,12 +20,12 @@ import {
 
 export class Login {
   formlogin = document.querySelector('#formlogin');
-  loginBtn = formlogin.querySelector('#btnlogin');
-  emailInput = formlogin.querySelector('#email');
-  passwordInput = formlogin.querySelector('#password');
-  errorMessage = formlogin.querySelector('.error-message');
-  errorMessageEmailLogin = formlogin.querySelector('.error-message-email-login');
-  errorMessagePassword = formlogin.querySelector('.error-message-password');
+  loginBtn = this.formlogin.querySelector('#btnlogin');
+  emailInput = this.formlogin.querySelector('#email');
+  passwordInput = this.formlogin.querySelector('#password');
+  errorMessage = this.formlogin.querySelector('.error-message');
+  errorMessageEmailLogin = this.formlogin.querySelector('.error-message-email-login');
+  errorMessagePassword = this.formlogin.querySelector('.error-message-password');
   containerLoader = document.querySelector('.container-loader');
   loader = this.containerLoader.querySelector('.loader');
 
@@ -34,16 +34,16 @@ export class Login {
   }
 
   async login() {
-    const data = {
-      email: this.emailInput.value,
-      password: this.passwordInput.value,
+    const data: {email: string, password: string} = {
+      email: (this.emailInput as HTMLInputElement).value,
+      password: (this.passwordInput as HTMLInputElement).value,
     };
-    const config = {
+    const config: {email: string[], password: string[]} = {
       email: ['emptyEmail','formatEmail'],
       password: ['emptyPassword','passwordRule'],
     };
 
-    const errorMessage = [this.errorMessage, this.errorMessageEmailLogin, this.errorMessagePassword];
+    const errorMessage: Element[] = [this.errorMessage, this.errorMessageEmailLogin, this.errorMessagePassword];
 
     // Filter out and get each element in the array errorMessage
     const cleanErrorMessage = errorMessage.forEach((item) => {
