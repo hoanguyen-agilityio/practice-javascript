@@ -3,5 +3,6 @@ export interface Student {
   email?: string,
   phone?: string,
   enrollnumber?: string,
-  dateofadmission?: Date
+  dateofadmission?: Date,
+  password?: string
 }

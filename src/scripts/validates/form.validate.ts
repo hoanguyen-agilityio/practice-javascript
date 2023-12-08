@@ -8,6 +8,8 @@ import {
   EMPTY_TEXT
 } from '@/constant';
 
+import { Student } from '../interfaces/student.interfaces';
+
 class Validate {
   /**
    * Checks for an empty value
@@ -72,8 +74,8 @@ class Validate {
    * @param {object} data - The data object contains all the input elements
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
-  validateForm(data, config) {
-    const formValidation: {isValid: boolean, errors: {email?: string, password?: string}} = {
+  validateForm(data: Student, config: {email: string[], password: string[]}) {
+    const formValidation: {isValid: boolean, errors: Student} = {
       isValid: true,
       errors: {},
     };
