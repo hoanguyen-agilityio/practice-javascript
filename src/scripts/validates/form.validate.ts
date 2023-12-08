@@ -48,9 +48,9 @@ class Validate {
   /**
    * Check the length of the phone number
    *
-   * @param {number} value - Comparative value
+   * @param {string} value - Comparative value
    */
-  isValidPhoneNumber(value) {
+  isValidPhoneNumber(value: string): boolean {
     return PHONE_NUMBER_REGEX.test(value);
   }
 
