@@ -39,9 +39,9 @@ class Validate {
   /**
    * Check names contain only characters and no numbers
    *
-   * @param {*} value - Comparative value
+   * @param {string} value - Comparative value
    */
-  isValidName(value) {
+  isValidName(value: string): boolean {
     return NAME_REGEX.test(value);
   }
 
