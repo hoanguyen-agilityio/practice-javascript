@@ -4,7 +4,7 @@ class ApiService {
    * 
    * @param {*} url - link to the database
    */
-  async get(url) {
+  async get(url: string) {
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -29,6 +29,7 @@ class ApiService {
       },
       body: JSON.stringify(data),
     };
+    
     const response = await fetch(url, option);
 
     return response.json();
