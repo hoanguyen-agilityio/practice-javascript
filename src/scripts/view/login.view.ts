@@ -18,6 +18,9 @@ import {
   LoaderHelper
 } from '@/helpers';
 
+// Interfaces
+import { ConfigValidation } from '../interfaces/student.interfaces';
+
 export class Login {
   formlogin = document.querySelector('#formlogin');
   loginBtn = this.formlogin.querySelector('#btnlogin');
@@ -38,7 +41,7 @@ export class Login {
       email: (this.emailInput as HTMLInputElement).value,
       password: (this.passwordInput as HTMLInputElement).value,
     };
-    const config: {email: string[], password: string[]} = {
+    const config: ConfigValidation = {
       email: ['emptyEmail','formatEmail'],
       password: ['emptyPassword','passwordRule'],
     };

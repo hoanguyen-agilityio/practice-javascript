@@ -2,7 +2,12 @@ export interface Student {
   name?: string,
   email?: string,
   phone?: string,
-  enrollnumber?: string,
-  dateofadmission?: Date,
+  enrollNumber?: string,
+  dateOfAdmission?: Date,
   password?: string
+}
+
+export interface ConfigValidation {
+  email: string[], 
+  password: string[]
 }
