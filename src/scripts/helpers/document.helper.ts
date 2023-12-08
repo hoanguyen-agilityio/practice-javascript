@@ -9,7 +9,7 @@ export class DocumentHelper {
    * @param {HtmlInputElement} input - Input element
    * @param {string} msg - Show message
    */
-  static showErrorMessage(input, msg) {
+  static showErrorMessage(input: Element, msg: string) {
     const errMessageEl = input.parentElement.querySelector('.error-message');
 
     errMessageEl.innerHTML = msg;

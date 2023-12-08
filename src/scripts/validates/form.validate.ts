@@ -73,7 +73,7 @@ class Validate {
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
   validateForm(data, config) {
-    const formValidation: {isValid: boolean, errors: {email?: string[], password?: string[]}} = {
+    const formValidation: {isValid: boolean, errors: {email?: string, password?: string}} = {
       isValid: true,
       errors: {},
     };
@@ -89,6 +89,18 @@ class Validate {
           if (validationType === 'empty' && !this.isEmpty(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.EMPTY;
+
+            return;
+          }
+
+          // If there are emptyEmail words, continue to consider the isEmpty condition
+          if (
+            !formValidation.errors[key] &&
+            validationType === 'emptyEmail' &&
+            !this.isEmpty(value)
+          ) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.EMPTY_EMAIL;
 
             return;
           }
