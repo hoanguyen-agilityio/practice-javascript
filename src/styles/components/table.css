@@ -1,13 +1,14 @@
 /* Students list table mobile */
-.table {
+.students-list-table {
+  display: grid;
+  grid-row-gap: 20px;
   overflow-x:auto;
   border-spacing: 0 10px;
   margin: 22px 15px 0;
 }
 
-.students-list-table {
-  display: grid;
-  grid-row-gap: 20px;
+.table-thead li,
+.table-row li {
   min-width: 1000px;
 }
 
