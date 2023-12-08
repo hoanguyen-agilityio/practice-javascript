@@ -8,6 +8,9 @@ import {
   EMPTY_TEXT
 } from '@/constant';
 
+// Enum
+import { CheckType } from '../enums/enum.enums';
+
 class Validate {
   /**
    * Checks for an empty value
@@ -84,7 +87,7 @@ class Validate {
 
       // There is a key in the config
       if (config[key]) {
-        config[key].forEach((validationType: string) => {
+        config[key].forEach((validationType: CheckType) => {
           // If there are emptyEmail words, continue to consider the isEmpty condition
           if (validationType === 'empty' && !this.isEmpty(value)) {
             formValidation.isValid = false;
