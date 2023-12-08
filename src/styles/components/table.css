@@ -8,7 +8,7 @@
 .students-list-table {
   display: grid;
   grid-row-gap: 20px;
-  min-width: 900px;
+  min-width: 1000px;
 }
 
 .table-thead {
@@ -29,8 +29,8 @@
   align-items: center;
 }
 
-.table-thead div:nth-child(n+2),
-.table-row div:nth-child(n+2) {
+.table-thead span:nth-child(n+2),
+.table-row span:nth-child(n+2) {
   padding-left: 31px;
 }
 
