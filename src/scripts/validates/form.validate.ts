@@ -23,7 +23,7 @@ class Validate {
    *
    * @param {string} value - Comparative value
    */
-  isValidEmail(value) {
+  isValidEmail(value: string): boolean {
     return EMAIL_REGEX.test(value);
   }
 
