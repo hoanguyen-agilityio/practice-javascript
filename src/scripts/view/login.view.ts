@@ -33,7 +33,7 @@ export class Login {
     this.addLoginEvent();
   }
 
-  async login() {
+  async login(): Promise<void> {
     const data: {email: string, password: string} = {
       email: (this.emailInput as HTMLInputElement).value,
       password: (this.passwordInput as HTMLInputElement).value,
@@ -85,7 +85,7 @@ export class Login {
     }
   }
 
-  addLoginEvent() {
+  addLoginEvent(): void {
     this.loginBtn.addEventListener('click', async () => {
       await this.login();
     });
