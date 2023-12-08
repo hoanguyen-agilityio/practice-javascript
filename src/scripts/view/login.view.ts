@@ -19,7 +19,7 @@ import {
 } from '@/helpers';
 
 // Interfaces
-import { ConfigValidation } from '../interfaces/student.interfaces';
+import { ConfigValidation, Student } from '../interfaces/student.interfaces';
 
 export class Login {
   formlogin = document.querySelector('#formlogin');
@@ -64,7 +64,7 @@ export class Login {
     }
 
     try {
-      const userList = await apiService.get(ACCOUNTS_API);
+      const userList = await apiService.get<Student>(ACCOUNTS_API);
       const user = userList.find(({ email }) => email === data.email);
       // Clear error messages
       cleanErrorMessage;   

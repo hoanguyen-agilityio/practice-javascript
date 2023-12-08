@@ -3,13 +3,14 @@ import { STUDENT_API } from '@/constant';
 
 // Import class apiService from api.service
 import { apiService } from './api.service';
+import { Student } from '../interfaces/student.interfaces';
 
 export class StudentService {
   /**
    * Get all data from database
    */
   static async getAll() {
-    return await apiService.get(STUDENT_API);
+    return await apiService.get<Student>(STUDENT_API);
   }
 
   /**
