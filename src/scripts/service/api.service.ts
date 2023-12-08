@@ -4,7 +4,7 @@ class ApiService {
    * 
    * @param {*} url - link to the database
    */
-  async get(url: string) {
+  async get(url) {
     const response = await fetch(url, {
       method: 'GET',
       headers: {
