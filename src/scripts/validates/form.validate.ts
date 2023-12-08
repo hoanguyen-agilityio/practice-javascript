@@ -8,6 +8,7 @@ import {
   EMPTY_TEXT
 } from '@/constant';
 
+// Interfaces
 import { Student } from '../interfaces/student.interfaces';
 
 class Validate {
