@@ -28,11 +28,10 @@ export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
   containerPageStudentsList = document.querySelector('.container-page-students-list');
   containerContent = this.containerPageStudentsList.querySelector('.container-content');
-  table = document.querySelector('.table');
   modal = document.querySelector('.modal-form');
   listHeading = document.querySelector('.list-heading');
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
-  tableRow = this.table.querySelector('.students-list-table');
+  tableRow = this.containerContent.querySelector('.students-list-table');
   btnShowFormAddStudent = this.listHeading.querySelector('.btn-add-student');
   btnCancel = this.modal.querySelector('.btn-cancel');
   btnCreateStudent = this.modal.querySelector('.btn-create-student');
