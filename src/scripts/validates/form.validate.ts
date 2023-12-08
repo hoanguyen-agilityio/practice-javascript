@@ -14,7 +14,7 @@ class Validate {
    *
    * @param {string} value - Comparative value
    */
-  isEmpty(value) {
+  isEmpty(value: string) {
     return value;
   }
 
