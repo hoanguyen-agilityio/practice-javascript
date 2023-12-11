@@ -73,7 +73,7 @@ export class StudentsList {
     this.handleAddEventForBtnHideSidebar();
   }
 
-  getValueForm() {
+  getValueForm(): Student {
     return {
       name: (this.name as HTMLInputElement).value,
       email: (this.email as HTMLInputElement).value,
@@ -83,7 +83,7 @@ export class StudentsList {
     };
   }
 
-  getConfig() {
+  getConfig(): ConfigValidation {
     return {
       name: ['empty', 'name'],
       email: ['empty', 'formatEmail'],
@@ -108,7 +108,7 @@ export class StudentsList {
     },
   ];
 
-  async checkDuplicate(field, data) {
+  async checkDuplicate<T,>(field: string, data: Student): Promise<T> {
     const studentsList = await StudentService.getAll();
     return validate.checkDuplicateData(studentsList, field, data);
   }
@@ -192,7 +192,7 @@ export class StudentsList {
   /**
    * Reset input and error message
    */
-  resetForm() {
+  resetForm(): void {
     this.formInput.forEach(item => {
       (item as HTMLInputElement).value = EMPTY_TEXT;
     });
@@ -214,7 +214,7 @@ export class StudentsList {
   /**
    * Show sidebar, hide sidebar appear button and show sidebar hide button
    */
-  showSidebar() {
+  showSidebar(): void {
     this.sidebar.classList.remove('hide-sidebar');
     this.btnShowSidebar.classList.add('hide');
     this.btnHideSidebar.classList.remove('btn-hide-sidebar');
@@ -224,7 +224,7 @@ export class StudentsList {
   /**
    * Event handling adds event to the show sidebar button
    */
-  handleAddEventForBtnShowSidebar() {
+  handleAddEventForBtnShowSidebar(): void {
     this.btnShowSidebar.addEventListener('click', () => {
       this.showSidebar();
     });
@@ -233,7 +233,7 @@ export class StudentsList {
   /**
    * Hide sidebar, hide sidebar hide button and show sidebar button
    */
-  hideSidebar() {
+  hideSidebar(): void {
     this.sidebar.classList.add('hide-sidebar');
     this.btnShowSidebar.classList.remove('hide');
     this.btnHideSidebar.classList.add('btn-hide-sidebar');
@@ -243,7 +243,7 @@ export class StudentsList {
   /**
    * Event handling adds event to the hide sidebar button
    */
-  handleAddEventForBtnHideSidebar() {
+  handleAddEventForBtnHideSidebar(): void {
     this.btnHideSidebar.addEventListener('click', () => {
       this.hideSidebar();
     });

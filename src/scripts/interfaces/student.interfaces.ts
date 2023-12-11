@@ -9,6 +9,7 @@ export interface Student {
 }
 
 export interface ConfigValidation {
+  name?: string[],
   email?: string[], 
   password?: string[],
   phone?: string[],
