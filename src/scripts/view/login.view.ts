@@ -19,7 +19,10 @@ import {
 } from '@/helpers';
 
 // Interfaces
-import { ConfigValidation, Student } from '../interfaces/student.interfaces';
+import { 
+  ConfigValidation, 
+  LoginAccount 
+} from '../interfaces/student.interfaces';
 
 export class Login {
   formlogin = document.querySelector('#formlogin');
@@ -37,7 +40,7 @@ export class Login {
   }
 
   async login(): Promise<void> {
-    const data: {email: string, password: string} = {
+    const data: LoginAccount = {
       email: (this.emailInput as HTMLInputElement).value,
       password: (this.passwordInput as HTMLInputElement).value,
     };
@@ -64,7 +67,7 @@ export class Login {
     }
 
     try {
-      const userList = await apiService.get<Student>(ACCOUNTS_API);
+      const userList = await apiService.get<LoginAccount>(ACCOUNTS_API);
       const user = userList.find(({ email }) => email === data.email);
       // Clear error messages
       cleanErrorMessage;   
