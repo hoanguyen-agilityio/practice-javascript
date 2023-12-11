@@ -108,7 +108,7 @@ export class StudentsList {
     },
   ];
 
-  async checkDuplicate<T,>(field: string, data: Student): Promise<T> {
+  async checkDuplicate(field: string, data: Student) {
     const studentsList = await StudentService.getAll();
     return validate.checkDuplicateData(studentsList, field, data);
   }
@@ -313,7 +313,7 @@ export class StudentsList {
   /**
    * Handling getting data from the API and displaying it on a table in HTML
    */
-  async handleRenderTable() {
+  async handleRenderTable(): Promise<void> {
     try {
       const result: Student[] = await StudentService.getAll();
       let tableTemplate = StudentTemplate.renderTableThead();
@@ -333,7 +333,7 @@ export class StudentsList {
   /**
    * Handling create form  by calling API
    */
-  async handleAddForm() {
+  async handleAddForm(): Promise<void> {
     const data: Student = this.getValueForm();
     const config: ConfigValidation = this.getConfig();
     const validation = validate.validateForm(data, config);
@@ -452,7 +452,7 @@ export class StudentsList {
   /**
    * Handling update form  by calling API
    */
-  async handleUpdateForm() {
+  async handleUpdateForm(): Promise<void> {
     // Get value and validate
     const data: Student = this.getValueForm();
     const config: ConfigValidation = this.getConfig();
@@ -582,7 +582,7 @@ export class StudentsList {
   /**
    * Handle movie by calling API
    */
-  async handleDeleteStudent() {
+  async handleDeleteStudent(): Promise<void> {
     const modalContentDeleteId: string = this.modalContentDelete.getAttribute(
       'data-id',
     );
@@ -597,7 +597,7 @@ export class StudentsList {
   /**
    * Handle the event when clicking on the add student button, the add student form will appear
    */
-  handleShowAddForm() {
+  handleShowAddForm(): void {
     this.btnShowFormAddStudent.addEventListener('click', () => {
       ModalHelper.showModal(this.modal);
       DocumentHelper.hideElement(this.btnUpdateStudent);
@@ -609,14 +609,14 @@ export class StudentsList {
   /**
    * Add event for create button
    */
-  handleAddEventForCreateButton() {
+  handleAddEventForCreateButton(): void {
     // New student will be created when clicking create button
     this.btnCreateStudent.addEventListener('click', async () => {
       await this.handleAddForm();
     });
   }
 
-  handleAddEventForUpdateButton() {
+  handleAddEventForUpdateButton(): void {
     // Movie will be updated when the update button is clicked
     this.btnUpdateStudent.addEventListener('click', async () => {
       await this.handleUpdateForm();
@@ -626,7 +626,7 @@ export class StudentsList {
   /**
    * Handle the deletion of the student when the user presses the delete button
    */
-  handleAddEventForDeleteButton() {
+  handleAddEventForDeleteButton(): void {
     this.btnDelete.addEventListener('click', () => {
       // Hide modal
       ModalHelper.hideModal(this.modalConfirmDelete);
@@ -644,7 +644,7 @@ export class StudentsList {
   /**
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
-  handleCancelModal() {
+  handleCancelModal(): void {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
       this.resetForm();
@@ -654,7 +654,7 @@ export class StudentsList {
   /**
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
-  handleCancelModalConfirmDelete() {
+  handleCancelModalConfirmDelete(): void {
     this.modalConfirmDeleteBtnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modalConfirmDelete);
     });
@@ -663,7 +663,7 @@ export class StudentsList {
   /**
    * Handle logout when the user clicks the logout button
    */
-  handleLogout() {
+  handleLogout(): void {
     this.btnLogout.addEventListener('click', () => {
       window.location.href = LOGIN_PAGE;
     });

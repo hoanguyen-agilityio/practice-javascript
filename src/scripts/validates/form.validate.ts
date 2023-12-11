@@ -73,7 +73,7 @@ class Validate {
    * @param {*} value - Values in input fields
    * @returns
    */
-  checkDuplicateData(data, key, value) {
+  checkDuplicateData<Type>(data: Type[], key: string, value: string) {
     return data.find(item => item[key] === value);
   }
 
