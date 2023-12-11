@@ -9,7 +9,11 @@ import {
 } from '@/constant';
 
 // Interfaces
-import { Student, ConfigValidation } from '../interfaces/student.interfaces';
+import { 
+  Student, 
+  ConfigValidation, 
+  LoginAccount 
+} from '../interfaces/student.interfaces';
 
 // Enum
 import { ValidationType } from '../enums/enum.enums';
@@ -78,8 +82,14 @@ class Validate {
    * @param {object} data - The data object contains all the input elements
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
-  validateForm(data: Student, config: ConfigValidation) {
-    const formValidation: {isValid: boolean, errors: Student} = {
+  validateForm(data: Student | LoginAccount, config: ConfigValidation) {
+    const formValidation: {
+      isValid: boolean, 
+      errors: {
+        email?: string,
+        password? :string
+      }
+    } = {
       isValid: true,
       errors: {},
     };
