@@ -1,4 +1,4 @@
-export enum CheckType {
+export enum ValidationType {
   Empty = 'empty',
   EmptyEmail = 'emptyEmail',
   EmptyPassword = 'emptyPassword',
