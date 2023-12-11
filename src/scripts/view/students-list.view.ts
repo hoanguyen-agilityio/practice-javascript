@@ -336,6 +336,7 @@ export class StudentsList {
     const data: Student = this.getValueForm();
     const config: ConfigValidation = this.getConfig();
     const validation = validate.validateForm(data, config);
+    const studentsList = await StudentService.getAll();
 
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
@@ -349,7 +350,7 @@ export class StudentsList {
       validation.errors.dateOfAdmission,
     );
 
-    this.studentsList.forEach(key => {
+    studentsList.forEach(key => {
       console.log(key.name);
     });
     if (!validation.isValid) {

@@ -9,10 +9,15 @@ import {
 } from '@/constant';
 
 // Interfaces
-import { Student, ConfigValidation } from '../interfaces/student.interfaces';
+import { 
+  Student, 
+  ConfigValidation, 
+  LoginAccount,
+  ErrorMessage, 
+} from '../interfaces/student.interfaces';
 
 // Enum
-import { CheckType } from '../enums/enum.enums';
+import { ValidationType } from '../enums/enum.enums';
 
 class Validate {
   /**
@@ -78,8 +83,11 @@ class Validate {
    * @param {object} data - The data object contains all the input elements
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
-  validateForm(data: Student, config: ConfigValidation) {
-    const formValidation: {isValid: boolean, errors: Student} = {
+  validateForm(data: Student | LoginAccount, config: ConfigValidation) {
+    const formValidation: {
+      isValid: boolean, 
+      errors: ErrorMessage
+    } = {
       isValid: true,
       errors: {},
     };
@@ -92,7 +100,7 @@ class Validate {
       if (config[key]) {
         config[key].forEach((validationType: string) => {
           // If there are emptyEmail words, continue to consider the isEmpty condition
-          if (validationType === CheckType.Empty && !this.isEmpty(value)) {
+          if (validationType === ValidationType.Empty && !this.isEmpty(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.EMPTY;
 
@@ -102,7 +110,7 @@ class Validate {
           // If there are emptyEmail words, continue to consider the isEmpty condition
           if (
             !formValidation.errors[key] &&
-            validationType === CheckType.EmptyEmail &&
+            validationType === ValidationType.EmptyEmail &&
             !this.isEmpty(value)
           ) {
             formValidation.isValid = false;
@@ -114,7 +122,7 @@ class Validate {
           // If there are emptyPassword words, continue to consider the isEmpty condition
           if (
             !formValidation.errors[key] &&
-            validationType === CheckType.EmptyPassword &&
+            validationType === ValidationType.EmptyPassword &&
             !this.isEmpty(value)
           ) {
             formValidation.isValid = false;
@@ -126,7 +134,7 @@ class Validate {
           // If there is an formatEmail word, continue to consider the isValidEmail condition
           if (
             !formValidation.errors[key] &&
-            validationType === CheckType.FormatEmail &&
+            validationType === ValidationType.FormatEmail &&
             !this.isValidEmail(value)
           ) {
             formValidation.isValid = false;
@@ -138,7 +146,7 @@ class Validate {
           // If there is an passwordRule word, continue to consider the isValidPassword condition
           if (
             !formValidation.errors[key] &&
-            validationType === CheckType.PasswordRule &&
+            validationType === ValidationType.PasswordRule &&
             !this.isValidPassword(value)
           ) {
             formValidation.isValid = false;
@@ -150,7 +158,7 @@ class Validate {
           // If there is a number in the name, an error message will be output
           if (
             !formValidation.errors[key] &&
-            validationType === CheckType.Name &&
+            validationType === ValidationType.Name &&
             !this.isValidName(value)
           ) {
             formValidation.isValid = false;
@@ -162,7 +170,7 @@ class Validate {
           // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
           if (
             !formValidation.errors[key] &&
-            validationType === CheckType.Phone &&
+            validationType === ValidationType.Phone &&
             !this.isValidPhoneNumber(value)
           ) {
             formValidation.isValid = false;
