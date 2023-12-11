@@ -4,6 +4,7 @@ class ApiService {
    * 
    * @param {*} url - link to the database
    */
+
   async get<T,>(url: string): Promise<T[]> {
     const response = await fetch(url, {
       method: 'GET',
