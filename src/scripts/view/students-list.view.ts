@@ -108,7 +108,7 @@ export class StudentsList {
     },
   ];
 
-  async checkDuplicate(field: string, data: Student) {
+  async checkDuplicate(field: string, data: string) {
     const studentsList = await StudentService.getAll();
     return validate.checkDuplicateData(studentsList, field, data);
   }
