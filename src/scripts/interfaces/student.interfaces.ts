@@ -1,6 +1,6 @@
 export interface Student {
   name?: string,
-  email?: string,
+  email: string,
   phone?: string,
   enrollNumber?: string,
   dateOfAdmission?: Date,
