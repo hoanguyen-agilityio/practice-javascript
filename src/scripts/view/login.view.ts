@@ -37,7 +37,7 @@ export class Login {
   }
 
   async login(): Promise<void> {
-    const data: {email: string, password: string} = {
+    const data: Student = {
       email: (this.emailInput as HTMLInputElement).value,
       password: (this.passwordInput as HTMLInputElement).value,
     };
