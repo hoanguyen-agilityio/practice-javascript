@@ -28,7 +28,7 @@ export class StudentService {
    * @param {string} id - Id of the student in the database
    */
   static async getById(id: string) {
-    return await apiService.get(`${STUDENT_API}/${id}`);
+    return await apiService.get<Student>(`${STUDENT_API}/${id}`);
   }
 
   /**
@@ -38,7 +38,7 @@ export class StudentService {
    * @param {string} data - The object contains the information of the student
    */
     static async update(id: string, data: Student) {
-      return await apiService.put(`${STUDENT_API}/${id}`, data);
+      return await apiService.put<Student>(`${STUDENT_API}/${id}`, data);
     }
 
   /**
@@ -47,6 +47,6 @@ export class StudentService {
    * @param {string} id - Id of the student in the database
    */
   static async delete(id: string) {
-    return await apiService.delete(`${STUDENT_API}/${id}`);
+    return await apiService.delete<Student>(`${STUDENT_API}/${id}`);
   }
 }

@@ -23,6 +23,8 @@ import {
   MESSAGES 
 } from '@/constant';
 
+import { ConfigValidation, Student } from '@/interface'
+
 // import { STUDENTS_LIST_PAGE } from '@/constants'
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
@@ -72,11 +74,11 @@ export class StudentsList {
 
   getValueForm() {
     return {
-      name: this.name.value,
-      email: this.email.value,
-      phone: this.phone.value,
-      enrollnumber: this.enrollNumber.value,
-      dateofadmission: this.dateOfAdmission.value,
+      name: (this.name as HTMLInputElement).value,
+      email: (this.email as HTMLInputElement).value,
+      phone: (this.phone as HTMLInputElement).value,
+      enrollNumber: (this.enrollNumber as HTMLInputElement).value,
+      dateOfAdmission: (this.dateOfAdmission as HTMLInputElement).value,
     };
   }
 
@@ -85,8 +87,8 @@ export class StudentsList {
       name: ['empty', 'name'],
       email: ['empty', 'formatEmail'],
       phone: ['empty', 'phone'],
-      enrollnumber: ['empty', 'phone'],
-      dateofadmission: ['empty'],
+      enrollNumber: ['empty', 'phone'],
+      dateOfAdmission: ['empty'],
     };
   }
 
@@ -191,9 +193,10 @@ export class StudentsList {
    */
   resetForm() {
     this.formInput.forEach(item => {
-      item.value = EMPTY_TEXT;
+      (item as HTMLInputElement).value = EMPTY_TEXT;
     });
-    const errorMessage = [
+
+    const errorMessage: Element[] = [
       this.name,
       this.email,
       this.phone,
@@ -255,11 +258,11 @@ export class StudentsList {
     const studentData = await StudentService.getById(studentId);
 
     ModalHelper.showModal(this.modal);
-    this.name.value = studentData.name;
-    this.email.value = studentData.email;
-    this.phone.value = studentData.phone;
-    this.enrollNumber.value = studentData.enrollnumber;
-    this.dateOfAdmission.value = studentData.dateofadmission;
+    (this.name as HTMLInputElement).value = studentData.name;
+    (this.email as HTMLInputElement).value = studentData.email;
+    (this.phone as HTMLInputElement).value = studentData.phone;
+    (this.enrollNumber as HTMLInputElement).value = studentData.enrollNumber;
+    (this.dateOfAdmission as HTMLInputElement).value = studentData.dateOfAdmission;
     // DocumentHelper.disableBtn(this.btnUpdateStudent);
     this.form.setAttribute('data-id', studentId);
   }
@@ -287,7 +290,7 @@ export class StudentsList {
    * @param {*} item - Table delete button
    */
   handleShowDeleteStudentModal(item) {
-    const studentId = item.dataset.id;
+    const studentId: string = item.dataset.id;
 
     ModalHelper.showModal(this.modalConfirmDelete);
     this.modalContentDelete.setAttribute('data-id', studentId);
@@ -311,7 +314,7 @@ export class StudentsList {
    */
   async handleRenderTable() {
     try {
-      const result = await StudentService.getAll();
+      const result: Student[] = await StudentService.getAll();
       let tableTemplate = StudentTemplate.renderTableThead();
 
       result.forEach(student => {
@@ -330,8 +333,8 @@ export class StudentsList {
    * Handling create form  by calling API
    */
   async handleAddForm() {
-    const data = this.getValueForm();
-    const config = this.getConfig();
+    const data: Student = this.getValueForm();
+    const config: ConfigValidation = this.getConfig();
     const validation = validate.validateForm(data, config);
 
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
@@ -339,11 +342,11 @@ export class StudentsList {
     DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
     DocumentHelper.showErrorMessage(
       this.enrollNumber,
-      validation.errors.enrollnumber,
+      validation.errors.enrollNumber,
     );
     DocumentHelper.showErrorMessage(
       this.dateOfAdmission,
-      validation.errors.dateofadmission,
+      validation.errors.dateOfAdmission,
     );
 
     this.studentsList.forEach(key => {
@@ -410,7 +413,7 @@ export class StudentsList {
 
       // Add newly created students to the database
       const newStudent = await StudentService.post(data);
-      const insertRow = this.tableRow.insertRow();
+      const insertRow = (this.tableRow as HTMLTableElement).insertRow();
       const newRow = insertRow;
       const hideRow = insertRow;
 
@@ -449,8 +452,8 @@ export class StudentsList {
    */
   async handleUpdateForm() {
     // Get value and validate
-    const data = this.getValueForm();
-    const config = this.getConfig();
+    const data: Student = this.getValueForm();
+    const config: ConfigValidation = this.getConfig();
     const validation = validate.validateForm(data, config);
 
     // Show errors
@@ -460,11 +463,11 @@ export class StudentsList {
     DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
     DocumentHelper.showErrorMessage(
       this.enrollNumber,
-      validation.errors.enrollnumber,
+      validation.errors.enrollNumber,
     );
     DocumentHelper.showErrorMessage(
       this.dateOfAdmission,
-      validation.errors.dateofadmission,
+      validation.errors.dateOfAdmission,
     );
     // DocumentHelper.disableBtn(this.btnUpdateStudent);
     // if (data.name === data.name ||data.email === data.email || data.phone === data.phone || data.enrollnumber === data.enrollnumber) {
@@ -476,11 +479,11 @@ export class StudentsList {
       return;
     }
     // Write a util to use Generic for e.g Student or Product
-    const studentsList = await StudentService.getAll();
-    const newStudentsList = studentsList.map(student => {
-      const email = student.email;
-      const phone = student.phone;
-      const enrollNumber = student.enrollnumber;
+    const studentsList: Student[] = await StudentService.getAll();
+    const newStudentsList: Student[] = studentsList.map(student => {
+      const email: string = student.email;
+      const phone: string = student.phone;
+      const enrollNumber: string = student.enrollNumber;
 
       return { email, phone, enrollNumber };
     });
@@ -512,7 +515,7 @@ export class StudentsList {
       const duplicateEnrollNumber = validate.checkDuplicateData(
         newStudentsList,
         'enrollnumber',
-        data.enrollnumber,
+        data.enrollNumber,
       );
       let isContinue = true;
       console.log(duplicateEmail.email, 'hhhhh');
@@ -549,8 +552,8 @@ export class StudentsList {
 
       // Disable button
       DocumentHelper.disableBtn(this.btnUpdateStudent);
-      const updateRow = document.querySelector(`[data-id="${formStudentId}"]`);
-      const updateStudent = await StudentService.update(formStudentId, data);
+      const updateRow: Element = document.querySelector(`[data-id="${formStudentId}"]`);
+      const updateStudent: Student[] = await StudentService.update(formStudentId, data);
 
       ModalHelper.hideModal(this.modal);
 
@@ -578,10 +581,10 @@ export class StudentsList {
    * Handle movie by calling API
    */
   async handleDeleteStudent() {
-    const modalContentDeleteId = this.modalContentDelete.getAttribute(
+    const modalContentDeleteId: string = this.modalContentDelete.getAttribute(
       'data-id',
     );
-    const deleteRow = document.querySelector(
+    const deleteRow: Element = document.querySelector(
       `[data-id="${modalContentDeleteId}"]`,
     );
 

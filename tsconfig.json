@@ -16,7 +16,8 @@
       "@/service": ["./src/scripts/service/index.service.ts"],
       "@/view": ["./src/scripts/view/index.view.ts"],
       "@/validates": ["./src/scripts/validates/form.validate.ts"],
-      "@/templates": ["./src/scripts/templates/student.template.ts"]
+      "@/templates": ["./src/scripts/templates/student.template.ts"],
+      "@/interface": ["./src/scripts/interfaces/student.interfaces.ts"]
     }
   }
 }
