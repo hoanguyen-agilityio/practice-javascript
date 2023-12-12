@@ -24,7 +24,7 @@ import {
 } from '@/constant';
 
 // Interfaces
-import { ConfigValidation, Student } from '@/interface'
+import { ConfigValidation, Student, ErrorMessage } from '@/interface'
 
 // import { STUDENTS_LIST_PAGE } from '@/constants'
 export class StudentsList {
@@ -256,7 +256,7 @@ export class StudentsList {
    */
   async showEditStudentModal(item) {
     const studentId = item.dataset.id;
-    const studentData = await StudentService.getById(studentId);
+    const studentData = await StudentService.getById(studentId) as ErrorMessage;
 
     ModalHelper.showModal(this.modal);
     (this.name as HTMLInputElement).value = studentData.name;
@@ -316,10 +316,14 @@ export class StudentsList {
   async handleRenderTable(): Promise<void> {
     try {
       const result: Student[] = await StudentService.getAll();
+      console.log(result);
+      
       let tableTemplate = StudentTemplate.renderTableThead();
 
       result.forEach(student => {
         tableTemplate += StudentTemplate.renderTableRow(student);
+        console.log([student]);
+        
       });
 
       this.tableRow.innerHTML = tableTemplate;
@@ -360,90 +364,86 @@ export class StudentsList {
 
     try {
       // Check entry requirements of all schools. If incorrect, output an error message
-      // const duplicateEmail = validate.checkDuplicateData(
-      //   studentsList,
-      //   'email',
-      //   data.email,
-      // );
-      // const duplicatePhone = validate.checkDuplicateData(
-      //   studentsList,
-      //   'phone',
-      //   data.phone,
-      // );
-      // const duplicateEnrollNumber = validate.checkDuplicateData(
-      //   studentsList,
-      //   'enrollnumber',
-      //   data.enrollnumber,
-      // );
-      // let isContinue = true;
+      const duplicateEmail = validate.checkDuplicateData(
+        studentsList,
+        'email',
+        data.email,
+      );
+      const duplicatePhone = validate.checkDuplicateData(
+        studentsList,
+        'phone',
+        data.phone,
+      );
+      const duplicateEnrollNumber = validate.checkDuplicateData(
+        studentsList,
+        'enrollnumber',
+        data.enrollNumber,
+      );
+      let isContinue = true;
 
-      // if (duplicateEmail) {
-      //   isContinue = false;
-      //   DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-      //   console.log(2);
-      // } else {
-      //   isContinue = true;
-      //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-      //   console.log(3);
-      // }
+      if (duplicateEmail) {
+        isContinue = false;
+        DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+        console.log(2);
+      } else {
+        isContinue = true;
+        DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+        console.log(3);
+      }
 
-      // if (duplicatePhone) {
-      //   isContinue = false;
-      //   DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
-      // } else {
-      //   isContinue = true;
-      //   DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
-      // }
+      if (duplicatePhone) {
+        isContinue = false;
+        DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
+      } else {
+        isContinue = true;
+        DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
+      }
 
-      // if (duplicateEnrollNumber) {
-      //   isContinue = false;
-      //   DocumentHelper.showErrorMessage(
-      //     this.enrollNumber,
-      //     MESSAGES.DUPLICATE_ENROLL_NUMBER,
-      //   );
-      // } else {
-      //   isContinue = true;
-      //   DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
-      // }
+      if (duplicateEnrollNumber) {
+        isContinue = false;
+        DocumentHelper.showErrorMessage(
+          this.enrollNumber,
+          MESSAGES.DUPLICATE_ENROLL_NUMBER,
+        );
+      } else {
+        isContinue = true;
+        DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
+      }
 
-      // if (!isContinue) {
-      //   return;
-      // }
+      if (!isContinue) {
+        return;
+      }
 
       // Disable button
       DocumentHelper.disableBtn(this.btnCreateStudent);
 
       // Add newly created students to the database
       const newStudent = await StudentService.post(data);
-      const insertRow = (this.tableRow as HTMLTableElement).insertRow();
-      const newRow = insertRow;
-      const hideRow = insertRow;
-
-      // Add class for new row
-      newRow.className = 'content-row';
-
-      // Add class for hide row
-      hideRow.className = 'spacer';
-
-      // Set attribute for new row
-      newRow.setAttribute('data-id', newStudent.id);
-
-      // Hide modal
-      ModalHelper.hideModal(this.modal);
-
-      // Show loader
-      LoaderHelper.showLoader(this.containerLoader);
-
-      setTimeout(() => {
-        // Hide loader
-        LoaderHelper.hideLoader(this.containerLoader);
-
-        // Display newly created students on the screen
-        newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
-
-        // Cancel the disable button
-        DocumentHelper.removeDisableBtn(this.btnCreateStudent);
-      }, 2000);
+        const insertRow = this.tableRow.insertRow();
+        const newRow = insertRow;
+  
+        // Add class for new row
+        newRow.className = 'content-row';
+  
+        // Set attribute for new row
+        newRow.setAttribute('data-id', newStudent.id);
+  
+        // Hide modal
+        ModalHelper.hideModal(this.modal);
+  
+        // Show loader
+        LoaderHelper.showLoader(this.containerLoader);
+  
+        setTimeout(() => {
+          // Hide loader
+          LoaderHelper.hideLoader(this.containerLoader);
+  
+          // Display newly created students on the screen
+          newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
+  
+          // Cancel the disable button
+          DocumentHelper.removeDisableBtn(this.btnCreateStudent);
+        }, 2000);
     } catch (error) {
       alert('An error occurred while creating a new student', error);
     }
@@ -520,7 +520,7 @@ export class StudentsList {
         data.enrollNumber,
       );
       let isContinue = true;
-      console.log(duplicateEmail.email, 'hhhhh');
+
       if (duplicateEmail.email != data.email) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
@@ -555,7 +555,7 @@ export class StudentsList {
       // Disable button
       DocumentHelper.disableBtn(this.btnUpdateStudent);
       const updateRow: Element = document.querySelector(`[data-id="${formStudentId}"]`);
-      const updateStudent: Student[] = await StudentService.update(formStudentId, data);
+      const updateStudent: Student[] = await StudentService.update(formStudentId, [data]);
 
       ModalHelper.hideModal(this.modal);
 

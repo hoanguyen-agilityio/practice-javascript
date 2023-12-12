@@ -24,8 +24,8 @@ export class StudentTemplate {
         <span>${move.name}</span>
         <span>${move.email}</span>
         <span>${move.phone}</span>
-        <span>${move.enrollnumber}</span>
-        <span>${move.dateofadmission}</span>
+        <span>${move.enrollNumber}</span>
+        <span>${move.dateOfAdmission}</span>
         <span><button class="btn-table btn-edit" data-id=${move.id}><img src="/btn-edit.87768a19.svg"></button></span>
         <span><button class="btn-table btn-delete btn-table-delete" data-id=${move.id}><img src="/btn-delete.98640746.svg"></button></span>
       </li>`
