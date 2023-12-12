@@ -34,7 +34,7 @@ export class StudentsList {
   modal = document.querySelector('.modal-form');
   listHeading = document.querySelector('.list-heading');
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
-  tableRow = this.containerContent.querySelector('.students-list-table');
+  table = this.containerContent.querySelector('.students-list-table');
   btnShowFormAddStudent = this.listHeading.querySelector('.btn-add-student');
   btnCancel = this.modal.querySelector('.btn-cancel');
   btnCreateStudent = this.modal.querySelector('.btn-create-student');
@@ -59,9 +59,12 @@ export class StudentsList {
   btnHideSidebar = document.querySelector('.btn-hide-sidebar');
   containerLoader = document.querySelector('.container-loader');
   loader = this.containerLoader.querySelector('.loader');
+  searchField = this.containerPageStudentsList.querySelector('.search-field');
+  tableRow = this.table.querySelectorAll('.table-row');
 
   constructor() {
     this.handleLogout();
+    this.handleAddEventSearch();
     this.handleShowAddForm();
     this.handleAddEventForCreateButton();
     this.handleAddEventForUpdateButton();
@@ -326,7 +329,7 @@ export class StudentsList {
         
       });
 
-      this.tableRow.innerHTML = tableTemplate;
+      this.table.innerHTML = tableTemplate;
       this.handleButtonsEdit();
       this.handleDeleteButtons();
     } catch (error) {
@@ -419,7 +422,7 @@ export class StudentsList {
 
       // Add newly created students to the database
       const newStudent = await StudentService.post(data);
-        const insertRow = this.tableRow.insertRow();
+        const insertRow = (this.table as HTMLTableElement).insertRow();
         const newRow = insertRow;
   
         // Add class for new row
@@ -520,7 +523,7 @@ export class StudentsList {
         data.enrollNumber,
       );
       let isContinue = true;
-
+      
       if (duplicateEmail.email != data.email) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
@@ -604,6 +607,31 @@ export class StudentsList {
       DocumentHelper.showElement(this.btnCreateStudent);
       this.resetForm();
     });
+  }
+
+  /**
+   * Handle search
+   */
+  handleSearch() {
+    const filter = (this.searchField as HTMLInputElement).value.toUpperCase();
+    for (let i = 0; i < this.tableRow.length; i++) {
+      const content = this.tableRow[i].getElementsByTagName("span")[0];
+      if (content) {
+        const txtValue = content.textContent || content.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          content[i].style.display = "";
+        } else {
+          content[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+  /**
+   * Handle add event search
+   */
+  handleAddEventSearch() {
+    this.searchField.addEventListener("keyup", this.handleSearch);
   }
 
   /**
