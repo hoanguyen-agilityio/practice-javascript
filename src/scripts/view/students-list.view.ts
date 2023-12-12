@@ -382,7 +382,7 @@ export class StudentsList {
     const validation = validate.validateForm(data, config);
 
     // Func2: Show errors
-    DocumentHelper.disableBtn(this.btnUpdateStudent);
+    // DocumentHelper.disableBtn(this.btnUpdateStudent);
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
     DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
@@ -401,18 +401,15 @@ export class StudentsList {
     // Write a util to use Generic for e.g Student or Product
     const studentsList: Student[] = await StudentService.getAll();
 
-    const newStudentsList: Student[] = studentsList.map(student => {
-      const email: string = student.email;
-      const phone: string = student.phone;
-      const enrollNumber: string = student.enrollNumber;
-
-      return { email, phone, enrollNumber };
-    });
-
     try {
       const formStudentId = this.form.getAttribute('data-id');
       const updateRow: Element = document.querySelector(`[data-id="${formStudentId}"]`);
+      const newStudentsList = studentsList.filter((student) => {
+      
+        return student.id !== formStudentId;
 
+      })
+      
       // Check entry requirements of all schools. If incorrect, output an error message
       // Func3: check duplicate record
       // [{
