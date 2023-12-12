@@ -60,7 +60,7 @@ export class StudentsList {
   containerLoader = document.querySelector('.container-loader');
   loader = this.containerLoader.querySelector('.loader');
   searchField = this.containerPageStudentsList.querySelector('.search-field');
-  tableRow = this.table.querySelectorAll('.table-row');
+  tableRow = this.table.getElementsByTagName('li');
 
   constructor() {
     this.handleLogout();
@@ -613,9 +613,11 @@ export class StudentsList {
    * Handle search
    */
   handleSearch() {
-    const filter = (this.searchField as HTMLInputElement).value.toUpperCase();
+    const filter = (this.searchField as HTMLInputElement)?.value?.toUpperCase();
+    
     for (let i = 0; i < this.tableRow.length; i++) {
       const content = this.tableRow[i].getElementsByTagName("span")[0];
+      
       if (content) {
         const txtValue = content.textContent || content.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
