@@ -59,8 +59,7 @@ export class StudentsList {
   btnHideSidebar = document.querySelector('.btn-hide-sidebar');
   containerLoader = document.querySelector('.container-loader');
   loader = this.containerLoader.querySelector('.loader');
-  searchField = this.containerPageStudentsList.querySelector('.search-field');
-  tableRow = this.table.getElementsByTagName('li');
+  searchField = this.containerContent.querySelector('.search-field');
 
   constructor() {
     this.handleLogout();
@@ -313,27 +312,27 @@ export class StudentsList {
     });
   }
 
-  /**
-   * Handling getting data from the API and displaying it on a table in HTML
-   */
-  async handleRenderTable(): Promise<void> {
-    try {
-      const result: Student[] = await StudentService.getAll();
-      console.log(result);
-      
-      let tableTemplate = StudentTemplate.renderTableThead();
+  async handleRenderRow() {
+    const result: Student[] = await StudentService.getAll();
+    let tableTemplate = StudentTemplate.renderTableThead();
 
       result.forEach(student => {
         tableTemplate += StudentTemplate.renderTableRow(student);
-        console.log([student]);
-        
       });
 
       this.table.innerHTML = tableTemplate;
       this.handleButtonsEdit();
       this.handleDeleteButtons();
+  }
+
+  /**
+   * Handling getting data from the API and displaying it on a table in HTML
+   */
+  async handleRenderTable(): Promise<void> {
+    try {
+      this.handleRenderRow()
     } catch (error) {
-      alert('An error occurred while getting student', error);
+      alert('An error occurred while getting student');
     }
   }
 
@@ -358,9 +357,6 @@ export class StudentsList {
       validation.errors.dateOfAdmission,
     );
 
-    studentsList.forEach(key => {
-      console.log(key.name);
-    });
     if (!validation.isValid) {
       return;
     }
@@ -387,16 +383,18 @@ export class StudentsList {
       if (duplicateEmail) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-        console.log(2);
+
+        return;
       } else {
         isContinue = true;
         DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-        console.log(3);
       }
 
       if (duplicatePhone) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
+
+        return;
       } else {
         isContinue = true;
         DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
@@ -408,6 +406,8 @@ export class StudentsList {
           this.enrollNumber,
           MESSAGES.DUPLICATE_ENROLL_NUMBER,
         );
+
+        return;
       } else {
         isContinue = true;
         DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
@@ -416,39 +416,35 @@ export class StudentsList {
       if (!isContinue) {
         return;
       }
-
+      
       // Disable button
       DocumentHelper.disableBtn(this.btnCreateStudent);
 
       // Add newly created students to the database
       const newStudent = await StudentService.post(data);
-        const insertRow = (this.table as HTMLTableElement).insertRow();
-        const newRow = insertRow;
+      // const insertRow = (this.table as HTMLTableElement).insertRow();
   
-        // Add class for new row
-        newRow.className = 'content-row';
+      // Hide modal
+      ModalHelper.hideModal(this.modal);
   
-        // Set attribute for new row
-        newRow.setAttribute('data-id', newStudent.id);
+      // Show loader
+      LoaderHelper.showLoader(this.containerLoader);
   
-        // Hide modal
-        ModalHelper.hideModal(this.modal);
+      setTimeout(() => {
+        const insertRow = StudentTemplate.renderTableRow(newStudent)
+          
+        // Hide loader
+        LoaderHelper.hideLoader(this.containerLoader);
   
-        // Show loader
-        LoaderHelper.showLoader(this.containerLoader);
+        // Display newly created students on the screen
+        this.handleRenderRow() = insertRow;
   
-        setTimeout(() => {
-          // Hide loader
-          LoaderHelper.hideLoader(this.containerLoader);
-  
-          // Display newly created students on the screen
-          newRow.innerHTML = StudentTemplate.renderTableRow(newStudent);
-  
-          // Cancel the disable button
-          DocumentHelper.removeDisableBtn(this.btnCreateStudent);
-        }, 2000);
+        // Cancel the disable button
+        DocumentHelper.removeDisableBtn(this.btnCreateStudent);
+      }, 2000);
     } catch (error) {
-      alert('An error occurred while creating a new student', error);
+      console.log('error when adding', error)
+      alert('An error occurred while creating a new student');
     }
   }
 
@@ -456,12 +452,12 @@ export class StudentsList {
    * Handling update form  by calling API
    */
   async handleUpdateForm(): Promise<void> {
-    // Get value and validate
+    // Func1: Get value and validate
     const data: Student = this.getValueForm();
     const config: ConfigValidation = this.getConfig();
     const validation = validate.validateForm(data, config);
 
-    // Show errors
+    // Func2: Show errors
     DocumentHelper.disableBtn(this.btnUpdateStudent);
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
@@ -474,11 +470,6 @@ export class StudentsList {
       this.dateOfAdmission,
       validation.errors.dateOfAdmission,
     );
-    // DocumentHelper.disableBtn(this.btnUpdateStudent);
-    // if (data.name === data.name ||data.email === data.email || data.phone === data.phone || data.enrollnumber === data.enrollnumber) {
-    //   DocumentHelper.disableBtn(this.btnUpdateStudent);
-
-    // }
 
     if (!validation.isValid) {
       return;
@@ -492,21 +483,22 @@ export class StudentsList {
 
       return { email, phone, enrollNumber };
     });
-    console.log(newStudentsList);
-    console.log(this.email === this.email, 1);
 
     try {
-      // const studentsList = await StudentService.getAll();
-      // const newStudentsList = studentsList.map((student) => {
-      //  const email = student.email;
-      //  const phone = student.phone;
-      //  const enrollNumber = student.enrollnumber;
-
-      //  return {email, phone, enrollNumber}
-      // });
       const formStudentId = this.form.getAttribute('data-id');
 
       // Check entry requirements of all schools. If incorrect, output an error message
+      // Func3: check duplicate record
+      [{
+        key: 'email',
+        value: data.email
+      }].forEach((item)=> {
+        validate.checkDuplicateData(
+          newStudentsList,
+          item.key,
+          item.value,
+        )
+      })
       const duplicateEmail = validate.checkDuplicateData(
         newStudentsList,
         'email',
@@ -524,9 +516,11 @@ export class StudentsList {
       );
       let isContinue = true;
       
-      if (duplicateEmail.email != data.email) {
+      if (duplicateEmail) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+
+        return;
       } else {
         isContinue = true;
         DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
@@ -535,6 +529,8 @@ export class StudentsList {
       if (duplicatePhone) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
+
+        return;
       } else {
         isContinue = true;
         DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
@@ -546,6 +542,8 @@ export class StudentsList {
           this.enrollNumber,
           MESSAGES.DUPLICATE_ENROLL_NUMBER,
         );
+
+        return;
       } else {
         isContinue = true;
         DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
@@ -556,9 +554,9 @@ export class StudentsList {
       }
 
       // Disable button
-      DocumentHelper.disableBtn(this.btnUpdateStudent);
+      // DocumentHelper.disableBtn(this.btnUpdateStudent);
       const updateRow: Element = document.querySelector(`[data-id="${formStudentId}"]`);
-      const updateStudent: Student[] = await StudentService.update(formStudentId, [data]);
+      const updateStudent: Student = await StudentService.update(formStudentId, data);
 
       ModalHelper.hideModal(this.modal);
 
@@ -570,15 +568,15 @@ export class StudentsList {
         LoaderHelper.hideLoader(this.containerLoader);
 
         // Show updated data on screen
-        updateRow.innerHTML = StudentTemplate.renderTableRow(updateStudent);
+        updateRow.innerHTML = StudentTemplate.renderTableRowContent(updateStudent);
         this.handleButtonsEdit();
         this.handleDeleteButtons();
-
+        
         // Cancel the disable button
-        // DocumentHelper.removeDisableBtn(this.btnUpdateStudent);
+        DocumentHelper.removeDisableBtn(this.btnUpdateStudent);
       }, 2000);
     } catch (error) {
-      alert('Something went wrong while updating the student', error);
+      alert('Something went wrong while updating the student');
     }
   }
 
@@ -613,19 +611,20 @@ export class StudentsList {
    * Handle search
    */
   handleSearch() {
-    const filter = (this.searchField as HTMLInputElement)?.value?.toUpperCase();
+    const searchField = document.querySelector('.search-field');
+    const table = document.querySelector('.students-list-table')
+    const tableRow = table.getElementsByTagName('li');
+    const filter = (searchField as HTMLInputElement)?.value?.toUpperCase();
     
-    for (let i = 0; i < this.tableRow.length; i++) {
-      const content = this.tableRow[i].getElementsByTagName("span")[0];
-      
-      if (content) {
-        const txtValue = content.textContent || content.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          content[i].style.display = "";
+    for (let i = 0; i < tableRow.length; i++) {
+      const content = tableRow[i].getElementsByTagName("span")[1];  
+      const txtValue = content?.textContent || content?.innerText;
+
+        if (txtValue?.toUpperCase().indexOf(filter) > -1) {
+          tableRow[i].style.display = "";
         } else {
-          content[i].style.display = "none";
+          tableRow[i].style.display = "none";
         }
-      }
     }
   }
 
@@ -639,7 +638,7 @@ export class StudentsList {
   /**
    * Add event for create button
    */
-  handleAddEventForCreateButton(): void {
+  handleAddEventForCreateButton() {
     // New student will be created when clicking create button
     this.btnCreateStudent.addEventListener('click', async () => {
       await this.handleAddForm();
@@ -677,6 +676,9 @@ export class StudentsList {
   handleCancelModal(): void {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
+      
+      // Cancel the disable button
+      DocumentHelper.removeDisableBtn(this.btnUpdateStudent);
       this.resetForm();
     });
   }

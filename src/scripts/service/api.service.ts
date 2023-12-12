@@ -22,7 +22,7 @@ class ApiService {
    * @param {*} url - link to the database
    * @param {*} data - Data updated to database
    */
-  async post<T,>(url: string, data: T[]): Promise<T[]> {
+  async post<T,>(url: string, data: T): Promise<T> {
     const option = {
       method: 'POST',
       headers: {
@@ -43,7 +43,7 @@ class ApiService {
    * @param {*} data - Data updated to database
    * @returns 
    */
-  async put<T,>(url: string, data: T[]): Promise<T[]> {
+  async put<T,>(url: string, data: T): Promise<T> {
     const option = {
       method: 'PUT',
       headers: {

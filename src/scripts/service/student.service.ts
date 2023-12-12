@@ -18,7 +18,7 @@ export class StudentService {
    * 
    * @param {*} data - The object contains the information of the student
    */
-  static async post(data: Student[]) {
+  static async post(data: Student) {
     return await apiService.post<Student>(STUDENT_API, data);
   }
 
@@ -37,7 +37,7 @@ export class StudentService {
    * @param {string} id - Id of the student in the database
    * @param {string} data - The object contains the information of the student
    */
-    static async update(id: string, data: Student[]) {
+    static async update(id: string, data: Student) {
       return await apiService.put<Student>(`${STUDENT_API}/${id}`, data);
     }
 
