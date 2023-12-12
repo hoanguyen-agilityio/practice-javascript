@@ -115,82 +115,6 @@ export class StudentsList {
     return validate.checkDuplicateData(studentsList, field, data);
   }
 
-  // showErr() {
-  //   let isContinue = true;
-  //   this.listErrorMessage.forEach(key => {
-  //     if (this.checkDuplicate(toString(key.name), data.key.name)) {
-  //       isContinue = false;
-  //       DocumentHelper.showErrorMessage(this.key.name, key.message);
-  //     } else {
-  //       isContinue = true;
-  //       DocumentHelper.showErrorMessage(this.key.name, EMPTY_TEXT);
-  //       console.log(3);
-  //     }
-
-  //     if (!isContinue) {
-  //       return;
-  //     }
-  //   });
-  // }
-
-  // checkDuplicate(arr,data) {
-  //   let test = {
-  //     duplicateEmail: validate.checkDuplicateData(
-  //       arr,
-  //       'email',
-  //       data.email,
-  //     ),
-  //     isContinue: true
-  //   };
-  // const duplicateEmail = validate.checkDuplicateData(
-  //   arr,
-  //   'email',
-  //   data.email,
-  // );
-  // let isContinue = true;
-
-  // if (test.duplicateEmail) {
-  //   test.isContinue = false
-  //   DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-  //   console.log(2)
-  //   return;
-  // }
-  // else {
-  //   test.isContinue = true
-  //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-  //   console.log(3)
-  // }
-
-  // if (!test.isContinue) {
-
-  //   console.log(4)
-  //   return;
-  // }
-
-  // if (duplicatePhone) {
-  //   isContinue = false;
-  //   DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
-  // } else {
-  //   isContinue = true;
-  //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-  // }
-
-  // if (enrollNumber) {
-  //   isContinue = false;
-  //   DocumentHelper.showErrorMessage(
-  //     this.phone,
-  //     MESSAGES.DUPLICATE_ENROLL_NUMBER,
-  //   );
-  // } else {
-  //   isContinue = true;
-  //   DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-  // }
-
-  // if (!isContinue) {
-  //   return;
-  // }
-  // }
-
   /**
    * Reset input and error message
    */
@@ -416,13 +340,12 @@ export class StudentsList {
       if (!isContinue) {
         return;
       }
-      
-      // Disable button
-      DocumentHelper.disableBtn(this.btnCreateStudent);
 
       // Add newly created students to the database
       const newStudent = await StudentService.post(data);
-      // const insertRow = (this.table as HTMLTableElement).insertRow();
+      
+      // Disable button
+      DocumentHelper.disableBtn(this.btnCreateStudent);
   
       // Hide modal
       ModalHelper.hideModal(this.modal);
@@ -435,12 +358,13 @@ export class StudentsList {
           
         // Hide loader
         LoaderHelper.hideLoader(this.containerLoader);
+
+        // Cancel the disable button
+        DocumentHelper.removeDisableBtn(this.btnCreateStudent);
   
         // Display newly created students on the screen
         this.handleRenderRow() = insertRow;
-  
-        // Cancel the disable button
-        DocumentHelper.removeDisableBtn(this.btnCreateStudent);
+
       }, 2000);
     } catch (error) {
       console.log('error when adding', error)
@@ -476,6 +400,7 @@ export class StudentsList {
     }
     // Write a util to use Generic for e.g Student or Product
     const studentsList: Student[] = await StudentService.getAll();
+
     const newStudentsList: Student[] = studentsList.map(student => {
       const email: string = student.email;
       const phone: string = student.phone;
@@ -486,19 +411,20 @@ export class StudentsList {
 
     try {
       const formStudentId = this.form.getAttribute('data-id');
+      const updateRow: Element = document.querySelector(`[data-id="${formStudentId}"]`);
 
       // Check entry requirements of all schools. If incorrect, output an error message
       // Func3: check duplicate record
-      [{
-        key: 'email',
-        value: data.email
-      }].forEach((item)=> {
-        validate.checkDuplicateData(
-          newStudentsList,
-          item.key,
-          item.value,
-        )
-      })
+      // [{
+      //   key: 'email',
+      //   value: data.email
+      // }].forEach((item)=> {
+      //   validate.checkDuplicateData(
+      //     newStudentsList,
+      //     item.key,
+      //     item.value,
+      //   )
+      // })
       const duplicateEmail = validate.checkDuplicateData(
         newStudentsList,
         'email',
@@ -555,7 +481,7 @@ export class StudentsList {
 
       // Disable button
       // DocumentHelper.disableBtn(this.btnUpdateStudent);
-      const updateRow: Element = document.querySelector(`[data-id="${formStudentId}"]`);
+      
       const updateStudent: Student = await StudentService.update(formStudentId, data);
 
       ModalHelper.hideModal(this.modal);
@@ -612,7 +538,7 @@ export class StudentsList {
    */
   handleSearch() {
     const searchField = document.querySelector('.search-field');
-    const table = document.querySelector('.students-list-table')
+    const table = document.querySelector('.students-list-table');
     const tableRow = table.getElementsByTagName('li');
     const filter = (searchField as HTMLInputElement)?.value?.toUpperCase();
     

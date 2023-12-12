@@ -4,7 +4,7 @@
 
 ## Overview:
 
-- This document will provide an overview of estimates for javascript practice. This practice will build a student list management website
+- This document will provide an overview of estimates for typescript practice. This exercise is developed based on the previous javascript practice lesson
 
 ## Author
 
@@ -12,7 +12,7 @@
 
 ### Time line:
 
-- Time line: 11 days (Nov 3, 2023 - Nov 17, 2023)
+- Time line: 5 days (Dev 6, 2023 - Dev 12, 2023)
 
 ### Design:
 
@@ -45,6 +45,11 @@
 - Prettier v2.6.2
 - Commitlint v17.4.4
 
+## Login account
+
+- Account: hoa.nguyen@asnet.com.vn
+- Password: @Hoa0919591905
+
 ## Getting started
 
 - Clone repository
@@ -56,13 +61,13 @@ git clone git@gitlab.asoft-python.com:hoa.nguyen/practice-js.git
 - Checkout branch
 
 ```
-git checkout practice-JS
+git checkout feature/practice-typescript
 ```
 
 - Change directory to practice-JS folder
 
 ```
-cd practice-js
+cd practice-javascript
 ```
 
 - Install NPM
