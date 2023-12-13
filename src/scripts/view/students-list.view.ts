@@ -190,7 +190,6 @@ export class StudentsList {
     (this.phone as HTMLInputElement).value = studentData.phone;
     (this.enrollNumber as HTMLInputElement).value = studentData.enrollNumber;
     (this.dateOfAdmission as HTMLInputElement).value = studentData.dateOfAdmission;
-    // DocumentHelper.disableBtn(this.btnUpdateStudent);
     this.form.setAttribute('data-id', studentId);
   }
 
@@ -343,9 +342,6 @@ export class StudentsList {
 
       // Add newly created students to the database
       const newStudent = await StudentService.post(data);
-      
-      // Disable button
-      DocumentHelper.disableBtn(this.btnCreateStudent);
   
       // Hide modal
       ModalHelper.hideModal(this.modal);
@@ -358,9 +354,6 @@ export class StudentsList {
           
         // Hide loader
         LoaderHelper.hideLoader(this.containerLoader);
-
-        // Cancel the disable button
-        DocumentHelper.removeDisableBtn(this.btnCreateStudent);
   
         // Display newly created students on the screen
         this.handleRenderRow()
@@ -380,8 +373,7 @@ export class StudentsList {
     const config: ConfigValidation = this.getConfig();
     const validation = validate.validateForm(data, config);
 
-    // Func2: Show errors
-    // DocumentHelper.disableBtn(this.btnUpdateStudent);
+    // Show error message
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
     DocumentHelper.showErrorMessage(this.phone, validation.errors.phone); 
@@ -397,7 +389,7 @@ export class StudentsList {
     if (!validation.isValid) {
       return;
     }
-    // Write a util to use Generic for e.g Student or Product
+
     const studentsList: Student[] = await StudentService.getAll();
 
     try {
@@ -410,17 +402,6 @@ export class StudentsList {
       })
       
       // Check entry requirements of all schools. If incorrect, output an error message
-      // Func3: check duplicate record
-      // [{
-      //   key: 'email',
-      //   value: data.email
-      // }].forEach((item)=> {
-      //   validate.checkDuplicateData(
-      //     newStudentsList,
-      //     item.key,
-      //     item.value,
-      //   )
-      // })
       const duplicateEmail = validate.checkDuplicateData(
         newStudentsList,
         'email',
@@ -474,9 +455,6 @@ export class StudentsList {
       if (!isContinue) {
         return;
       }
-
-      // Disable button
-      // DocumentHelper.disableBtn(this.btnUpdateStudent);
       
       const updateStudent: Student = await StudentService.update(formStudentId, data);
 
@@ -493,9 +471,6 @@ export class StudentsList {
         updateRow.innerHTML = StudentTemplate.renderTableRowContent(updateStudent);
         this.handleButtonsEdit();
         this.handleDeleteButtons();
-        
-        // Cancel the disable button
-        DocumentHelper.removeDisableBtn(this.btnUpdateStudent);
       }, 2000);
     } catch (error) {
       alert('Something went wrong while updating the student');
@@ -532,7 +507,7 @@ export class StudentsList {
   /**
    * Handle search
    */
-  handleSearch() {
+  handleSearch(): void {
     const searchField = document.querySelector('.search-field');
     const table = document.querySelector('.students-list-table');
     const tableRow = table.getElementsByTagName('li');
@@ -553,20 +528,24 @@ export class StudentsList {
   /**
    * Handle add event search
    */
-  handleAddEventSearch() {
+  handleAddEventSearch(): void {
     this.searchField.addEventListener("keyup", this.handleSearch);
   }
 
   /**
    * Add event for create button
    */
-  handleAddEventForCreateButton() {
+  handleAddEventForCreateButton(): void {
     // New student will be created when clicking create button
     this.btnCreateStudent.addEventListener('click', async () => {
       await this.handleAddForm();
     });
   }
 
+
+  /**
+   * Handle add event for update button
+   */
   handleAddEventForUpdateButton(): void {
     // Movie will be updated when the update button is clicked
     this.btnUpdateStudent.addEventListener('click', async () => {
@@ -599,8 +578,6 @@ export class StudentsList {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
       
-      // Cancel the disable button
-      DocumentHelper.removeDisableBtn(this.btnUpdateStudent);
       this.resetForm();
     });
   }
