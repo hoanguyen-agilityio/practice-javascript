@@ -367,7 +367,6 @@ export class StudentsList {
 
       }, 2000);
     } catch (error) {
-      console.log('error when adding', error)
       alert('An error occurred while creating a new student');
     }
   }
