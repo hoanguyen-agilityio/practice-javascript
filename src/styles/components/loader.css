@@ -17,7 +17,7 @@
 .loader {
   margin: auto;
   border: var(--border-m) solid var(--primary-color-150);
-  border-radius: var(--dorder-radius-xl);
+  border-radius: var(--border-radius-xxl);
   border-top: var(--border-m) solid var(--primary-color-100);
   border-bottom: var(--border-m) solid var(--primary-color-100);
   width: 30px;

@@ -4,9 +4,20 @@ import {
   PASSWORD_REGEX,
   PHONE_NUMBER_REGEX,
   NAME_REGEX,
-  NAME_REGEX,
-} from '../constants/regex.constant';
-import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
+  MESSAGES,
+  EMPTY_TEXT
+} from '@/constant';
+
+// Interfaces
+import { 
+  Student, 
+  ConfigValidation, 
+  LoginAccount,
+  ErrorMessage, 
+} from '../interfaces/student.interfaces';
+
+// Enum
+import { ValidationType } from '../enums/enum.enums';
 
 class Validate {
   /**
@@ -14,7 +25,7 @@ class Validate {
    *
    * @param {string} value - Comparative value
    */
-  isEmpty(value) {
+  isEmpty(value: string): string {
     return value;
   }
 
@@ -23,7 +34,7 @@ class Validate {
    *
    * @param {string} value - Comparative value
    */
-  isValidEmail(value) {
+  isValidEmail(value: string): boolean {
     return EMAIL_REGEX.test(value);
   }
 
@@ -32,25 +43,25 @@ class Validate {
    *
    * @param {string} value - Comparative value
    */
-  isValidPassword(value) {
+  isValidPassword(value: string): boolean {
     return PASSWORD_REGEX.test(value);
   }
 
   /**
    * Check names contain only characters and no numbers
    *
-   * @param {*} value - Comparative value
+   * @param {string} value - Comparative value
    */
-  isValidName(value) {
+  isValidName(value: string): boolean {
     return NAME_REGEX.test(value);
   }
 
   /**
    * Check the length of the phone number
    *
-   * @param {number} value - Comparative value
+   * @param {string} value - Comparative value
    */
-  isValidPhoneNumber(value) {
+  isValidPhoneNumber(value: string): boolean {
     return PHONE_NUMBER_REGEX.test(value);
   }
 
@@ -59,10 +70,10 @@ class Validate {
    *
    * @param {*} data - array
    * @param {*} key - The value is in the array
-   * @param {*} value - Values ​​in input fields
+   * @param {*} value - Values in input fields
    * @returns
    */
-  checkDuplicateData(data, key, value) {
+  checkDuplicateData<Type>(data: Type[], key: string, value: string) {
     return data.find(item => item[key] === value);
   }
 
@@ -72,8 +83,11 @@ class Validate {
    * @param {object} data - The data object contains all the input elements
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
-  validateForm(data, config) {
-    let formValidation = {
+  validateForm(data: Student | LoginAccount, config: ConfigValidation) {
+    const formValidation: {
+      isValid: boolean, 
+      errors: ErrorMessage
+    } = {
       isValid: true,
       errors: {},
     };
@@ -84,11 +98,23 @@ class Validate {
 
       // There is a key in the config
       if (config[key]) {
-        config[key].forEach(validationType => {
+        config[key].forEach((validationType: string) => {
           // If there are emptyEmail words, continue to consider the isEmpty condition
-          if (validationType === 'empty' && !this.isEmpty(value)) {
+          if (validationType === ValidationType.Empty && !this.isEmpty(value)) {
             formValidation.isValid = false;
             formValidation.errors[key] = MESSAGES.EMPTY;
+
+            return;
+          }
+
+          // If there are emptyEmail words, continue to consider the isEmpty condition
+          if (
+            !formValidation.errors[key] &&
+            validationType === ValidationType.EmptyEmail &&
+            !this.isEmpty(value)
+          ) {
+            formValidation.isValid = false;
+            formValidation.errors[key] = MESSAGES.EMPTY_EMAIL;
 
             return;
           }
@@ -96,7 +122,7 @@ class Validate {
           // If there are emptyPassword words, continue to consider the isEmpty condition
           if (
             !formValidation.errors[key] &&
-            validationType === 'emptyPassword' &&
+            validationType === ValidationType.EmptyPassword &&
             !this.isEmpty(value)
           ) {
             formValidation.isValid = false;
@@ -108,7 +134,7 @@ class Validate {
           // If there is an formatEmail word, continue to consider the isValidEmail condition
           if (
             !formValidation.errors[key] &&
-            validationType === 'formatEmail' &&
+            validationType === ValidationType.FormatEmail &&
             !this.isValidEmail(value)
           ) {
             formValidation.isValid = false;
@@ -120,7 +146,7 @@ class Validate {
           // If there is an passwordRule word, continue to consider the isValidPassword condition
           if (
             !formValidation.errors[key] &&
-            validationType === 'passwordRule' &&
+            validationType === ValidationType.PasswordRule &&
             !this.isValidPassword(value)
           ) {
             formValidation.isValid = false;
@@ -132,7 +158,7 @@ class Validate {
           // If there is a number in the name, an error message will be output
           if (
             !formValidation.errors[key] &&
-            validationType === 'name' &&
+            validationType === ValidationType.Name &&
             !this.isValidName(value)
           ) {
             formValidation.isValid = false;
@@ -144,7 +170,7 @@ class Validate {
           // If the length of the phone number is not equal to 10 or the format is wrong, an error message will be output
           if (
             !formValidation.errors[key] &&
-            validationType === 'phone' &&
+            validationType === ValidationType.Phone &&
             !this.isValidPhoneNumber(value)
           ) {
             formValidation.isValid = false;

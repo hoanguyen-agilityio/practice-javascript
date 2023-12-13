@@ -82,7 +82,7 @@
 }
 
 .modal-content-delete {
-  height: 200px;
+  border-radius: var(--border-radius-xl);
 }
 
 .title-confirm-delete {
@@ -92,22 +92,19 @@
 }
 
 .describe {
+  text-align: center;
   font-size: var(--font-size-m);
   margin-top: 20px;
 }
 
 .btn-form-confirm-delete {
-  margin-top: 30px;
+  margin: 30px;
   text-align: right;
 }
 
 /* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 766px) {
     /* Form confirm delete */
-  .modal-content-delete {
-    height: 250px;
-  }
-
   .title-confirm-delete {
     margin-top: 35px;
   }
@@ -117,17 +114,8 @@
     margin-top: 40px;
   }
 
-  .btn-form-confirm-delete {
-    margin-top: 35px;
-    text-align: right;
-  }
-
+  .btn-cancel, 
   .btn-delete {
-    padding: 15px 20px;
-    margin-left: 15px;
-  }
-
-  .btn-cancel {
     padding: 15px 20px;
   }
 }
@@ -135,7 +123,7 @@
 /* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 1200px) {
   .label-input {
-    font-size: var(--font-size-l);
+    font-size: var(--font-size-m);
   }
 
   .form-input-group .form-input {
@@ -157,7 +145,6 @@
   .modal-content-delete {
     text-align: center;
     width: 500px;
-    height: 250px;
   }
 }
 /* END FORM */

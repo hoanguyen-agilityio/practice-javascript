@@ -1,5 +1,5 @@
 // Constants
-import { EMPTY_TEXT } from '../constants/message.constant';
+import { EMPTY_TEXT } from '@/constant';
 
 export class DocumentHelper {
   
@@ -9,7 +9,7 @@ export class DocumentHelper {
    * @param {HtmlInputElement} input - Input element
    * @param {string} msg - Show message
    */
-  static showErrorMessage(input, msg) {
+  static showErrorMessage(input: Element, msg: string) {
     const errMessageEl = input.parentElement.querySelector('.error-message');
 
     errMessageEl.innerHTML = msg;
@@ -20,7 +20,7 @@ export class DocumentHelper {
     *
     * @param {HtmlInputElement} element - Element input
     */
-  static cleanErrorMessage(element) {
+  static cleanErrorMessage(element: Element) {
     this.showErrorMessage(element, EMPTY_TEXT);
   }
 
@@ -29,7 +29,7 @@ export class DocumentHelper {
    *
    * @param {HTMLElement} element - Element
    */
-  static hideElement(element) {
+  static hideElement(element: Element) {
     element.classList.add('hide');
   }
 
@@ -38,7 +38,7 @@ export class DocumentHelper {
    *
    * @param {HTMLElement} element - Element
    */
-  static showElement(element) {
+  static showElement(element: Element) {
     element.classList.remove('hide');
   }
   

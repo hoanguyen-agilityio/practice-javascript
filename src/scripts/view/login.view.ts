@@ -1,26 +1,37 @@
 // Constants
-import { STUDENTS_LIST_PAGE } from '../constants/app.constant';
-import { ACCOUNTS_API } from '../constants/url-api.constant';
-import { MESSAGES, EMPTY_TEXT } from '../constants/message.constant';
+import { 
+  STUDENTS_LIST_PAGE,
+  ACCOUNTS_API,
+  MESSAGES,
+  EMPTY_TEXT
+} from '@/constant';
 
 // Service
-import { apiService } from '../service/api.service';
+import { apiService } from '@/service';
 
 // Validates
-import { validate } from '../validates/form.validate';
+import { validate } from '@/validates';
 
 // Helpers
-import { DocumentHelper } from '../helpers/document.helper';
-import { LoaderHelper } from '../helpers/loader.helper';
+import { 
+  DocumentHelper,
+  LoaderHelper
+} from '@/helpers';
+
+// Interfaces
+import { 
+  ConfigValidation, 
+  LoginAccount 
+} from '../interfaces/student.interfaces';
 
 export class Login {
   formlogin = document.querySelector('#formlogin');
-  loginBtn = formlogin.querySelector('#btnlogin');
-  emailInput = formlogin.querySelector('#email');
-  passwordInput = formlogin.querySelector('#password');
-  errorMessage = formlogin.querySelector('.error-message');
-  errorMessageEmailLogin = formlogin.querySelector('.error-message-email-login');
-  errorMessagePassword = formlogin.querySelector('.error-message-password');
+  loginBtn = this.formlogin.querySelector('#btnlogin');
+  emailInput = this.formlogin.querySelector('#email');
+  passwordInput = this.formlogin.querySelector('#password');
+  errorMessage = this.formlogin.querySelector('.error-message');
+  errorMessageEmailLogin = this.formlogin.querySelector('.error-message-email-login');
+  errorMessagePassword = this.formlogin.querySelector('.error-message-password');
   containerLoader = document.querySelector('.container-loader');
   loader = this.containerLoader.querySelector('.loader');
 
@@ -28,17 +39,17 @@ export class Login {
     this.addLoginEvent();
   }
 
-  async login() {
-    const data = {
-      email: this.emailInput.value,
-      password: this.passwordInput.value,
+  async login(): Promise<void> {
+    const data: LoginAccount = {
+      email: (this.emailInput as HTMLInputElement).value,
+      password: (this.passwordInput as HTMLInputElement).value,
     };
-    const config = {
+    const config: ConfigValidation = {
       email: ['emptyEmail','formatEmail'],
       password: ['emptyPassword','passwordRule'],
     };
 
-    const errorMessage = [this.errorMessage, this.errorMessageEmailLogin, this.errorMessagePassword];
+    const errorMessage: Element[] = [this.errorMessage, this.errorMessageEmailLogin, this.errorMessagePassword];
 
     // Filter out and get each element in the array errorMessage
     const cleanErrorMessage = errorMessage.forEach((item) => {
@@ -56,7 +67,7 @@ export class Login {
     }
 
     try {
-      const userList = await apiService.get(ACCOUNTS_API);
+      const userList = await apiService.get<LoginAccount>(ACCOUNTS_API);
       const user = userList.find(({ email }) => email === data.email);
       // Clear error messages
       cleanErrorMessage;   
@@ -80,7 +91,7 @@ export class Login {
     }
   }
 
-  addLoginEvent() {
+  addLoginEvent(): void {
     this.loginBtn.addEventListener('click', async () => {
       await this.login();
     });

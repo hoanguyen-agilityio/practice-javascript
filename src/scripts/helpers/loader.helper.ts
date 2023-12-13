@@ -4,7 +4,7 @@ export class LoaderHelper {
    *
    * @param {HTMLElement} element - Element of loader
    */
-  static hideLoader(element) {
+  static hideLoader(element: Element) {
     element.classList.remove('loader-show');
   }
 
@@ -13,7 +13,7 @@ export class LoaderHelper {
    *
    * @param {HTMLElement} element - Element of modal
    */
-  static showLoader(element) {
+  static showLoader(element: Element) {
     element.classList.add('loader-show');
   }
 }

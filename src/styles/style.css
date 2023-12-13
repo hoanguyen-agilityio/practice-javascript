@@ -17,6 +17,7 @@
 @import url(./components/form.css);
 @import url(./components/text.css);
 @import url(./components/loader.css);
+@import url(./components/table.css);
 
 /* PAGE */
 @import url(./pages/login.css);
