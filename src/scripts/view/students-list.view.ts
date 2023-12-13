@@ -354,7 +354,7 @@ export class StudentsList {
       LoaderHelper.showLoader(this.containerLoader);
   
       setTimeout(() => {
-        const insertRow = StudentTemplate.renderTableRow(newStudent)
+        StudentTemplate.renderTableRow(newStudent)
           
         // Hide loader
         LoaderHelper.hideLoader(this.containerLoader);
@@ -363,7 +363,7 @@ export class StudentsList {
         DocumentHelper.removeDisableBtn(this.btnCreateStudent);
   
         // Display newly created students on the screen
-        this.handleRenderRow() = insertRow;
+        this.handleRenderRow()
 
       }, 2000);
     } catch (error) {
@@ -385,7 +385,7 @@ export class StudentsList {
     // DocumentHelper.disableBtn(this.btnUpdateStudent);
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
-    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
+    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone); 
     DocumentHelper.showErrorMessage(
       this.enrollNumber,
       validation.errors.enrollNumber,
