@@ -29,7 +29,7 @@
   "scripts": {
     "prepare": "husky install",
     "start": "parcel src/pages/index.html src/pages/students-list.html",
-    "build": "parcel build src/pages/index.html src/pages/students-list.html",
+    "build": "parcel build src/pages/students-list.html",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix"
   }
