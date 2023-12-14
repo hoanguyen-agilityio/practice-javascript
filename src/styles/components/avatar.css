@@ -15,6 +15,7 @@
 .user-rights {
   font-weight: var(--font-weight-m);
   color: var(--primary-color-100);
+  font-size: var(--font-size-s);
 }
 
 /* Avatar student */

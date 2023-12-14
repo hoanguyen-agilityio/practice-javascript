@@ -29,6 +29,7 @@
   text-decoration: none;
   font-weight: var(--font-weight-m);
   color: var(--default-color);
+  font-size: var(--font-size-s);
 }
 
 .sub-sidebar-list li a img {
