@@ -36,7 +36,11 @@
 .form-field {
   display: flex;
   flex-direction: column;
-  padding: 10px 15px 0;
+  padding: 25px 15px 0;
+}
+
+.form-field:nth-child(2n) {
+  padding-top: 10px;
 }
 
 .input-label {
@@ -46,7 +50,7 @@
 .btn-login-form {
   display: flex;
   flex-direction: column;
-  padding: 25px 15px 0;
+  padding: 20px 15px 0;
 }
 
 .btn-login {
@@ -57,7 +61,7 @@
 .message-reset-password {
   text-align: center;
   font-size: var(--font-size-s);
-  padding: 20px 15px;
+  padding: 27px 15px;
 }
 
 .message-reset-password a {
@@ -67,6 +71,10 @@
 .error-message-email-login,
 .error-message-password {
   text-align: left;
+}
+
+.form-field .error-message {
+  padding: 10px 0;
 }
 
 /* STYLE APPLIED TO THE TABLET */
@@ -90,15 +98,15 @@
   }
 
   .form-field {
-    padding: 30px 20px 0;
+    padding: 25px 20px 0;
   }
 
   .btn-login-form {
-    padding: 30px 20px 0;
+    padding: 20px 20px 0;
   }
 
   .message-reset-password {
-    padding: 30px 20px;
+    padding: 27px 20px 41px;
   }
 }
 
@@ -112,14 +120,6 @@
   .form-login-title {
     font-size: var(--font-size-l);
     padding-top: 43px;
-  }
-
-  .form-field {
-    padding: 35px 20px 0;
-  }
-
-  .btn-login-form{
-    padding: 35px 20px 0;
   }
 }
 /* END PAGE LOGIN */

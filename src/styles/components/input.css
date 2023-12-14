@@ -10,11 +10,4 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-s);
 }
-
-/* STYLE APPLIED TO THE MOBILE */
-@media (min-width: 769px) {
-  .form-input {
-    margin-top: 20px;
-  }
-}
 /* END INPUT */

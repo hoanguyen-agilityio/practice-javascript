@@ -21,5 +21,6 @@
 .avt-student {
   width: 65px;
   height: 55px;
+  border-radius: var(--border-radius-m);
 }
 /* END AVATAR */
