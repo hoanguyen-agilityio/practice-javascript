@@ -106,7 +106,7 @@
 /* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 1024px) {
   .form-login-logo {
-    padding: 40px 25px 0;
+    padding: 44px 25px 0;
     font-size: var(--font-size-xl);
   }
   
