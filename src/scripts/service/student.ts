@@ -2,8 +2,8 @@
 import { STUDENT_API } from '@/constant';
 
 // Import class apiService from api.service
-import { apiService } from './api.service';
-import { Student } from '../interfaces/student.interfaces';
+import { apiService } from '@/service';
+import { Student } from '@/interface';
 
 export class StudentService {
   /**

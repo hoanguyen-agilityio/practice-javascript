@@ -22,7 +22,7 @@ import {
 import { 
   ConfigValidation, 
   LoginAccount 
-} from '../interfaces/student.interfaces';
+} from '@/interface';
 
 export class Login {
   formlogin = document.querySelector('#formlogin');

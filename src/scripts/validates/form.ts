@@ -14,10 +14,10 @@ import {
   ConfigValidation, 
   LoginAccount,
   ErrorMessage, 
-} from '../interfaces/student.interfaces';
+} from '@/interface';
 
 // Enum
-import { ValidationType } from '../enums/enum.enums';
+import { ValidationType } from '@/enum';
 
 class Validate {
   /**

@@ -1,6 +1,3 @@
-// Import variable LOGIN_PAGE from file app.constant
-import { LOGIN_PAGE } from '@/constant';
-
 // Templates
 import { StudentTemplate } from '@/templates';
 
@@ -18,7 +15,8 @@ import {
 import { validate } from '@/validates';
 
 // Constants
-import { 
+import {
+  LOGIN_PAGE, 
   EMPTY_TEXT, 
   MESSAGES,
   ADD_STUDENT,
@@ -26,7 +24,10 @@ import {
 } from '@/constant';
 
 // Interfaces
-import { ConfigValidation, Student, ErrorMessage } from '@/interface'
+import { 
+  ConfigValidation, 
+  Student, 
+  ErrorMessage } from '@/interface'
 
 // import { STUDENTS_LIST_PAGE } from '@/constants'
 export class StudentsList {
