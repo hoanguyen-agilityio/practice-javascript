@@ -17,7 +17,7 @@
 
   .error-message {
     text-align: left;
-    padding-top: 5px;
+    padding: 10px 0 0;
   }
 }
 
@@ -26,6 +26,7 @@
 }
 
 .modal-content {
+  border-radius: var(--border-radius-xl);
   background-color: var(--secondary-color-50);
   padding: 0 15px;
   max-width: 500px;
@@ -102,6 +103,10 @@
   text-align: right;
 }
 
+.btn-group .btn {
+  padding: 14px 27px;
+}
+
 /* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 766px) {
     /* Form confirm delete */
@@ -112,11 +117,6 @@
   .describe {
     font-size: var(--font-size-m);
     margin-top: 40px;
-  }
-
-  .btn-cancel, 
-  .btn-delete {
-    padding: 15px 20px;
   }
 }
   

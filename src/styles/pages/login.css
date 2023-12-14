@@ -13,7 +13,7 @@
   width: 100%;
   max-width: 475px;
   background: var(--secondary-color-50);
-  border-radius: 20px;
+  border-radius: var(--border-radius-xl);
 }
 
 .form-login-logo {
