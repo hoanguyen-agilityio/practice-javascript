@@ -20,7 +20,9 @@ import { validate } from '@/validates';
 // Constants
 import { 
   EMPTY_TEXT, 
-  MESSAGES 
+  MESSAGES,
+  ADD_STUDENT,
+  UPDATE_STUDENT 
 } from '@/constant';
 
 // Interfaces
@@ -47,7 +49,7 @@ export class StudentsList {
   form = this.modal.querySelector('.form');
   formInput = this.modal.querySelectorAll('.form-input');
   modalConfirmDelete = document.querySelector('.modal-confirm-delete');
-  modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector(
+  btnCancelModalConfirmDelete = this.modalConfirmDelete.querySelector(
     '.btn-cancel',
   );
   modalContentDelete = this.modalConfirmDelete.querySelector(
@@ -60,6 +62,10 @@ export class StudentsList {
   containerLoader = document.querySelector('.container-loader');
   loader = this.containerLoader.querySelector('.loader');
   searchField = this.containerContent.querySelector('.search-field');
+  titleForm = this.modal.querySelector('.title-form-add-update') as HTMLElement;
+  btnCloseModal = this.modal.querySelector('.btn-close-modal');
+  btnCloseModalConfirmDelete = this.modalConfirmDelete.querySelector('.btn-close-modal')
+   
 
   constructor() {
     this.handleLogout();
@@ -68,6 +74,8 @@ export class StudentsList {
     this.handleAddEventForCreateButton();
     this.handleAddEventForUpdateButton();
     this.handleCancelModal();
+    this.handleCloseModal();
+    this.handleCloseModalConfirmDelete();
     this.handleAddEventForDeleteButton();
     this.handleCancelModalConfirmDelete();
     this.handleRenderTable();
@@ -203,7 +211,7 @@ export class StudentsList {
     btnEdits.forEach(item => {
       item.addEventListener('click', async () => {
         await this.showEditStudentModal(item);
-
+        this.titleForm.innerText = UPDATE_STUDENT;
         DocumentHelper.hideElement(this.btnCreateStudent);
         DocumentHelper.showElement(this.btnUpdateStudent);
       });
@@ -500,6 +508,8 @@ export class StudentsList {
       ModalHelper.showModal(this.modal);
       DocumentHelper.hideElement(this.btnUpdateStudent);
       DocumentHelper.showElement(this.btnCreateStudent);
+      this.titleForm.innerText = ADD_STUDENT;
+
       this.resetForm();
     });
   }
@@ -583,10 +593,31 @@ export class StudentsList {
   }
 
   /**
+   * Handle the event when the user clicks on the close button, the form will be hidden
+   */
+  handleCloseModal() {
+    this.btnCloseModal.addEventListener('click', () => {
+      ModalHelper.hideModal(this.modalConfirmDelete);
+      ModalHelper.hideModal(this.modal);
+      
+      this.resetForm();
+    })
+  }
+
+  /**
+   * Handle the event when the user clicks on the close button, the form will be hidden
+   */
+  handleCloseModalConfirmDelete() {
+    this.btnCloseModalConfirmDelete.addEventListener('click', () => {
+      ModalHelper.hideModal(this.modalConfirmDelete);
+    })
+  }
+
+  /**
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
   handleCancelModalConfirmDelete(): void {
-    this.modalConfirmDeleteBtnCancel.addEventListener('click', () => {
+    this.btnCancelModalConfirmDelete.addEventListener('click', () => {
       ModalHelper.hideModal(this.modalConfirmDelete);
     });
   }
