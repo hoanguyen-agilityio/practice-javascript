@@ -1,5 +1,5 @@
 // Interface
-import { Student } from '@/interface';
+import { PartialStudent } from '@/interface';
 
 export class StudentTemplate {
   /**
@@ -27,7 +27,7 @@ export class StudentTemplate {
 	 *
 	 * @param {*} move - Object containing student data
 	 */
-  static renderTableRow(move: Student): string {
+  static renderTableRow(move: PartialStudent): string {
     const tableRow: string = `
       <li class="table-row" data-id=${move.id}>
         ${this.renderTableRowContent(move)}
@@ -41,7 +41,7 @@ export class StudentTemplate {
 	 *
 	 * @param {*} move - Object containing student data
 	 */
-  static renderTableRowContent(move: Student): string {
+  static renderTableRowContent(move: PartialStudent): string {
     const tableRow: string = `
     <span><img src="/avatar.7bb99cdb.svg" alt="avatar student" class="avt-student"></span>
     <span>${move.name}</span>
