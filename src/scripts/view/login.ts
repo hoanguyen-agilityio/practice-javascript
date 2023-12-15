@@ -25,15 +25,14 @@ import {
 } from '@/interface';
 
 export class Login {
-  formlogin = document.querySelector('#formlogin');
-  loginBtn = this.formlogin.querySelector('#btnlogin');
-  emailInput = this.formlogin.querySelector('#email');
-  passwordInput = this.formlogin.querySelector('#password');
-  errorMessage = this.formlogin.querySelector('.error-message');
-  errorMessageEmailLogin = this.formlogin.querySelector('.error-message-email-login');
-  errorMessagePassword = this.formlogin.querySelector('.error-message-password');
-  containerLoader = document.querySelector('.container-loader');
-  loader = this.containerLoader.querySelector('.loader');
+  formLogin = document.querySelector('#formlogin');
+  loginBtn = this.formLogin.querySelector('#btnlogin');
+  emailInput = this.formLogin.querySelector('#email') as HTMLInputElement;
+  passwordInput = this.formLogin.querySelector('#password') as HTMLInputElement;
+  errorMessage = this.formLogin.querySelector('.error-message') as HTMLElement;
+  errorMessageEmailLogin = this.formLogin.querySelector('.error-message-email-login');
+  errorMessagePassword = this.formLogin.querySelector('.error-message-password');
+  containerLoader = document.querySelector('.container-loader') as HTMLElement;
 
   constructor() {
     this.addLoginEvent();
