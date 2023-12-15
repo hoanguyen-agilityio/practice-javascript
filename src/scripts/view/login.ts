@@ -1,5 +1,5 @@
 // Constants
-import { 
+import {
   STUDENTS_LIST_PAGE,
   ACCOUNTS_API,
   MESSAGES,
@@ -13,15 +13,15 @@ import { apiService } from '@/service';
 import { validate } from '@/validates';
 
 // Helpers
-import { 
+import {
   DocumentHelper,
   LoaderHelper
 } from '@/helpers';
 
 // Interfaces
-import { 
-  ConfigValidation, 
-  LoginAccount 
+import {
+  ConfigValidation,
+  LoginAccount
 } from '@/interface';
 
 export class Login {
@@ -70,13 +70,13 @@ export class Login {
       const userList = await apiService.get<LoginAccount>(ACCOUNTS_API);
       const user = userList.find(({ email }) => email === data.email);
       // Clear error messages
-      cleanErrorMessage;   
-      
-      // Correct login account      
+      cleanErrorMessage;
+
+      // Correct login account
       if (user.email === data.email && user.password === data.password) {
         LoaderHelper.showLoader(this.containerLoader);
         setTimeout(() => {window.location.href = STUDENTS_LIST_PAGE;}, 3000);
-        
+
 
       // Login with the wrong account
       } else {
