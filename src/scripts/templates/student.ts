@@ -2,7 +2,10 @@
 import { Student } from '@/interface';
 
 export class StudentTemplate {
-  static renderTableThead(): string {
+  /**
+	 * Displays the table title
+	 */
+	static renderTableThead(): string {
     const tableThead: string = `
     <li class="table-thead">
       <span></span>
