@@ -284,23 +284,27 @@ export class StudentsList {
     }
 
     try {
-      // Check entry requirements of all schools. If incorrect, output an error message
-      const duplicateEmail = validate.checkDuplicateData(
+      // Check for duplicate emails
+      const duplicateEmail: PartialStudent = validate.checkDuplicateData(
         studentsList,
         'email',
         data.email,
       );
-      const duplicatePhone = validate.checkDuplicateData(
+
+			// Check for duplicate phones
+      const duplicatePhone: PartialStudent = validate.checkDuplicateData(
         studentsList,
         'phone',
         data.phone,
       );
-      const duplicateEnrollNumber = validate.checkDuplicateData(
+
+			// Check for duplicate enroll numbers
+      const duplicateEnrollNumber: PartialStudent = validate.checkDuplicateData(
         studentsList,
         'enrollnumber',
         data.enrollNumber,
       );
-      let isContinue = true;
+      let isContinue: boolean = true;
 
       if (duplicateEmail) {
         isContinue = false;
@@ -403,23 +407,27 @@ export class StudentsList {
 
       })
 
-      // Check entry requirements of all schools. If incorrect, output an error message
-      const duplicateEmail = validate.checkDuplicateData(
+      // Check for duplicate emails
+      const duplicateEmail: PartialStudent = validate.checkDuplicateData(
         newStudentsList,
         'email',
         data.email,
       );
-      const duplicatePhone = validate.checkDuplicateData(
+
+			// Check for duplicate phones
+      const duplicatePhone: PartialStudent = validate.checkDuplicateData(
         newStudentsList,
         'phone',
         data.phone,
       );
-      const duplicateEnrollNumber = validate.checkDuplicateData(
+
+			// Check for duplicate enroll numbers
+      const duplicateEnrollNumber: PartialStudent = validate.checkDuplicateData(
         newStudentsList,
         'enrollnumber',
         data.enrollNumber,
       );
-      let isContinue = true;
+      let isContinue: boolean = true;
 
       if (duplicateEmail) {
         isContinue = false;
