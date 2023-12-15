@@ -2,14 +2,14 @@
 import { EMPTY_TEXT } from '@/constant';
 
 export class DocumentHelper {
-  
+
   /**
    * Display error message
    *
-   * @param {HtmlInputElement} input - Input element
+   * @param {HTMLElement} input - HTML Element
    * @param {string} msg - Show message
    */
-  static showErrorMessage(input: Element, msg: string) {
+  static showErrorMessage(input: HTMLElement, msg: string): void {
     const errMessageEl = input.parentElement.querySelector('.error-message');
 
     errMessageEl.innerHTML = msg;
@@ -18,36 +18,36 @@ export class DocumentHelper {
   /**
     * Clean error message
     *
-    * @param {HtmlInputElement} element - Element input
+    * @param {HTMLElement} element - HTML Element
     */
-  static cleanErrorMessage(element: Element) {
+  static cleanErrorMessage(element: HTMLElement): void {
     this.showErrorMessage(element, EMPTY_TEXT);
   }
 
   /**
    * Hide element
    *
-   * @param {HTMLElement} element - Element
+   * @param {HTMLElement} element - HTML Element
    */
-  static hideElement(element: Element) {
+  static hideElement(element: HTMLElement): void {
     element.classList.add('hide');
   }
 
   /**
    * Show element
    *
-   * @param {HTMLElement} element - Element
+   * @param {HTMLElement} element - HTML Element
    */
-  static showElement(element: Element) {
+  static showElement(element: HTMLElement): void {
     element.classList.remove('hide');
   }
-  
+
   /**
    * Disable button
-   * 
-   * @param {*} btn - element button
+   *
+   * @param {HTMLButtonElement} btn - HTML Button Element
    */
-  static disableBtn(btn) {
+  static disableBtn(btn: HTMLButtonElement): void {
     btn.style.opacity = '0.5';
     btn.disabled = true;
 
@@ -56,10 +56,10 @@ export class DocumentHelper {
 
   /**
    * Cancel the disable button
-   * 
-   * @param {*} btn - element button
+   *
+   * @param {HTMLButtonElement} btn - HTML Button Element
    */
-  static removeDisableBtn(btn) {
+  static removeDisableBtn(btn: HTMLButtonElement): void {
     btn.style.opacity = '1';
     btn.disabled = false;
 
