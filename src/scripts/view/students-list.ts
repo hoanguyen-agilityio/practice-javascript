@@ -247,7 +247,7 @@ export class StudentsList {
   /**
    * Handling getting data from the API and displaying it on a table in HTML
    */
-  async handleRenderTable(): Promise<void> {
+  handleRenderTable(): void {
     try {
       this.handleRenderRow()
     } catch (error) {
@@ -371,13 +371,12 @@ export class StudentsList {
    * Handling update form  by calling API
    */
   async handleUpdateForm(): Promise<void> {
-    // Func1: Get value and validate
     const data: PartialStudent = this.getValueForm();
     const config: PartialConfigValidation = this.getConfig();
     const validation: {
 			isValid: boolean;
 			errors: PartialErrorMessage;
-	} = validate.validateForm(data, config);
+		} = validate.validateForm(data, config);
 
     // Show error message
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
