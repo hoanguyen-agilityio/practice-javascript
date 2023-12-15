@@ -35,16 +35,18 @@
 
 - Login page:
   - User can log in
-  - If the user enters incorrect login information, an error message is output
-  - If the user enters the correct account, when clicking the login button, it will go to the students list page
+  - Users may see an error message when they make an error
+  - Users can switch to the student list page when they enter the correct login account
   - Loader appears when turning pages
 - Students list page:
-  - Display list of students
-  - Users can add, edit, and delete students
-  - An error message appears when the user enters incorrect information when adding or editing students
-  - The loader appears when users add, edit, and delete students
-  - Users can search by student's name
-  - When the user clicks on the logout button, they will return to the login page
+  - Users can view the student list
+  - Additional functions
+    - Users can add new students
+    - User can update students
+    - User can delete students
+    - The loader appears when users add, edit, and delete students
+    - Users can search for students by name
+- Returns to the login page when the user clicks on the logout button
 
 ## Technical
 
