@@ -52,7 +52,7 @@ export class Login {
     const errorMessage: Element[] = [this.errorMessage, this.errorMessageEmailLogin, this.errorMessagePassword];
 
     // Filter out and get each element in the array errorMessage
-    const cleanErrorMessage = errorMessage.forEach((item) => {
+    const cleanErrorMessage = errorMessage.forEach((item: HTMLElement) => {
       DocumentHelper.cleanErrorMessage(item);
     });
     const validation = validate.validateForm(data, config);
