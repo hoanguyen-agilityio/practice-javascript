@@ -11,14 +11,14 @@
       "dom",
     ],
     "paths": {
-      "@/constant": ["src/scripts/constants/index.ts"],
-      "@/helpers": ["src/scripts/helpers/index.ts"],
-      "@/service": ["src/scripts/service/index.ts"],
-      "@/view": ["src/scripts/view/index.ts"],
-      "@/validates": ["src/scripts/validates/form.ts"],
-      "@/templates": ["src/scripts/templates/student.ts"],
-      "@/interface": ["src/scripts/interfaces/student.ts"],
-      "@/enum": ["src/scripts/enums/enum.ts"]
+      "@/constant": ["./src/scripts/constants/index.ts"],
+      "@/helpers": ["./src/scripts/helpers/index.ts"],
+      "@/service": ["./src/scripts/service/index.ts"],
+      "@/view": ["./src/scripts/view/index.ts"],
+      "@/validates": ["./src/scripts/validates/form.ts"],
+      "@/templates": ["./src/scripts/templates/student.ts"],
+      "@/interface": ["./src/scripts/interfaces/student.ts"],
+      "@/enum": ["./src/scripts/enums/enum.ts"]
     }
   }
 }
