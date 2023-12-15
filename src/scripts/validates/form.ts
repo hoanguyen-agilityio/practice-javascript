@@ -9,11 +9,11 @@ import {
 } from '@/constant';
 
 // Interfaces
-import { 
-  Student, 
-  ConfigValidation, 
+import {
+  PartialStudent,
+  PartialConfigValidation,
   LoginAccount,
-  ErrorMessage, 
+  PartialErrorMessage,
 } from '@/interface';
 
 // Enum
@@ -83,10 +83,10 @@ class Validate {
    * @param {object} data - The data object contains all the input elements
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
-  validateForm(data: Student | LoginAccount, config: ConfigValidation) {
+  validateForm(data: PartialStudent | LoginAccount, config: PartialConfigValidation) {
     const formValidation: {
-      isValid: boolean, 
-      errors: ErrorMessage
+      isValid: boolean,
+      errors: PartialErrorMessage
     } = {
       isValid: true,
       errors: {},

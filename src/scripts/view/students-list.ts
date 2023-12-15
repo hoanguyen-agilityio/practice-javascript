@@ -5,7 +5,7 @@ import { StudentTemplate } from '@/templates';
 import { StudentService } from '@/service';
 
 // Helpers
-import { 
+import {
   ModalHelper,
   DocumentHelper,
   LoaderHelper
@@ -16,18 +16,18 @@ import { validate } from '@/validates';
 
 // Constants
 import {
-  LOGIN_PAGE, 
-  EMPTY_TEXT, 
+  LOGIN_PAGE,
+  EMPTY_TEXT,
   MESSAGES,
   ADD_STUDENT,
-  UPDATE_STUDENT 
+  UPDATE_STUDENT
 } from '@/constant';
 
 // Interfaces
-import { 
-  ConfigValidation, 
-  Student, 
-  ErrorMessage } from '@/interface'
+import {
+  PartialConfigValidation,
+  PartialStudent,
+} from '@/interface'
 
 // import { STUDENTS_LIST_PAGE } from '@/constants'
 export class StudentsList {
@@ -66,7 +66,7 @@ export class StudentsList {
   titleForm = this.modal.querySelector('.title-form-add-update') as HTMLElement;
   btnCloseModal = this.modal.querySelector('.btn-close-modal');
   btnCloseModalConfirmDelete = this.modalConfirmDelete.querySelector('.btn-close-modal')
-   
+
 
   constructor() {
     this.handleLogout();
@@ -84,7 +84,7 @@ export class StudentsList {
     this.handleAddEventForBtnHideSidebar();
   }
 
-  getValueForm(): Student {
+  getValueForm(): PartialStudent {
     return {
       name: (this.name as HTMLInputElement).value,
       email: (this.email as HTMLInputElement).value,
@@ -94,7 +94,7 @@ export class StudentsList {
     };
   }
 
-  getConfig(): ConfigValidation {
+  getConfig(): PartialConfigValidation {
     return {
       name: ['empty', 'name'],
       email: ['empty', 'formatEmail'],
@@ -191,7 +191,7 @@ export class StudentsList {
    */
   async showEditStudentModal(item) {
     const studentId = item.dataset.id;
-    const studentData = await StudentService.getById(studentId) as ErrorMessage;
+    const studentData = await StudentService.getById(studentId);
 
     ModalHelper.showModal(this.modal);
     (this.name as HTMLInputElement).value = studentData.name;
@@ -245,7 +245,7 @@ export class StudentsList {
   }
 
   async handleRenderRow() {
-    const result: Student[] = await StudentService.getAll();
+    const result: PartialStudent[] = await StudentService.getAll();
     let tableTemplate = StudentTemplate.renderTableThead();
 
       result.forEach(student => {
@@ -272,8 +272,8 @@ export class StudentsList {
    * Handling create form  by calling API
    */
   async handleAddForm(): Promise<void> {
-    const data: Student = this.getValueForm();
-    const config: ConfigValidation = this.getConfig();
+    const data: PartialStudent = this.getValueForm();
+    const config: PartialConfigValidation = this.getConfig();
     const validation = validate.validateForm(data, config);
     const studentsList = await StudentService.getAll();
 
@@ -351,19 +351,19 @@ export class StudentsList {
 
       // Add newly created students to the database
       const newStudent = await StudentService.post(data);
-  
+
       // Hide modal
       ModalHelper.hideModal(this.modal);
-  
+
       // Show loader
       LoaderHelper.showLoader(this.containerLoader);
-  
+
       setTimeout(() => {
         StudentTemplate.renderTableRow(newStudent)
-          
+
         // Hide loader
         LoaderHelper.hideLoader(this.containerLoader);
-  
+
         // Display newly created students on the screen
         this.handleRenderRow()
 
@@ -378,14 +378,14 @@ export class StudentsList {
    */
   async handleUpdateForm(): Promise<void> {
     // Func1: Get value and validate
-    const data: Student = this.getValueForm();
-    const config: ConfigValidation = this.getConfig();
+    const data: PartialStudent = this.getValueForm();
+    const config: PartialConfigValidation = this.getConfig();
     const validation = validate.validateForm(data, config);
 
     // Show error message
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
-    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone); 
+    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
     DocumentHelper.showErrorMessage(
       this.enrollNumber,
       validation.errors.enrollNumber,
@@ -399,17 +399,17 @@ export class StudentsList {
       return;
     }
 
-    const studentsList: Student[] = await StudentService.getAll();
+    const studentsList: PartialStudent[] = await StudentService.getAll();
 
     try {
       const formStudentId = this.form.getAttribute('data-id');
       const updateRow: Element = document.querySelector(`[data-id="${formStudentId}"]`);
       const newStudentsList = studentsList.filter((student) => {
-      
+
         return student.id !== formStudentId;
 
       })
-      
+
       // Check entry requirements of all schools. If incorrect, output an error message
       const duplicateEmail = validate.checkDuplicateData(
         newStudentsList,
@@ -427,7 +427,7 @@ export class StudentsList {
         data.enrollNumber,
       );
       let isContinue = true;
-      
+
       if (duplicateEmail) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
@@ -464,8 +464,8 @@ export class StudentsList {
       if (!isContinue) {
         return;
       }
-      
-      const updateStudent: Student = await StudentService.update(formStudentId, data);
+
+      const updateStudent: PartialStudent = await StudentService.update(formStudentId, data);
 
       ModalHelper.hideModal(this.modal);
 
@@ -523,9 +523,9 @@ export class StudentsList {
     const table = document.querySelector('.students-list-table');
     const tableRow = table.getElementsByTagName('li');
     const filter = (searchField as HTMLInputElement)?.value?.toUpperCase();
-    
+
     for (let i = 0; i < tableRow.length; i++) {
-      const content = tableRow[i].getElementsByTagName("span")[1];  
+      const content = tableRow[i].getElementsByTagName("span")[1];
       const txtValue = content?.textContent || content?.innerText;
 
         if (txtValue?.toUpperCase().indexOf(filter) > -1) {
@@ -588,7 +588,7 @@ export class StudentsList {
   handleCancelModal(): void {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
-      
+
       this.resetForm();
     });
   }
@@ -600,7 +600,7 @@ export class StudentsList {
     this.btnCloseModal.addEventListener('click', () => {
       ModalHelper.hideModal(this.modalConfirmDelete);
       ModalHelper.hideModal(this.modal);
-      
+
       this.resetForm();
     })
   }

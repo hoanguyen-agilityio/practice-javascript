@@ -3,23 +3,23 @@ import { STUDENT_API } from '@/constant';
 
 // Import class apiService from api.service
 import { apiService } from '@/service';
-import { Student } from '@/interface';
+import { PartialStudent } from '@/interface';
 
 export class StudentService {
   /**
    * Get all data from database
    */
   static async getAll() {
-    return await apiService.get<Student>(STUDENT_API);
+    return await apiService.get<PartialStudent[]>(STUDENT_API);
   }
 
   /**
    * Add new student in database
-   * 
+   *
    * @param {*} data - The object contains the information of the student
    */
-  static async post(data: Student) {
-    return await apiService.post<Student>(STUDENT_API, data);
+  static async post(data: PartialStudent) {
+    return await apiService.post<PartialStudent>(STUDENT_API, data);
   }
 
   /**
@@ -28,7 +28,7 @@ export class StudentService {
    * @param {string} id - Id of the student in the database
    */
   static async getById(id: string) {
-    return await apiService.get<Student>(`${STUDENT_API}/${id}`);
+    return await apiService.get<PartialStudent>(`${STUDENT_API}/${id}`);
   }
 
   /**
@@ -37,8 +37,8 @@ export class StudentService {
    * @param {string} id - Id of the student in the database
    * @param {string} data - The object contains the information of the student
    */
-    static async update(id: string, data: Student) {
-      return await apiService.put<Student>(`${STUDENT_API}/${id}`, data);
+    static async update(id: string, data: PartialStudent) {
+      return await apiService.put<PartialStudent>(`${STUDENT_API}/${id}`, data);
     }
 
   /**
@@ -47,6 +47,6 @@ export class StudentService {
    * @param {string} id - Id of the student in the database
    */
   static async delete(id: string) {
-    return await apiService.delete<Student>(`${STUDENT_API}/${id}`);
+    return await apiService.delete<PartialStudent>(`${STUDENT_API}/${id}`);
   }
 }

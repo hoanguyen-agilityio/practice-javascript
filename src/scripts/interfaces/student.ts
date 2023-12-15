@@ -1,10 +1,10 @@
 export interface Student {
-  id?: string,
-  name?: string,
+  id: string,
+  name: string,
   email: string,
   phone: string,
   enrollNumber: string,
-  dateOfAdmission?: string,
+  dateOfAdmission: string,
 }
 
 export interface LoginAccount {
@@ -13,19 +13,20 @@ export interface LoginAccount {
 }
 
 export interface ConfigValidation {
-  name?: string[],
-  email?: string[], 
-  password?: string[],
-  phone?: string[],
-  enrollNumber?: string[],
-  dateOfAdmission?: string[]
+  name: string[],
+  email: string[],
+  password: string[],
+  phone: string[],
+  enrollNumber: string[],
+  dateOfAdmission: string[]
 }
 
-export interface ErrorMessage {
-  name?: string,
-  email?: string,
-  phone?: string,
-  enrollNumber?: string,
-  dateOfAdmission?: string
-  password?: string
+export interface ErrorMessage extends Student {
+  password: string
 }
+
+export type PartialStudent = Partial<Student>
+
+export type PartialConfigValidation = Partial<ConfigValidation>
+
+export type PartialErrorMessage = Partial<ErrorMessage>

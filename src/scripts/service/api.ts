@@ -1,15 +1,15 @@
 class ApiService {
   /**
    * Get by calling API
-   * 
+   *
    * @param {*} url - link to the database
    */
 
-  async get<T,>(url: string): Promise<T[]> {
+  async get<T,>(url: string): Promise<T> {
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
       },
     });
 
@@ -18,7 +18,7 @@ class ApiService {
 
   /**
    *  Create new by calling API
-   * 
+   *
    * @param {*} url - link to the database
    * @param {*} data - Data updated to database
    */
@@ -30,7 +30,7 @@ class ApiService {
       },
       body: JSON.stringify(data),
     };
-    
+
     const response = await fetch(url, option);
 
     return response.json();
@@ -38,10 +38,10 @@ class ApiService {
 
   /**
    * Update by calling API
-   * 
+   *
    * @param {*} url - link to the database
    * @param {*} data - Data updated to database
-   * @returns 
+   * @returns
    */
   async put<T,>(url: string, data: T): Promise<T> {
     const option = {
@@ -58,7 +58,7 @@ class ApiService {
 
   /**
    * Remove by calling API
-   * 
+   *
    * @param {*} url - link to the database
    */
   async delete<T,>(url: string): Promise<T[]> {

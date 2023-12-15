@@ -20,7 +20,7 @@ import {
 
 // Interfaces
 import {
-  ConfigValidation,
+  PartialConfigValidation,
   LoginAccount
 } from '@/interface';
 
@@ -44,7 +44,7 @@ export class Login {
       email: (this.emailInput as HTMLInputElement).value,
       password: (this.passwordInput as HTMLInputElement).value,
     };
-    const config: ConfigValidation = {
+    const config: PartialConfigValidation = {
       email: ['emptyEmail','formatEmail'],
       password: ['emptyPassword','passwordRule'],
     };
@@ -67,7 +67,7 @@ export class Login {
     }
 
     try {
-      const userList = await apiService.get<LoginAccount>(ACCOUNTS_API);
+      const userList = await apiService.get<LoginAccount[]>(ACCOUNTS_API);
       const user = userList.find(({ email }) => email === data.email);
       // Clear error messages
       cleanErrorMessage;
