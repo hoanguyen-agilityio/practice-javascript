@@ -34,19 +34,20 @@
 ## Requirements
 
 - Login page:
-  - User can log in
-  - Users may see an error message when they make an error
-  - Users can switch to the student list page when they enter the correct login account
-  - Loader appears when turning pages
+  - User is able to see the Login Form
+  - User is able to see error message when enter blank or wrong user’s name, user’s password
+  - User is able to see the Student List page when enter correct user’s email, user’s password
+  - User is able to see the loading indicator before leaving Login page
 - Students list page:
-  - Users can view the student list
-  - Additional functions
-    - Users can add new students
-    - User can update students
-    - User can delete students
-    - The loader appears when users add, edit, and delete students
-    - Users can search for students by name
-- Returns to the login page when the user clicks on the logout button
+  - User is able to see the list student with information: avatar, name, email, phone, enroll number and date of admission
+  - User is able to add a new student when click button create student
+  - User is able to edit a student when click icon edit
+  - User is able to delete a student when click icon remove
+  - User is able to see the error message when enter the student’s informations already exists with add new student
+  - User is able to see the error message when enter the blank student’s informations with edit student
+  - User is able to see loading indicator when create/update student
+  - User is able to search student by name
+  - User is able return Login page when click Logout button
 
 ## Technical
 
@@ -109,38 +110,11 @@
 
 ## Getting started
 
-- Clone repository
-
-```
-git clone git@gitlab.asoft-python.com:hoa.nguyen/practice-js.git
-```
-
-- Change directory to practice-typescript folder
-
-```
-cd practice-javascript
-```
-
-- Checkout branch
-
-```
-git checkout feature/practice-typescript
-```
-
-- Install NPM
-
-```
-npm install
-```
-
-- Run application
-
-```
-npm start
-```
-
-- Open browser with the link below
-
-```
-http://localhost:1234/
-```
+| **Command**                                                                     | **Action**                           |
+| ------------------------------------------------------------------------------- | ------------------------------------ |
+| `$git clone git@gitlab.asoft-python.com:hoa.nguyen/typescript-training.git`     | Clone repository with SSH            |
+| `$git clone https://gitlab.asoft-python.com/hoa.nguyen/typescript-training.git` | Clone repository with HTTPS          |
+| `$cd practice-typescript`                                                       | Redirect to folder                   |
+| `$git checkout feature/practice-typescript`                                     | Checkout branch                      |
+| `$npm install`                                                                  | Install npm                          |
+| `$npm start`                                                                    | Start local server at localhost:1234 |
