@@ -1,8 +1,10 @@
 // Constants
 import { STUDENT_API } from '@/constant';
 
-// Import class apiService from api.service
+// Service
 import { apiService } from '@/service';
+
+// Interface
 import { PartialStudent } from '@/interface';
 
 export class StudentService {

@@ -1,3 +1,4 @@
+// Interface
 import { OptionApi } from "@/interface";
 
 class ApiService {
