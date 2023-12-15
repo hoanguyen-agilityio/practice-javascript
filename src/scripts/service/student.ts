@@ -9,7 +9,7 @@ export class StudentService {
   /**
    * Get all data from database
    */
-  static async getAll() {
+  static async getAll(): Promise<PartialStudent[]> {
     return await apiService.get<PartialStudent[]>(STUDENT_API);
   }
 
@@ -18,7 +18,7 @@ export class StudentService {
    *
    * @param {*} data - The object contains the information of the student
    */
-  static async post(data: PartialStudent) {
+  static async post(data: PartialStudent): Promise<PartialStudent> {
     return await apiService.post<PartialStudent>(STUDENT_API, data);
   }
 
@@ -27,7 +27,7 @@ export class StudentService {
    *
    * @param {string} id - Id of the student in the database
    */
-  static async getById(id: string) {
+  static async getById(id: string): Promise<PartialStudent> {
     return await apiService.get<PartialStudent>(`${STUDENT_API}/${id}`);
   }
 
@@ -37,7 +37,7 @@ export class StudentService {
    * @param {string} id - Id of the student in the database
    * @param {string} data - The object contains the information of the student
    */
-    static async update(id: string, data: PartialStudent) {
+    static async update(id: string, data: PartialStudent): Promise<PartialStudent> {
       return await apiService.put<PartialStudent>(`${STUDENT_API}/${id}`, data);
     }
 
@@ -46,7 +46,7 @@ export class StudentService {
    *
    * @param {string} id - Id of the student in the database
    */
-  static async delete(id: string) {
+  static async delete(id: string): Promise<PartialStudent> {
     return await apiService.delete<PartialStudent>(`${STUDENT_API}/${id}`);
   }
 }

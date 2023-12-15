@@ -17,7 +17,7 @@
       "@/view": ["./src/scripts/view/index.ts"],
       "@/validates": ["./src/scripts/validates/form.ts"],
       "@/templates": ["./src/scripts/templates/student.ts"],
-      "@/interface": ["./src/scripts/interfaces/student.ts"],
+      "@/interface": ["./src/scripts/interfaces/index.ts"],
       "@/enum": ["./src/scripts/enums/enum.ts"]
     }
   }
