@@ -49,7 +49,7 @@ export class StudentsList {
   phone = this.modal.querySelector('#phone') as HTMLInputElement;
   enrollNumber = this.modal.querySelector('#phoneenrollnumber') as HTMLInputElement;
   dateOfAdmission = this.modal.querySelector('#dateofadmission') as HTMLInputElement;
-  form = this.modal.querySelector('.form');
+  form = this.modal.querySelector('.form') as HTMLFormElement;
   formInput = this.modal.querySelectorAll('.form-input');
   modalConfirmDelete = document.querySelector('.modal-confirm-delete') as HTMLElement;
   btnCancelModalConfirmDelete = this.modalConfirmDelete.querySelector(
@@ -115,22 +115,12 @@ export class StudentsList {
    * Reset input and error message
    */
   resetForm(): void {
-    this.formInput.forEach((item: HTMLInputElement) => {
-      item.value = EMPTY_TEXT;
-    });
-
-    const errorMessage: Element[] = [
-      this.name,
-      this.email,
-      this.phone,
-      this.enrollNumber,
-      this.dateOfAdmission,
-    ];
-
-    // Filter out and get each element in the array errorMessage
-    errorMessage.forEach((item: HTMLElement) => {
-      DocumentHelper.cleanErrorMessage(item);
-    });
+		this.form.reset();
+		DocumentHelper.cleanErrorMessage(this.name);
+		DocumentHelper.cleanErrorMessage(this.email);
+		DocumentHelper.cleanErrorMessage(this.phone);
+		DocumentHelper.cleanErrorMessage(this.enrollNumber);
+		DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
   }
 
   /**
