@@ -115,6 +115,7 @@ export class StudentsList {
    * Reset input and error message
    */
   resetForm(): void {
+		// this.form.reset();
 		this.form.reset();
 		DocumentHelper.cleanErrorMessage(this.name);
 		DocumentHelper.cleanErrorMessage(this.email);
