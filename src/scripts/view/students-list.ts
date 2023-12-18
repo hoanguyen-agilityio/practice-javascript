@@ -42,8 +42,8 @@ export class StudentsList {
   table = this.containerContent.querySelector('.students-list-table');
   btnShowFormAddStudent = this.listHeading.querySelector('.btn-add-student');
   btnCancel = this.modal.querySelector('.btn-cancel');
-  btnCreateStudent = this.modal.querySelector('.btn-create-student') as HTMLButtonElement;
-  btnUpdateStudent = this.modal.querySelector('.btn-update-student') as HTMLButtonElement;
+  btnCreateStudent = this.modal.querySelector('.btn-create-student') as HTMLElement;
+  btnUpdateStudent = this.modal.querySelector('.btn-update-student') as HTMLElement;
   name = this.modal.querySelector('#namestudent') as HTMLInputElement;
   email = this.modal.querySelector('#email') as HTMLInputElement;
   phone = this.modal.querySelector('#phone') as HTMLInputElement;
@@ -251,10 +251,7 @@ export class StudentsList {
   async handleAddForm(): Promise<void> {
     const data: PartialStudent = this.getValueForm();
     const config: PartialConfigValidation = this.getConfig();
-    const validation: {
-			isValid: boolean;
-			errors: PartialErrorMessage;
-		} = validate.validateForm(data, config);
+    const validation: { isValid: boolean; errors: PartialErrorMessage; } = validate.validateForm(data, config);
     const studentsList: PartialStudent[] = await StudentService.getAll();
 
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
@@ -363,10 +360,7 @@ export class StudentsList {
   async handleUpdateForm(): Promise<void> {
     const data: PartialStudent = this.getValueForm();
     const config: PartialConfigValidation = this.getConfig();
-    const validation: {
-			isValid: boolean;
-			errors: PartialErrorMessage;
-		} = validate.validateForm(data, config);
+    const validation: { isValid: boolean; errors: PartialErrorMessage; } = validate.validateForm(data, config);
 
     // Show error message
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
