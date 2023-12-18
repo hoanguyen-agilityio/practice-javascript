@@ -234,8 +234,8 @@ export class StudentsList {
       });
 
       this.table.innerHTML = tableTemplate;
-      this.handleButtonsEdit();
-      this.handleDeleteButtons();
+			this.handleButtonsEdit();
+			this.handleDeleteButtons();
   }
 
   /**
@@ -369,7 +369,7 @@ export class StudentsList {
 			}
 
       // Add newly created students to the database
-      const newStudent = await StudentService.post(data);
+      const newStudent: PartialStudent = await StudentService.post(data);
 
       // Hide modal
       ModalHelper.hideModal(this.modal);
@@ -378,14 +378,16 @@ export class StudentsList {
       LoaderHelper.showLoader(this.containerLoader);
 
       setTimeout(() => {
-        StudentTemplate.renderTableRow(newStudent)
-
         // Hide loader
         LoaderHelper.hideLoader(this.containerLoader);
 
-        // Display newly created students on the screen
-        this.handleRenderRow()
+				const prevTable = this.table.innerHTML;
+				const newItem = StudentTemplate.renderTableRow(newStudent);
 
+				// Display newly created students on the screen
+				this.table.innerHTML= `${prevTable} ${newItem}`;
+				this.handleButtonsEdit();
+				this.handleDeleteButtons();
       }, 2000);
     } catch (error) {
       alert('An error occurred while creating a new student');
@@ -483,7 +485,7 @@ export class StudentsList {
       const txtValue: string = content?.textContent || content?.innerText;
 
         if (txtValue?.toUpperCase().indexOf(filter) > -1) {
-          tableRow[i].style.display = '';
+					tableRow[i].style.display = '';
         } else {
           tableRow[i].style.display = 'none';
         }
