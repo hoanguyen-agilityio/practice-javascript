@@ -120,7 +120,10 @@
         <div class="modal modal-form">
           <div class="scroll-y">
             <div class="modal-content">
-              <h3 class="title title-form-add-update">Student</h3>
+              <div class="modal-header">
+                <h3 class="title title-form-add-update">Student</h3>
+                <button class="btn-close-modal">X</button>
+              </div>
               <div class="form">
                 <div class="form-input-group">
                   <label class="label-input">Name</label>
@@ -179,21 +182,21 @@
                   class="btn btn-cancel"
                   aria-label="Cancel"
                 >
-                  Cancel
+                  CANCEL
                 </button>
                 <button
                   type="button"
                   class="btn btn-create-student"
                   aria-label="Create Student"
                 >
-                  Create Student
+                  CREATE STUDENT
                 </button>
                 <button
                   type="button"
                   class="btn btn-update-student"
                   aria-label="Update Student"
                 >
-                  Update Student
+                  UPDATE STUDENT
                 </button>
               </div>
             </div>
@@ -203,16 +206,17 @@
         <!-- FORM CONFIRM DELETE -->
         <div class="modal modal-confirm-delete">
           <div class="modal-content modal-content-delete">
-            <div class="content">
+            <div class="modal-header">
               <p class="title title-confirm-delete">CONFIRM DELETE!!!</p>
-              <p class="describe">Are you sure you want delete this student</p>
+              <button class="btn-close-modal">X</button>
             </div>
+            <p class="describe">Are you sure you want delete this student</p>
             <div class="btn-form-confirm-delete">
               <button type="button" class="btn btn-cancel" aria-label="Cancel">
-                Cancel
+                CANCEL
               </button>
               <button type="button" class="btn btn-delete" aria-label="Delete">
-                Delete
+                DELETE
               </button>
             </div>
           </div>
@@ -223,5 +227,5 @@
       </div>
     </div>
   </body>
-  <script type="module" src="/src/scripts/pages/students-list.page.ts"></script>
+  <script type="module" src="/src/scripts/pages/students-list.ts"></script>
 </html>

@@ -13,15 +13,14 @@
   }
 }
 
-.hide-btn-close {
-  display: none;
-}
-
-.btn-close {
+.btn-close-modal {
   border: none;
-  background-color: var(--primary-color-150);
-  padding-top: 10px;
-  width: 100%;
   cursor: pointer;
+  background: var(--secondary-color-50);
+  font-size: var(--font-size-l);
+  color: var(--secondary-color-200);
+  &:active {
+    transform: scale(0.9);
+  }
 }
 /* END BUTTON */

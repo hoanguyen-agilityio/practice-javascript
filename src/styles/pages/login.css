@@ -13,7 +13,7 @@
   width: 100%;
   max-width: 475px;
   background: var(--secondary-color-50);
-  border-radius: 20px;
+  border-radius: var(--border-radius-xl);
 }
 
 .form-login-logo {
@@ -27,7 +27,7 @@
 }
 
 .form-login-content {
-  padding-top: 10px;
+  padding: 9px 15px 0;
   color: var(--secondary-color-200);
   font-size: var(--font-size-xs);
   text-align: center;
@@ -36,7 +36,11 @@
 .form-field {
   display: flex;
   flex-direction: column;
-  padding: 10px 15px 0;
+  padding: 25px 15px 0;
+}
+
+.form-field:nth-child(2n) {
+  padding-top: 10px;
 }
 
 .input-label {
@@ -46,7 +50,7 @@
 .btn-login-form {
   display: flex;
   flex-direction: column;
-  padding: 25px 15px 0;
+  padding: 20px 15px 0;
 }
 
 .btn-login {
@@ -57,7 +61,7 @@
 .message-reset-password {
   text-align: center;
   font-size: var(--font-size-s);
-  padding: 20px 15px;
+  padding: 27px 15px;
 }
 
 .message-reset-password a {
@@ -67,6 +71,10 @@
 .error-message-email-login,
 .error-message-password {
   text-align: left;
+}
+
+.form-field .error-message {
+  padding: 10px 0;
 }
 
 /* STYLE APPLIED TO THE TABLET */
@@ -82,7 +90,6 @@
   }
 
   .form-login-content {
-    padding-top: 15px;
     font-size: var(--font-size-s);
   }
 
@@ -91,36 +98,28 @@
   }
 
   .form-field {
-    padding: 30px 20px 0;
+    padding: 25px 20px 0;
   }
 
   .btn-login-form {
-    padding: 30px 20px 0;
+    padding: 20px 20px 0;
   }
 
   .message-reset-password {
-    padding: 30px 20px;
+    padding: 27px 20px 41px;
   }
 }
 
 /* STYLE APPLIED TO THE DESKTOP */
 @media (min-width: 1024px) {
   .form-login-logo {
-    padding: 40px 25px 0;
+    padding: 44px 25px 0;
     font-size: var(--font-size-xl);
   }
   
   .form-login-title {
     font-size: var(--font-size-l);
-    padding-top: 35px;
-  }
-
-  .form-field {
-    padding: 35px 20px 0;
-  }
-
-  .btn-login-form{
-    padding: 35px 20px 0;
+    padding-top: 43px;
   }
 }
 /* END PAGE LOGIN */

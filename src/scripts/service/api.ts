@@ -1,36 +1,37 @@
+// Interface
+import { OptionApi } from "@/interface";
+
 class ApiService {
   /**
    * Get by calling API
-   * 
-   * @param {*} url - link to the database
+   *
+   * @param {string} url - link to the database
    */
 
-  async get<T,>(url: string): Promise<T[]> {
-    const response = await fetch(url, {
+  async get<T,>(url: string): Promise<T> {
+    const options: OptionApi = {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json', 
-      },
-    });
+    };
+    const res = await fetch(url, options);
 
-    return await response.json();
+    return res.json();
   }
 
   /**
    *  Create new by calling API
-   * 
+   *
    * @param {*} url - link to the database
    * @param {*} data - Data updated to database
    */
   async post<T,>(url: string, data: T): Promise<T> {
-    const option = {
+    const option: OptionApi = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     };
-    
+
     const response = await fetch(url, option);
 
     return response.json();
@@ -38,13 +39,13 @@ class ApiService {
 
   /**
    * Update by calling API
-   * 
-   * @param {*} url - link to the database
+   *
+   * @param {string} url - link to the database
    * @param {*} data - Data updated to database
-   * @returns 
+   * @returns
    */
   async put<T,>(url: string, data: T): Promise<T> {
-    const option = {
+    const option: OptionApi = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -58,11 +59,11 @@ class ApiService {
 
   /**
    * Remove by calling API
-   * 
-   * @param {*} url - link to the database
+   *
+   * @param {string} url - link to the database
    */
-  async delete<T,>(url: string): Promise<T[]> {
-    const option = {
+  async delete<T,>(url: string): Promise<T> {
+    const option: OptionApi = {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

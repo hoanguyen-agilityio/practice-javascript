@@ -1,6 +1,3 @@
-// Import variable LOGIN_PAGE from file app.constant
-import { LOGIN_PAGE } from '@/constant';
-
 // Templates
 import { StudentTemplate } from '@/templates';
 
@@ -8,7 +5,7 @@ import { StudentTemplate } from '@/templates';
 import { StudentService } from '@/service';
 
 // Helpers
-import { 
+import {
   ModalHelper,
   DocumentHelper,
   LoaderHelper
@@ -18,36 +15,44 @@ import {
 import { validate } from '@/validates';
 
 // Constants
-import { 
-  EMPTY_TEXT, 
-  MESSAGES 
+import {
+  LOGIN_PAGE,
+  EMPTY_TEXT,
+  MESSAGES,
+  ADD_STUDENT,
+  UPDATE_STUDENT
 } from '@/constant';
 
 // Interfaces
-import { ConfigValidation, Student, ErrorMessage } from '@/interface'
+import {
+  PartialConfigValidation,
+  PartialErrorMessage,
+  PartialStudent,
+	Student,
+} from '@/interface'
 
 // import { STUDENTS_LIST_PAGE } from '@/constants'
 export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
   containerPageStudentsList = document.querySelector('.container-page-students-list');
   containerContent = this.containerPageStudentsList.querySelector('.container-content');
-  modal = document.querySelector('.modal-form');
+  modal = document.querySelector('.modal-form') as HTMLElement;
   listHeading = document.querySelector('.list-heading');
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
   table = this.containerContent.querySelector('.students-list-table');
   btnShowFormAddStudent = this.listHeading.querySelector('.btn-add-student');
   btnCancel = this.modal.querySelector('.btn-cancel');
-  btnCreateStudent = this.modal.querySelector('.btn-create-student');
-  btnUpdateStudent = this.modal.querySelector('.btn-update-student');
-  name = this.modal.querySelector('#namestudent');
-  email = this.modal.querySelector('#email');
-  phone = this.modal.querySelector('#phone');
-  enrollNumber = this.modal.querySelector('#phoneenrollnumber');
-  dateOfAdmission = this.modal.querySelector('#dateofadmission');
-  form = this.modal.querySelector('.form');
+  btnCreateStudent = this.modal.querySelector('.btn-create-student') as HTMLButtonElement;
+  btnUpdateStudent = this.modal.querySelector('.btn-update-student') as HTMLButtonElement;
+  name = this.modal.querySelector('#namestudent') as HTMLInputElement;
+  email = this.modal.querySelector('#email') as HTMLInputElement;
+  phone = this.modal.querySelector('#phone') as HTMLInputElement;
+  enrollNumber = this.modal.querySelector('#phoneenrollnumber') as HTMLInputElement;
+  dateOfAdmission = this.modal.querySelector('#dateofadmission') as HTMLInputElement;
+  form = this.modal.querySelector('.form') as HTMLFormElement;
   formInput = this.modal.querySelectorAll('.form-input');
-  modalConfirmDelete = document.querySelector('.modal-confirm-delete');
-  modalConfirmDeleteBtnCancel = this.modalConfirmDelete.querySelector(
+  modalConfirmDelete = document.querySelector('.modal-confirm-delete') as HTMLElement;
+  btnCancelModalConfirmDelete = this.modalConfirmDelete.querySelector(
     '.btn-cancel',
   );
   modalContentDelete = this.modalConfirmDelete.querySelector(
@@ -57,9 +62,13 @@ export class StudentsList {
   sidebar = document.querySelector('.main-sidebar');
   btnShowSidebar = document.querySelector('.btn-show-sidebar');
   btnHideSidebar = document.querySelector('.btn-hide-sidebar');
-  containerLoader = document.querySelector('.container-loader');
+  containerLoader = document.querySelector('.container-loader') as HTMLElement;
   loader = this.containerLoader.querySelector('.loader');
   searchField = this.containerContent.querySelector('.search-field');
+  titleForm = this.modal.querySelector('.title-form-add-update') as HTMLElement;
+  btnCloseModal = this.modal.querySelector('.btn-close-modal');
+  btnCloseModalConfirmDelete = this.modalConfirmDelete.querySelector('.btn-close-modal')
+
 
   constructor() {
     this.handleLogout();
@@ -68,6 +77,8 @@ export class StudentsList {
     this.handleAddEventForCreateButton();
     this.handleAddEventForUpdateButton();
     this.handleCancelModal();
+    this.handleCloseModal();
+    this.handleCloseModalConfirmDelete();
     this.handleAddEventForDeleteButton();
     this.handleCancelModalConfirmDelete();
     this.handleRenderTable();
@@ -75,17 +86,17 @@ export class StudentsList {
     this.handleAddEventForBtnHideSidebar();
   }
 
-  getValueForm(): Student {
+  getValueForm(): PartialStudent {
     return {
-      name: (this.name as HTMLInputElement).value,
-      email: (this.email as HTMLInputElement).value,
-      phone: (this.phone as HTMLInputElement).value,
-      enrollNumber: (this.enrollNumber as HTMLInputElement).value,
-      dateOfAdmission: (this.dateOfAdmission as HTMLInputElement).value,
+      name: this.name.value,
+      email: this.email.value,
+      phone: this.phone.value,
+      enrollNumber: this.enrollNumber.value,
+      dateOfAdmission: this.dateOfAdmission.value,
     };
   }
 
-  getConfig(): ConfigValidation {
+  getConfig(): PartialConfigValidation {
     return {
       name: ['empty', 'name'],
       email: ['empty', 'formatEmail'],
@@ -95,23 +106,8 @@ export class StudentsList {
     };
   }
 
-  listErrorMessage = [
-    {
-      name: 'email',
-      message: MESSAGES.DUPLICATE_EMAIL,
-    },
-    {
-      name: 'phone',
-      message: MESSAGES.DUPLICATE_PHONE,
-    },
-    {
-      name: 'enrollnumber',
-      message: MESSAGES.DUPLICATE_ENROLL_NUMBER,
-    },
-  ];
-
-  async checkDuplicate(field: string, data: string) {
-    const studentsList = await StudentService.getAll();
+  async checkDuplicate(field: string, data: string): Promise<PartialStudent> {
+    const studentsList: PartialStudent[] = await StudentService.getAll();
     return validate.checkDuplicateData(studentsList, field, data);
   }
 
@@ -119,22 +115,12 @@ export class StudentsList {
    * Reset input and error message
    */
   resetForm(): void {
-    this.formInput.forEach(item => {
-      (item as HTMLInputElement).value = EMPTY_TEXT;
-    });
-
-    const errorMessage: Element[] = [
-      this.name,
-      this.email,
-      this.phone,
-      this.enrollNumber,
-      this.dateOfAdmission,
-    ];
-
-    // Filter out and get each element in the array errorMessage
-    errorMessage.forEach(item => {
-      DocumentHelper.cleanErrorMessage(item);
-    });
+		this.form.reset();
+		DocumentHelper.cleanErrorMessage(this.name);
+		DocumentHelper.cleanErrorMessage(this.email);
+		DocumentHelper.cleanErrorMessage(this.phone);
+		DocumentHelper.cleanErrorMessage(this.enrollNumber);
+		DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
   }
 
   /**
@@ -178,11 +164,11 @@ export class StudentsList {
   /**
    * Show student edit form
    *
-   * @param {*} item - Edit buttons
+   * @param {HTMLButtonElement} item - Edit buttons
    */
-  async showEditStudentModal(item) {
-    const studentId = item.dataset.id;
-    const studentData = await StudentService.getById(studentId) as ErrorMessage;
+  async showEditStudentModal(item: HTMLButtonElement): Promise<void> {
+    const studentId: string = item.dataset.id;
+    const studentData: PartialStudent = await StudentService.getById(studentId);
 
     ModalHelper.showModal(this.modal);
     (this.name as HTMLInputElement).value = studentData.name;
@@ -196,14 +182,14 @@ export class StudentsList {
   /**
    * Handle the edit form that appears when clicking on the edit button
    */
-  handleButtonsEdit() {
-    const btnEdits = document.querySelectorAll('.table-row .btn-edit');
+  handleButtonsEdit(): void {
+    const btnEdits: NodeListOf<Element> = document.querySelectorAll('.table-row .btn-edit');
 
     // Filter through each edit button
-    btnEdits.forEach(item => {
+    btnEdits.forEach((item: HTMLButtonElement) => {
       item.addEventListener('click', async () => {
         await this.showEditStudentModal(item);
-
+        this.titleForm.innerText = UPDATE_STUDENT;
         DocumentHelper.hideElement(this.btnCreateStudent);
         DocumentHelper.showElement(this.btnUpdateStudent);
       });
@@ -213,9 +199,9 @@ export class StudentsList {
   /**
    * The deletion confirmation modal will appear when clicking the delete button
    *
-   * @param {*} item - Table delete button
+   * @param {HTMLButtonElement} item - Table delete button
    */
-  handleShowDeleteStudentModal(item) {
+  handleShowDeleteStudentModal(item: HTMLButtonElement) {
     const studentId: string = item.dataset.id;
 
     ModalHelper.showModal(this.modalConfirmDelete);
@@ -225,21 +211,21 @@ export class StudentsList {
   /**
    * Query to all delete buttons in the table
    */
-  handleDeleteButtons() {
-    const tableDeleteButtons = document.querySelectorAll('.btn-table-delete');
+  handleDeleteButtons(): void {
+    const tableDeleteButtons: NodeListOf<Element> = document.querySelectorAll('.btn-table-delete');
 
-    tableDeleteButtons.forEach(item => {
+    tableDeleteButtons.forEach((item: HTMLButtonElement) => {
       item.addEventListener('click', () => {
         this.handleShowDeleteStudentModal(item);
       });
     });
   }
 
-  async handleRenderRow() {
-    const result: Student[] = await StudentService.getAll();
-    let tableTemplate = StudentTemplate.renderTableThead();
+  async handleRenderRow(): Promise<void> {
+    const result: PartialStudent[] = await StudentService.getAll();
+    let tableTemplate: string = StudentTemplate.renderTableThead();
 
-      result.forEach(student => {
+      result.forEach((student: Student) => {
         tableTemplate += StudentTemplate.renderTableRow(student);
       });
 
@@ -251,7 +237,7 @@ export class StudentsList {
   /**
    * Handling getting data from the API and displaying it on a table in HTML
    */
-  async handleRenderTable(): Promise<void> {
+  handleRenderTable(): void {
     try {
       this.handleRenderRow()
     } catch (error) {
@@ -263,10 +249,13 @@ export class StudentsList {
    * Handling create form  by calling API
    */
   async handleAddForm(): Promise<void> {
-    const data: Student = this.getValueForm();
-    const config: ConfigValidation = this.getConfig();
-    const validation = validate.validateForm(data, config);
-    const studentsList = await StudentService.getAll();
+    const data: PartialStudent = this.getValueForm();
+    const config: PartialConfigValidation = this.getConfig();
+    const validation: {
+			isValid: boolean;
+			errors: PartialErrorMessage;
+		} = validate.validateForm(data, config);
+    const studentsList: PartialStudent[] = await StudentService.getAll();
 
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
@@ -285,23 +274,27 @@ export class StudentsList {
     }
 
     try {
-      // Check entry requirements of all schools. If incorrect, output an error message
-      const duplicateEmail = validate.checkDuplicateData(
+      // Check for duplicate emails
+      const duplicateEmail: PartialStudent = validate.checkDuplicateData(
         studentsList,
         'email',
         data.email,
       );
-      const duplicatePhone = validate.checkDuplicateData(
+
+			// Check for duplicate phones
+      const duplicatePhone: PartialStudent = validate.checkDuplicateData(
         studentsList,
         'phone',
         data.phone,
       );
-      const duplicateEnrollNumber = validate.checkDuplicateData(
+
+			// Check for duplicate enroll numbers
+      const duplicateEnrollNumber: PartialStudent = validate.checkDuplicateData(
         studentsList,
         'enrollnumber',
         data.enrollNumber,
       );
-      let isContinue = true;
+      let isContinue: boolean = true;
 
       if (duplicateEmail) {
         isContinue = false;
@@ -342,19 +335,19 @@ export class StudentsList {
 
       // Add newly created students to the database
       const newStudent = await StudentService.post(data);
-  
+
       // Hide modal
       ModalHelper.hideModal(this.modal);
-  
+
       // Show loader
       LoaderHelper.showLoader(this.containerLoader);
-  
+
       setTimeout(() => {
         StudentTemplate.renderTableRow(newStudent)
-          
+
         // Hide loader
         LoaderHelper.hideLoader(this.containerLoader);
-  
+
         // Display newly created students on the screen
         this.handleRenderRow()
 
@@ -368,15 +361,17 @@ export class StudentsList {
    * Handling update form  by calling API
    */
   async handleUpdateForm(): Promise<void> {
-    // Func1: Get value and validate
-    const data: Student = this.getValueForm();
-    const config: ConfigValidation = this.getConfig();
-    const validation = validate.validateForm(data, config);
+    const data: PartialStudent = this.getValueForm();
+    const config: PartialConfigValidation = this.getConfig();
+    const validation: {
+			isValid: boolean;
+			errors: PartialErrorMessage;
+		} = validate.validateForm(data, config);
 
     // Show error message
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
     DocumentHelper.showErrorMessage(this.email, validation.errors.email);
-    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone); 
+    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
     DocumentHelper.showErrorMessage(
       this.enrollNumber,
       validation.errors.enrollNumber,
@@ -390,35 +385,39 @@ export class StudentsList {
       return;
     }
 
-    const studentsList: Student[] = await StudentService.getAll();
+    const studentsList: PartialStudent[] = await StudentService.getAll();
 
     try {
-      const formStudentId = this.form.getAttribute('data-id');
+      const formStudentId: string = this.form.getAttribute('data-id');
       const updateRow: Element = document.querySelector(`[data-id="${formStudentId}"]`);
-      const newStudentsList = studentsList.filter((student) => {
-      
+      const newStudentsList: PartialStudent[] = studentsList.filter((student: PartialStudent) => {
+
         return student.id !== formStudentId;
 
       })
-      
-      // Check entry requirements of all schools. If incorrect, output an error message
-      const duplicateEmail = validate.checkDuplicateData(
+
+      // Check for duplicate emails
+      const duplicateEmail: PartialStudent = validate.checkDuplicateData(
         newStudentsList,
         'email',
         data.email,
       );
-      const duplicatePhone = validate.checkDuplicateData(
+
+			// Check for duplicate phones
+      const duplicatePhone: PartialStudent = validate.checkDuplicateData(
         newStudentsList,
         'phone',
         data.phone,
       );
-      const duplicateEnrollNumber = validate.checkDuplicateData(
+
+			// Check for duplicate enroll numbers
+      const duplicateEnrollNumber: PartialStudent = validate.checkDuplicateData(
         newStudentsList,
         'enrollnumber',
         data.enrollNumber,
       );
-      let isContinue = true;
-      
+      let isContinue: boolean = true;
+
       if (duplicateEmail) {
         isContinue = false;
         DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
@@ -455,8 +454,8 @@ export class StudentsList {
       if (!isContinue) {
         return;
       }
-      
-      const updateStudent: Student = await StudentService.update(formStudentId, data);
+
+      const updateStudent: PartialStudent = await StudentService.update(formStudentId, data);
 
       ModalHelper.hideModal(this.modal);
 
@@ -500,6 +499,8 @@ export class StudentsList {
       ModalHelper.showModal(this.modal);
       DocumentHelper.hideElement(this.btnUpdateStudent);
       DocumentHelper.showElement(this.btnCreateStudent);
+      this.titleForm.innerText = ADD_STUDENT;
+
       this.resetForm();
     });
   }
@@ -508,19 +509,19 @@ export class StudentsList {
    * Handle search
    */
   handleSearch(): void {
-    const searchField = document.querySelector('.search-field');
-    const table = document.querySelector('.students-list-table');
-    const tableRow = table.getElementsByTagName('li');
-    const filter = (searchField as HTMLInputElement)?.value?.toUpperCase();
-    
+    const searchField: Element = document.querySelector('.search-field');
+    const table: Element = document.querySelector('.students-list-table');
+    const tableRow: HTMLCollectionOf<HTMLLIElement> = table.getElementsByTagName('li');
+    const filter: string = (searchField as HTMLInputElement)?.value?.toUpperCase();
+
     for (let i = 0; i < tableRow.length; i++) {
-      const content = tableRow[i].getElementsByTagName("span")[1];  
-      const txtValue = content?.textContent || content?.innerText;
+      const content: HTMLSpanElement = tableRow[i].getElementsByTagName("span")[1];
+      const txtValue: string = content?.textContent || content?.innerText;
 
         if (txtValue?.toUpperCase().indexOf(filter) > -1) {
-          tableRow[i].style.display = "";
+          tableRow[i].style.display = '';
         } else {
-          tableRow[i].style.display = "none";
+          tableRow[i].style.display = 'none';
         }
     }
   }
@@ -577,16 +578,37 @@ export class StudentsList {
   handleCancelModal(): void {
     this.btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
-      
+
       this.resetForm();
     });
+  }
+
+  /**
+   * Handle the event when the user clicks on the close button, the form will be hidden
+   */
+  handleCloseModal(): void {
+    this.btnCloseModal.addEventListener('click', () => {
+      ModalHelper.hideModal(this.modalConfirmDelete);
+      ModalHelper.hideModal(this.modal);
+
+      this.resetForm();
+    })
+  }
+
+  /**
+   * Handle the event when the user clicks on the close button, the form will be hidden
+   */
+  handleCloseModalConfirmDelete(): void {
+    this.btnCloseModalConfirmDelete.addEventListener('click', () => {
+      ModalHelper.hideModal(this.modalConfirmDelete);
+    })
   }
 
   /**
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
   handleCancelModalConfirmDelete(): void {
-    this.modalConfirmDeleteBtnCancel.addEventListener('click', () => {
+    this.btnCancelModalConfirmDelete.addEventListener('click', () => {
       ModalHelper.hideModal(this.modalConfirmDelete);
     });
   }
