@@ -115,12 +115,13 @@ export class StudentsList {
    * Reset input and error message
    */
   resetForm(): void {
-		this.form.reset();
 		DocumentHelper.cleanErrorMessage(this.name);
 		DocumentHelper.cleanErrorMessage(this.email);
 		DocumentHelper.cleanErrorMessage(this.phone);
 		DocumentHelper.cleanErrorMessage(this.enrollNumber);
 		DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
+
+		this.form.reset();
   }
 
   /**
@@ -221,6 +222,9 @@ export class StudentsList {
     });
   }
 
+	/**
+	 * Handle render row
+	 */
   async handleRenderRow(): Promise<void> {
     const result: PartialStudent[] = await StudentService.getAll();
     let tableTemplate: string = StudentTemplate.renderTableThead();
