@@ -261,10 +261,7 @@ export class StudentsList {
   async handleAddForm(): Promise<void> {
     const data: PartialStudent = this.getValueForm();
     const config: PartialConfigValidation = this.getConfig();
-    const validation: {
-			isValid: boolean;
-			errors: PartialErrorMessage;
-		} = validate.validateForm(data, config);
+    const validation: { isValid: boolean; errors: PartialErrorMessage; } = validate.validateForm(data, config);
     const studentsList: PartialStudent[] = await StudentService.getAll();
 
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
@@ -373,10 +370,7 @@ export class StudentsList {
   async handleUpdateForm(): Promise<void> {
     const data: PartialStudent = this.getValueForm();
     const config: PartialConfigValidation = this.getConfig();
-    const validation: {
-			isValid: boolean;
-			errors: PartialErrorMessage;
-		} = validate.validateForm(data, config);
+    const validation: { isValid: boolean; errors: PartialErrorMessage; } = validate.validateForm(data, config);
 
     // Show error message
     DocumentHelper.showErrorMessage(this.name, validation.errors.name);
