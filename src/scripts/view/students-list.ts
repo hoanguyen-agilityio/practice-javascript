@@ -42,8 +42,8 @@ export class StudentsList {
   table = this.containerContent.querySelector('.students-list-table');
   btnShowFormAddStudent = this.listHeading.querySelector('.btn-add-student');
   btnCancel = this.modal.querySelector('.btn-cancel');
-  btnCreateStudent = this.modal.querySelector('.btn-create-student') as HTMLButtonElement;
-  btnUpdateStudent = this.modal.querySelector('.btn-update-student') as HTMLButtonElement;
+  btnCreateStudent = this.modal.querySelector('.btn-create-student') as HTMLElement;
+  btnUpdateStudent = this.modal.querySelector('.btn-update-student') as HTMLElement;
   name = this.modal.querySelector('#namestudent') as HTMLInputElement;
   email = this.modal.querySelector('#email') as HTMLInputElement;
   phone = this.modal.querySelector('#phone') as HTMLInputElement;
