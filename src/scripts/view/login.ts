@@ -30,13 +30,22 @@ export class Login {
   emailInput = this.formLogin.querySelector('#email') as HTMLInputElement;
   passwordInput = this.formLogin.querySelector('#password') as HTMLInputElement;
   errorMessage = this.formLogin.querySelector('.error-message') as HTMLElement;
-  errorMessageEmailLogin = this.formLogin.querySelector('.error-message-email-login');
-  errorMessagePassword = this.formLogin.querySelector('.error-message-password');
+  errorMessageEmailLogin = this.formLogin.querySelector('.error-message-email-login') as HTMLElement;
+  errorMessagePassword = this.formLogin.querySelector('.error-message-password') as HTMLElement;
   containerLoader = document.querySelector('.container-loader') as HTMLElement;
 
   constructor() {
     this.addLoginEvent();
   }
+
+	/**
+	 * Clean error message
+	 */
+	cleanErrorMessage() {
+		DocumentHelper.cleanErrorMessage(this.errorMessage);
+		DocumentHelper.cleanErrorMessage(this.errorMessageEmailLogin);
+		DocumentHelper.cleanErrorMessage(this.errorMessagePassword);
+ }
 
   async login(): Promise<void> {
     const data: LoginAccount = {
@@ -48,12 +57,6 @@ export class Login {
       password: ['emptyPassword','passwordRule'],
     };
 
-    const errorMessage: Element[] = [this.errorMessage, this.errorMessageEmailLogin, this.errorMessagePassword];
-
-    // Filter out and get each element in the array errorMessage
-    const cleanErrorMessage = errorMessage.forEach((item: HTMLElement) => {
-      DocumentHelper.cleanErrorMessage(item);
-    });
     const validation = validate.validateForm(data, config);
 
     // If the input is empty, an error message will be output
@@ -69,7 +72,7 @@ export class Login {
       const userList = await apiService.get<LoginAccount[]>(ACCOUNTS_API);
       const user = userList.find(({ email }) => email === data.email);
       // Clear error messages
-      cleanErrorMessage;
+      this.cleanErrorMessage();
 
       // Correct login account
       if (user.email === data.email && user.password === data.password) {
