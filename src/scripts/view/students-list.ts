@@ -115,12 +115,13 @@ export class StudentsList {
    * Reset input and error message
    */
   resetForm(): void {
-		this.form.reset();
 		DocumentHelper.cleanErrorMessage(this.name);
 		DocumentHelper.cleanErrorMessage(this.email);
 		DocumentHelper.cleanErrorMessage(this.phone);
 		DocumentHelper.cleanErrorMessage(this.enrollNumber);
 		DocumentHelper.cleanErrorMessage(this.dateOfAdmission);
+
+		this.form.reset();
   }
 
   /**
@@ -221,6 +222,9 @@ export class StudentsList {
     });
   }
 
+	/**
+	 * Handle render row
+	 */
   async handleRenderRow(): Promise<void> {
     const result: PartialStudent[] = await StudentService.getAll();
     let tableTemplate: string = StudentTemplate.renderTableThead();
@@ -230,8 +234,8 @@ export class StudentsList {
       });
 
       this.table.innerHTML = tableTemplate;
-      this.handleButtonsEdit();
-      this.handleDeleteButtons();
+			this.handleButtonsEdit();
+			this.handleDeleteButtons();
   }
 
   /**
@@ -245,93 +249,127 @@ export class StudentsList {
     }
   }
 
+	/**
+	 * Get data and validate
+	 */
+	getDataAndValidate(): { isValid: boolean; errors: PartialErrorMessage; } {
+    const data: PartialStudent = this.getValueForm();
+    const config: PartialConfigValidation = this.getConfig();
+
+		return validate.validateForm(data, config);
+	}
+
+	/**
+	 * show error messages for checking for empty, wrong format,...
+	 */
+	showError(): void {
+		DocumentHelper.showErrorMessage(this.name, this.getDataAndValidate().errors.name);
+    DocumentHelper.showErrorMessage(this.email, this.getDataAndValidate().errors.email);
+    DocumentHelper.showErrorMessage(this.phone, this.getDataAndValidate().errors.phone);
+    DocumentHelper.showErrorMessage(
+      this.enrollNumber,
+      this.getDataAndValidate().errors.enrollNumber,
+    );
+    DocumentHelper.showErrorMessage(
+      this.dateOfAdmission,
+      this.getDataAndValidate().errors.dateOfAdmission,
+    );
+	}
+
+	/**
+	 * Check duplicate data
+	 *
+	 * @param {Array[]} arr - The array contains student information
+	 */
+	checkDuplicateData(arr: PartialStudent[]): boolean {
+		const data: PartialStudent = this.getValueForm();
+
+		// Check for duplicate emails
+		const duplicateEmail: PartialStudent = validate.checkDuplicateData(
+			arr,
+			'email',
+			data.email,
+		);
+
+		// Check for duplicate phones
+		const duplicatePhone: PartialStudent = validate.checkDuplicateData(
+			arr,
+			'phone',
+			data.phone,
+		);
+
+		// Check for duplicate enroll numbers
+		const duplicateEnrollNumber: PartialStudent = validate.checkDuplicateData(
+			arr,
+			'enrollnumber',
+			data.enrollNumber,
+		);
+
+		let isContinue: boolean = true;
+
+		if (duplicateEmail) {
+			isContinue = false;
+			DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
+
+			return;
+		} else {
+			isContinue = true;
+			DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
+		}
+
+		if (duplicatePhone) {
+			isContinue = false;
+			DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
+
+			return;
+		} else {
+			isContinue = true;
+			DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
+		}
+
+		if (duplicateEnrollNumber) {
+			isContinue = false;
+			DocumentHelper.showErrorMessage(
+				this.enrollNumber,
+				MESSAGES.DUPLICATE_ENROLL_NUMBER,
+			);
+
+			return;
+		} else {
+			isContinue = true;
+			DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
+		}
+
+		if (!isContinue) {
+
+			return;
+		}
+
+		return isContinue;
+	}
+
   /**
    * Handling create form  by calling API
    */
   async handleAddForm(): Promise<void> {
     const data: PartialStudent = this.getValueForm();
-    const config: PartialConfigValidation = this.getConfig();
-    const validation: { isValid: boolean; errors: PartialErrorMessage; } = validate.validateForm(data, config);
     const studentsList: PartialStudent[] = await StudentService.getAll();
 
-    DocumentHelper.showErrorMessage(this.name, validation.errors.name);
-    DocumentHelper.showErrorMessage(this.email, validation.errors.email);
-    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
-    DocumentHelper.showErrorMessage(
-      this.enrollNumber,
-      validation.errors.enrollNumber,
-    );
-    DocumentHelper.showErrorMessage(
-      this.dateOfAdmission,
-      validation.errors.dateOfAdmission,
-    );
+		this.showError();
 
-    if (!validation.isValid) {
+		if (!this.getDataAndValidate().isValid) {
+
       return;
     }
 
     try {
-      // Check for duplicate emails
-      const duplicateEmail: PartialStudent = validate.checkDuplicateData(
-        studentsList,
-        'email',
-        data.email,
-      );
+			if(!this.checkDuplicateData(studentsList)) {
 
-			// Check for duplicate phones
-      const duplicatePhone: PartialStudent = validate.checkDuplicateData(
-        studentsList,
-        'phone',
-        data.phone,
-      );
-
-			// Check for duplicate enroll numbers
-      const duplicateEnrollNumber: PartialStudent = validate.checkDuplicateData(
-        studentsList,
-        'enrollnumber',
-        data.enrollNumber,
-      );
-      let isContinue: boolean = true;
-
-      if (duplicateEmail) {
-        isContinue = false;
-        DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-
-        return;
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-      }
-
-      if (duplicatePhone) {
-        isContinue = false;
-        DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
-
-        return;
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
-      }
-
-      if (duplicateEnrollNumber) {
-        isContinue = false;
-        DocumentHelper.showErrorMessage(
-          this.enrollNumber,
-          MESSAGES.DUPLICATE_ENROLL_NUMBER,
-        );
-
-        return;
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
-      }
-
-      if (!isContinue) {
-        return;
-      }
+				return;
+			}
 
       // Add newly created students to the database
-      const newStudent = await StudentService.post(data);
+      const newStudent: PartialStudent = await StudentService.post(data);
 
       // Hide modal
       ModalHelper.hideModal(this.modal);
@@ -340,14 +378,16 @@ export class StudentsList {
       LoaderHelper.showLoader(this.containerLoader);
 
       setTimeout(() => {
-        StudentTemplate.renderTableRow(newStudent)
-
         // Hide loader
         LoaderHelper.hideLoader(this.containerLoader);
 
-        // Display newly created students on the screen
-        this.handleRenderRow()
+				const prevTable = this.table.innerHTML;
+				const newItem = StudentTemplate.renderTableRow(newStudent);
 
+				// Display newly created students on the screen
+				this.table.innerHTML= `${prevTable} ${newItem}`;
+				this.handleButtonsEdit();
+				this.handleDeleteButtons();
       }, 2000);
     } catch (error) {
       alert('An error occurred while creating a new student');
@@ -358,28 +398,15 @@ export class StudentsList {
    * Handling update form  by calling API
    */
   async handleUpdateForm(): Promise<void> {
-    const data: PartialStudent = this.getValueForm();
-    const config: PartialConfigValidation = this.getConfig();
-    const validation: { isValid: boolean; errors: PartialErrorMessage; } = validate.validateForm(data, config);
+		const data: PartialStudent = this.getValueForm();
+		const studentsList: PartialStudent[] = await StudentService.getAll();
 
-    // Show error message
-    DocumentHelper.showErrorMessage(this.name, validation.errors.name);
-    DocumentHelper.showErrorMessage(this.email, validation.errors.email);
-    DocumentHelper.showErrorMessage(this.phone, validation.errors.phone);
-    DocumentHelper.showErrorMessage(
-      this.enrollNumber,
-      validation.errors.enrollNumber,
-    );
-    DocumentHelper.showErrorMessage(
-      this.dateOfAdmission,
-      validation.errors.dateOfAdmission,
-    );
+    this.showError();
 
-    if (!validation.isValid) {
+    if (!this.getDataAndValidate().isValid) {
+
       return;
     }
-
-    const studentsList: PartialStudent[] = await StudentService.getAll();
 
     try {
       const formStudentId: string = this.form.getAttribute('data-id');
@@ -387,67 +414,12 @@ export class StudentsList {
       const newStudentsList: PartialStudent[] = studentsList.filter((student: PartialStudent) => {
 
         return student.id !== formStudentId;
-
       })
 
-      // Check for duplicate emails
-      const duplicateEmail: PartialStudent = validate.checkDuplicateData(
-        newStudentsList,
-        'email',
-        data.email,
-      );
+			if(!this.checkDuplicateData(newStudentsList)) {
 
-			// Check for duplicate phones
-      const duplicatePhone: PartialStudent = validate.checkDuplicateData(
-        newStudentsList,
-        'phone',
-        data.phone,
-      );
-
-			// Check for duplicate enroll numbers
-      const duplicateEnrollNumber: PartialStudent = validate.checkDuplicateData(
-        newStudentsList,
-        'enrollnumber',
-        data.enrollNumber,
-      );
-      let isContinue: boolean = true;
-
-      if (duplicateEmail) {
-        isContinue = false;
-        DocumentHelper.showErrorMessage(this.email, MESSAGES.DUPLICATE_EMAIL);
-
-        return;
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.email, EMPTY_TEXT);
-      }
-
-      if (duplicatePhone) {
-        isContinue = false;
-        DocumentHelper.showErrorMessage(this.phone, MESSAGES.DUPLICATE_PHONE);
-
-        return;
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.phone, EMPTY_TEXT);
-      }
-
-      if (duplicateEnrollNumber) {
-        isContinue = false;
-        DocumentHelper.showErrorMessage(
-          this.enrollNumber,
-          MESSAGES.DUPLICATE_ENROLL_NUMBER,
-        );
-
-        return;
-      } else {
-        isContinue = true;
-        DocumentHelper.showErrorMessage(this.enrollNumber, EMPTY_TEXT);
-      }
-
-      if (!isContinue) {
-        return;
-      }
+				return;
+			}
 
       const updateStudent: PartialStudent = await StudentService.update(formStudentId, data);
 
@@ -513,7 +485,7 @@ export class StudentsList {
       const txtValue: string = content?.textContent || content?.innerText;
 
         if (txtValue?.toUpperCase().indexOf(filter) > -1) {
-          tableRow[i].style.display = '';
+					tableRow[i].style.display = '';
         } else {
           tableRow[i].style.display = 'none';
         }
@@ -536,7 +508,6 @@ export class StudentsList {
       await this.handleAddForm();
     });
   }
-
 
   /**
    * Handle add event for update button
