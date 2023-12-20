@@ -2,7 +2,7 @@
 import { StudentTemplate } from '@/templates';
 
 // Service
-import { StudentService } from '@/service';
+import { StudentService } from '../services';
 
 // Helpers
 import {
@@ -36,39 +36,28 @@ export class StudentsList {
   mainSidebar = document.querySelector('#mainsidebar');
   containerPageStudentsList = document.querySelector('.container-page-students-list');
   containerContent = this.containerPageStudentsList.querySelector('.container-content');
-  modal = document.querySelector('.modal-form') as HTMLElement;
+  modal = document.querySelector('.modal-form');
   listHeading = document.querySelector('.list-heading');
   btnLogout = this.mainSidebar.querySelector('.btn-logout');
   table = this.containerContent.querySelector('.students-list-table');
-  btnShowFormAddStudent = this.listHeading.querySelector('.btn-add-student');
-  btnCancel = this.modal.querySelector('.btn-cancel');
-  btnCreateStudent = this.modal.querySelector('.btn-create-student') as HTMLElement;
-  btnUpdateStudent = this.modal.querySelector('.btn-update-student') as HTMLElement;
-  name = this.modal.querySelector('#namestudent') as HTMLInputElement;
-  email = this.modal.querySelector('#email') as HTMLInputElement;
-  phone = this.modal.querySelector('#phone') as HTMLInputElement;
-  enrollNumber = this.modal.querySelector('#phoneenrollnumber') as HTMLInputElement;
-  dateOfAdmission = this.modal.querySelector('#dateofadmission') as HTMLInputElement;
+  btnCreateStudent = this.modal.querySelector('.btn-create-student') as HTMLButtonElement;
+  btnUpdateStudent = this.modal.querySelector('.btn-update-student') as HTMLButtonElement;
+  name = this.modal.querySelector('input[name="name-student"]') as HTMLInputElement;
+  email = this.modal.querySelector('input[name="email"]') as HTMLInputElement;
+  phone = this.modal.querySelector('input[name="phone"]') as HTMLInputElement;
+  enrollNumber = this.modal.querySelector('input[name="phone-enroll-number"]') as HTMLInputElement;
+  dateOfAdmission = this.modal.querySelector('input[name="date-of-admission"]') as HTMLInputElement;
   form = this.modal.querySelector('.form') as HTMLFormElement;
-  formInput = this.modal.querySelectorAll('.form-input');
-  modalConfirmDelete = document.querySelector('.modal-confirm-delete') as HTMLElement;
-  btnCancelModalConfirmDelete = this.modalConfirmDelete.querySelector(
-    '.btn-cancel',
-  );
+  modalConfirmDelete = document.querySelector('.modal-confirm-delete');
   modalContentDelete = this.modalConfirmDelete.querySelector(
     '.modal-content-delete',
   );
-  btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
   sidebar = document.querySelector('.main-sidebar');
   btnShowSidebar = document.querySelector('.btn-show-sidebar');
   btnHideSidebar = document.querySelector('.btn-hide-sidebar');
-  containerLoader = document.querySelector('.container-loader') as HTMLElement;
-  loader = this.containerLoader.querySelector('.loader');
+  containerLoader = document.querySelector('.container-loader');
   searchField = this.containerContent.querySelector('.search-field');
-  titleForm = this.modal.querySelector('.title-form-add-update') as HTMLElement;
-  btnCloseModal = this.modal.querySelector('.btn-close-modal');
-  btnCloseModalConfirmDelete = this.modalConfirmDelete.querySelector('.btn-close-modal')
-
+  titleForm = this.modal.querySelector('.title-form-add-update');
 
   constructor() {
     this.handleLogout();
@@ -172,11 +161,11 @@ export class StudentsList {
     const studentData: PartialStudent = await StudentService.getById(studentId);
 
     ModalHelper.showModal(this.modal);
-    (this.name as HTMLInputElement).value = studentData.name;
-    (this.email as HTMLInputElement).value = studentData.email;
-    (this.phone as HTMLInputElement).value = studentData.phone;
-    (this.enrollNumber as HTMLInputElement).value = studentData.enrollNumber;
-    (this.dateOfAdmission as HTMLInputElement).value = studentData.dateOfAdmission;
+    this.name.value = studentData.name;
+    this.email.value = studentData.email;
+    this.phone.value = studentData.phone;
+    this.enrollNumber.value = studentData.enrollNumber;
+    this.dateOfAdmission.value = studentData.dateOfAdmission;
     this.form.setAttribute('data-id', studentId);
   }
 
@@ -190,7 +179,7 @@ export class StudentsList {
     btnEdits.forEach((item: HTMLButtonElement) => {
       item.addEventListener('click', async () => {
         await this.showEditStudentModal(item);
-        this.titleForm.innerText = UPDATE_STUDENT;
+        this.titleForm.innerHTML = UPDATE_STUDENT;
         DocumentHelper.hideElement(this.btnCreateStudent);
         DocumentHelper.showElement(this.btnUpdateStudent);
       });
@@ -258,6 +247,34 @@ export class StudentsList {
 
 		return validate.validateForm(data, config);
 	}
+
+  /**
+   * Handles undisable button when new data is passed into the input
+   */
+  handleChangInput() {
+    const name = this.name.addEventListener('change', () => {
+      DocumentHelper.removeDisableElement(this.btnCreateStudent);
+      DocumentHelper.removeDisableElement(this.btnUpdateStudent);
+    });
+    const email = this.email.addEventListener('change', () => {
+      DocumentHelper.removeDisableElement(this.btnCreateStudent);
+      DocumentHelper.removeDisableElement(this.btnUpdateStudent);
+    });
+    const phone = this.phone.addEventListener('change', () => {
+      DocumentHelper.removeDisableElement(this.btnCreateStudent);
+      DocumentHelper.removeDisableElement(this.btnUpdateStudent);
+    });
+    const enrollNumber = this.enrollNumber.addEventListener('change', () => {
+      DocumentHelper.removeDisableElement(this.btnCreateStudent);
+      DocumentHelper.removeDisableElement(this.btnUpdateStudent);
+    });
+    const dateOfAdmission = this.dateOfAdmission.addEventListener('change', () => {
+      DocumentHelper.removeDisableElement(this.btnCreateStudent);
+      DocumentHelper.removeDisableElement(this.btnUpdateStudent);
+    });
+
+    return { name, email, phone, enrollNumber, dateOfAdmission }
+  }
 
 	/**
 	 * show error messages for checking for empty, wrong format,...
@@ -355,6 +372,8 @@ export class StudentsList {
     const data: PartialStudent = this.getValueForm();
     const studentsList: PartialStudent[] = await StudentService.getAll();
 
+    DocumentHelper.disableElement(this.btnCreateStudent);
+    this.handleChangInput();
 		this.showError();
 
 		if (!this.getDataAndValidate().isValid) {
@@ -398,9 +417,12 @@ export class StudentsList {
    * Handling update form  by calling API
    */
   async handleUpdateForm(): Promise<void> {
+
 		const data: PartialStudent = this.getValueForm();
 		const studentsList: PartialStudent[] = await StudentService.getAll();
 
+    DocumentHelper.disableElement(this.btnUpdateStudent);
+    this.handleChangInput();
     this.showError();
 
     if (!this.getDataAndValidate().isValid) {
@@ -461,11 +483,13 @@ export class StudentsList {
    * Handle the event when clicking on the add student button, the add student form will appear
    */
   handleShowAddForm(): void {
-    this.btnShowFormAddStudent.addEventListener('click', () => {
+    const btnShowFormAddStudent = this.listHeading.querySelector('.btn-add-student');
+
+    btnShowFormAddStudent.addEventListener('click', () => {
       ModalHelper.showModal(this.modal);
       DocumentHelper.hideElement(this.btnUpdateStudent);
       DocumentHelper.showElement(this.btnCreateStudent);
-      this.titleForm.innerText = ADD_STUDENT;
+      this.titleForm.innerHTML = ADD_STUDENT;
 
       this.resetForm();
     });
@@ -523,7 +547,9 @@ export class StudentsList {
    * Handle the deletion of the student when the user presses the delete button
    */
   handleAddEventForDeleteButton(): void {
-    this.btnDelete.addEventListener('click', () => {
+    const btnDelete = this.modalConfirmDelete.querySelector('.btn-delete');
+
+    btnDelete.addEventListener('click', () => {
       // Hide modal
       ModalHelper.hideModal(this.modalConfirmDelete);
 
@@ -541,8 +567,12 @@ export class StudentsList {
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
   handleCancelModal(): void {
-    this.btnCancel.addEventListener('click', () => {
+    const btnCancel = this.modal.querySelector('.btn-cancel');
+
+    btnCancel.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
+      DocumentHelper.removeDisableElement(this.btnCreateStudent);
+      DocumentHelper.removeDisableElement(this.btnUpdateStudent);
 
       this.resetForm();
     });
@@ -552,9 +582,12 @@ export class StudentsList {
    * Handle the event when the user clicks on the close button, the form will be hidden
    */
   handleCloseModal(): void {
-    this.btnCloseModal.addEventListener('click', () => {
-      ModalHelper.hideModal(this.modalConfirmDelete);
+    const btnCloseModal = this.modal.querySelector('.btn-close-modal');
+
+    btnCloseModal.addEventListener('click', () => {
       ModalHelper.hideModal(this.modal);
+      DocumentHelper.removeDisableElement(this.btnCreateStudent);
+      DocumentHelper.removeDisableElement(this.btnUpdateStudent);
 
       this.resetForm();
     })
@@ -564,7 +597,9 @@ export class StudentsList {
    * Handle the event when the user clicks on the close button, the form will be hidden
    */
   handleCloseModalConfirmDelete(): void {
-    this.btnCloseModalConfirmDelete.addEventListener('click', () => {
+    const btnCloseModalConfirmDelete = this.modalConfirmDelete.querySelector('.btn-close-modal');
+
+    btnCloseModalConfirmDelete.addEventListener('click', () => {
       ModalHelper.hideModal(this.modalConfirmDelete);
     })
   }
@@ -573,7 +608,11 @@ export class StudentsList {
    * Handle the event when the user clicks on the cancel button, the form will be hidden
    */
   handleCancelModalConfirmDelete(): void {
-    this.btnCancelModalConfirmDelete.addEventListener('click', () => {
+    const btnCancelModalConfirmDelete = this.modalConfirmDelete.querySelector(
+      '.btn-cancel',
+    );
+
+    btnCancelModalConfirmDelete.addEventListener('click', () => {
       ModalHelper.hideModal(this.modalConfirmDelete);
     });
   }

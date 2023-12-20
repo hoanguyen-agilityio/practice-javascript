@@ -3,11 +3,10 @@ import {
   STUDENTS_LIST_PAGE,
   ACCOUNTS_API,
   MESSAGES,
-  EMPTY_TEXT
 } from '@/constants';
 
 // Service
-import { apiService } from '@/service';
+import { apiService } from '../services';
 
 // Validates
 import { validate } from '@/validates';
@@ -27,12 +26,12 @@ import {
 export class Login {
   formLogin = document.querySelector('#formlogin');
   loginBtn = this.formLogin.querySelector('#btnlogin');
-  emailInput = this.formLogin.querySelector('#email') as HTMLInputElement;
-  passwordInput = this.formLogin.querySelector('#password') as HTMLInputElement;
-  errorMessage = this.formLogin.querySelector('.error-message') as HTMLElement;
-  errorMessageEmailLogin = this.formLogin.querySelector('.error-message-email-login') as HTMLElement;
-  errorMessagePassword = this.formLogin.querySelector('.error-message-password') as HTMLElement;
-  containerLoader = document.querySelector('.container-loader') as HTMLElement;
+  emailInput = this.formLogin.querySelector('input[name="email"]') as HTMLInputElement;
+  passwordInput = this.formLogin.querySelector('input[name="password"]') as HTMLInputElement;
+  errorMessage = this.formLogin.querySelector('.error-message');
+  errorMessageEmailLogin = this.formLogin.querySelector('.error-message-email-login');
+  errorMessagePassword = this.formLogin.querySelector('.error-message-password');
+  containerLoader = document.querySelector('.container-loader');
 
   constructor() {
     this.addLoginEvent();
@@ -43,14 +42,12 @@ export class Login {
 	 */
 	cleanErrorMessage() {
 		DocumentHelper.cleanErrorMessage(this.errorMessage);
-		DocumentHelper.cleanErrorMessage(this.errorMessageEmailLogin);
-		DocumentHelper.cleanErrorMessage(this.errorMessagePassword);
  }
 
   async login(): Promise<void> {
     const data: PartialUser = {
-      email: (this.emailInput as HTMLInputElement).value,
-      password: (this.passwordInput as HTMLInputElement).value,
+      email: this.emailInput.value,
+      password: this.passwordInput.value,
     };
     const config: PartialConfigValidation = {
       email: ['emptyEmail','formatEmail'],
@@ -63,7 +60,6 @@ export class Login {
     if (!validation.isValid) {
       DocumentHelper.showErrorMessage(this.emailInput, validation.errors.email);
       DocumentHelper.showErrorMessage(this.passwordInput, validation.errors.password);
-      DocumentHelper.showErrorMessage(this.errorMessage, EMPTY_TEXT);
 
       return;
     }

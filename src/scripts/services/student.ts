@@ -2,7 +2,7 @@
 import { STUDENT_API } from '@/constants';
 
 // Service
-import { apiService } from '@/service';
+import { apiService } from '@/services';
 
 // Interface
 import { PartialStudent } from '@/interfaces';

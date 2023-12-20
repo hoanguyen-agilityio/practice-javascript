@@ -1,5 +1,5 @@
 // Interface
-import { PartialStudent } from '@/interface';
+import { PartialStudent } from '@/interfaces';
 
 export class StudentTemplate {
   /**

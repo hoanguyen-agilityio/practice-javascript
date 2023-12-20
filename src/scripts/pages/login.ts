@@ -1,5 +1,5 @@
 // View
-import { Login } from '@/view';
+import { Login } from '@/views';
 
 const loginPage = () => {
     new Login();

@@ -1,5 +1,5 @@
 /* START TEXT */
-.logo {
+.heading {
   text-align: center;
   font-weight: var(--font-weight-xl);
   &:before {

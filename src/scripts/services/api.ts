@@ -12,9 +12,9 @@ class ApiService {
     const options: OptionApi = {
       method: 'GET',
     };
-    const res = await fetch(url, options);
+    const response = await fetch(url, options);
 
-    return res.json();
+    return response.json();
   }
 
   /**

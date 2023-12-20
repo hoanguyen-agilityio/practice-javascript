@@ -2,18 +2,18 @@ export class ModalHelper {
   /**
    * Hide modal
    *
-   * @param {HTMLElement} element - Element of modal
+   * @param {Element} element - Element of modal
    */
-  static hideModal(element: HTMLElement): void {
+  static hideModal(element: Element): void {
     element.classList.remove('modal-show');
   }
 
   /**
    * Show modal
    *
-   * @param {HTMLElement} element - Element of modal
+   * @param {Element} element - Element of modal
    */
-  static showModal(element: HTMLElement): void {
+  static showModal(element: Element): void {
     element.classList.add('modal-show');
   }
 }
