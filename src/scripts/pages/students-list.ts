@@ -1,5 +1,5 @@
 // View
-import { StudentsList } from '@/view';
+import { StudentsList } from '@/views';
 
 const studentsListPage = () => {
     new StudentsList();

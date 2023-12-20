@@ -112,9 +112,9 @@
 
 | **Command**                                                                     | **Action**                           |
 | ------------------------------------------------------------------------------- | ------------------------------------ |
-| `$git clone git@gitlab.asoft-python.com:hoa.nguyen/typescript-training.git`     | Clone repository with SSH            |
-| `$git clone https://gitlab.asoft-python.com/hoa.nguyen/typescript-training.git` | Clone repository with HTTPS          |
+| `$git clone git@gitlab.asoft-python.com:hoa.nguyen/training-typescript.git`     | Clone repository with SSH            |
+| `$git clone https://gitlab.asoft-python.com/hoa.nguyen/training-typescript.git` | Clone repository with HTTPS          |
 | `$cd practice-typescript`                                                       | Redirect to folder                   |
 | `$git checkout feature/practice-typescript`                                     | Checkout branch                      |
-| `$npm install`                                                                  | Install npm                          |
+| `$npm install`                                                                  | Install dependencies                 |
 | `$npm start`                                                                    | Start local server at localhost:1234 |

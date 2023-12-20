@@ -6,18 +6,17 @@ import {
   NAME_REGEX,
   MESSAGES,
   EMPTY_TEXT
-} from '@/constant';
+} from '@/constants';
 
 // Interfaces
 import {
   PartialStudent,
   PartialConfigValidation,
-  LoginAccount,
-  PartialErrorMessage,
-} from '@/interface';
+  PartialUser
+} from '@/interfaces';
 
 // Enum
-import { ValidationType } from '@/enum';
+import { ValidationType } from '@/enums';
 
 class Validate {
   /**
@@ -83,10 +82,10 @@ class Validate {
    * @param {object} data - The data object contains all the input elements
    * @param {object} config - EX: config = { name: ['empty'], password: ['passwordFormat'] }
    */
-  validateForm(data: PartialStudent | LoginAccount, config: PartialConfigValidation) {
+  validateForm(data: PartialStudent | PartialUser, config: PartialConfigValidation) {
     const formValidation: {
       isValid: boolean,
-      errors: PartialErrorMessage
+      errors: PartialUser
     } = {
       isValid: true,
       errors: {},
